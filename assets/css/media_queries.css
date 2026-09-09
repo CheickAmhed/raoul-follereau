@@ -176,18 +176,88 @@
   .blog-grid,
   .footer-grid { grid-template-columns: 1fr 1fr; }
 
+  /* titres de section : taille pleine à partir de la tablette */
+  .section-title { font-size: var(--fs-2); }
+
+  /* bannières un peu plus hautes en 2 colonnes (toujours identiques entre les 3 cartes) */
+  .course-banner { height: 320px; }
+
+  /* en-tête de section : le libellé + le carré animé reviennent (plus de chevron seul) */
+  .section-head-btn { padding: 20px 45px; }
+
+  .section-head-btn .btn-text,
+  .section-head-btn .square { display: block; }
+
+  .section-head-btn .btn-chevron { display: none; }
+
+  /* course : titre + bouton au ras des bords, comme les cartes en plein cadre */
+  .course .section-head {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* instructor / blog : en-tête au ras des bords du conteneur (comme leurs grilles
+     qui débordent déjà la gouttière via margin-inline dans #SECTIONS PLEINE LARGEUR) */
+  .instructor .section-head,
+  .blog .section-head {
+    margin-left:  calc(-1 * var(--px));
+    margin-right: calc(-1 * var(--px));
+  }
+
+  /* map : à partir de la tablette, l'iframe s'étend jusqu'aux bords du conteneur */
+  .map-embed {
+    margin-left:  calc(-1 * var(--px));
+    margin-right: calc(-1 * var(--px));
+  }
+
 
 
   /**
-   * #EVENT 
+   * #CALENDAR
+   */
+
+  .calendar {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 50px;
+    align-items: stretch;
+  }
+
+  /* en-tête pleine largeur au-dessus ; timeline + bannière sur la ligne suivante */
+  .calendar > .section-head {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .calendar-right {
+    display: block;
+    height: 100%;
+    max-width: none;
+  }
+
+  /* la bannière remplit la hauteur de la colonne timeline (align-items: stretch) */
+  .calendar-right .event-banner,
+  .calendar-right .banner-img { height: 100%; }
+
+  .calendar-right .banner-img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+
+
+  /**
+   * #EVENT
    */
 
   .event .play { right: -100px; }
 
+  .event-left { display: block; }
+
 
 
   /**
-   * #CONTACT 
+   * #CONTACT
    */
 
   .contact-card { padding: 40px 60px; }
@@ -221,9 +291,9 @@
   :root {
 
     --fs-5: 16px;
-    
+
     --px: 30px;
-    --py: 120px;
+    --py: 88px;   /* resserré (était 120px) */
 
   }
 
@@ -296,6 +366,10 @@
     gap: 40px;
   }
 
+  /* Titre sur toute la largeur, au-dessus des 2 colonnes ; .about-left /
+     .about-right restent sur la ligne suivante, alignés en bas (align-items: end). */
+  .about > .section-title { grid-column: 1 / -1; }
+
   .about-left { margin-left: -70px; }
 
   .about-left img { max-width: unset; }
@@ -318,33 +392,59 @@
     margin-bottom: 0;
   }
 
-  .course .btn-primary {
-    position: absolute;
-    top: 130px;
-    right: var(--px);
-  }
+  /* hauteur de référence mesurée sur la 1re carte en 3 colonnes (largeur conteneur 1440) */
+  .course-banner { height: 377px; }
+
+  /* bannière blog un peu plus haute quand les cartes s'élargissent (3 colonnes) */
+  .blog-banner-box { height: 260px; }
 
 
 
   /**
-   * #EVENT 
+   * #EVENT
    */
 
   .event {
     display: grid;
     grid-template-columns: 2fr 3fr;
     gap: 50px;
-    align-items: center;
+    align-items: stretch;
   }
 
-  .event-left { margin-bottom: 0; }
+  .event > .section-head {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .event-left {
+    margin-bottom: 0;
+    height: 100%;
+    max-width: none;
+  }
+
+  /* la bannière remplit la hauteur de la colonne .event-right (align-items: stretch) */
+  .event-left .event-banner,
+  .event .banner-img { height: 100%; }
+
+  .event .banner-img {
+    width: 100%;
+    object-fit: cover;
+  }
 
   .event .play { right: -10px; }
 
 
 
   /**
-   * #FEATURES 
+   * #CALENDAR
+   */
+
+  .calendar { grid-template-columns: 1fr 1fr; }
+
+
+
+  /**
+   * #FEATURES
    */
 
   .features {
@@ -352,25 +452,15 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .features-right { height: auto; }
-
-
-
-  /**
-   * #TESTIMONIALS 
-   */
-
-  .testimonials {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
+  .features-right {
+    display: block;
+    height: auto;
   }
 
 
 
   /**
-   * #BLOG 
+   * #BLOG
    */
 
   .blog-grid { grid-template-columns: repeat(3, 1fr); }
@@ -459,9 +549,326 @@
 
 
   /**
-   * #CONTACT 
+   * #CONTACT
    */
 
   .contact-card h2 { font-size: 45px; }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #NOUVELLES SECTIONS — PAGE D'ACCUEIL
+\*-----------------------------------*/
+
+@media (min-width: 767px) {
+
+  /**
+   * #COMPOSANTES
+   */
+
+  .composantes-grid { grid-template-columns: repeat(3, 1fr); }
+
+
+
+  /**
+   * #STATS
+   */
+
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+
+}
+
+
+
+
+
+@media (min-width: 992px) {
+
+  /**
+   * #HERO BADGES
+   */
+
+  .hero-badges { justify-content: flex-start; }
+
+
+
+  /**
+   * #COUNTDOWN
+   */
+
+  .countdown-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+
+  /* le timer reprend sa largeur naturelle quand il se place à côté du texte */
+  .countdown-timer {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+  }
+
+  .countdown-timer li {
+    min-width: 72px;
+    padding: 15px 10px;
+  }
+
+
+
+  /**
+   * #CALENDAR
+   */
+
+  .calendar-timeline {
+    max-width: 760px;
+    margin-left:  auto;
+    margin-right: auto;
+  }
+
+
+
+  /**
+   * #MAP
+   */
+
+  /* .map ne contient plus que l'iframe : elle occupe toute la largeur, pleine
+     hauteur utile, sans marge latérale (colonne .map-text supprimée du HTML). */
+  .map-embed iframe { height: 480px; }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #HEADER (REFONTE) — TABLETTE / DESKTOP
+  (voir la section #HEADER (REFONTE) de style.css)
+\*-----------------------------------*/
+
+@media (min-width: 767px) {
+
+  /* Header pleine largeur : aucun padding horizontal, les éléments vont jusqu'aux
+     bords du conteneur (logo collé à gauche, toggle collé à droite). */
+  .navbar {
+    padding-left:  0;
+    padding-right: 0;
+    gap: 0;
+    justify-content: flex-start;
+
+    /* plus de bottom bar / drawer fixés au viewport à ce palier :
+       on restaure le centrage + le verre dépoli d'origine */
+    left: 50%;
+    transform: translateX(-50%);
+    background: hsla(0, 0%, 100%, 0.9);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+  }
+
+  /* nav ancrée juste après le logo, actions repoussées à droite : la nav occupe
+     toute la largeur utile du header (au même niveau que le contenu de .home) */
+  .navbar-brand   { margin-right: clamp(20px, 4vw, 44px); }
+  .navbar-actions { margin-left: auto; }
+
+  body { padding-bottom: 0; }
+  .whatsapp-fab { bottom: 20px; }
+
+
+  /* ---- nav principale : redevient horizontale dans le header ---- */
+
+  .primary-nav {
+    position: static;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .primary-nav ul {
+    justify-content: flex-start;
+    align-items: center;
+    gap: clamp(14px, 1.8vw, 26px);
+  }
+
+  .primary-nav-item { flex: 0 0 auto; }
+
+  .primary-nav-link {
+    flex-direction: row;
+    gap: 0;
+    padding: 6px 2px;
+    font-size: var(--fs-6);
+    font-weight: var(--fw-6);
+    color: var(--oxford-blue);
+  }
+
+  /* header : libellés seuls, pas d'icônes (compact) */
+  .primary-nav-link ion-icon { display: none; }
+
+  /* soulignement animé (déploiement gauche -> droite) au survol + sur l'actif */
+  .primary-nav-link::after {
+    content: '';
+    position: absolute;
+    left:   0;
+    right:  0;
+    bottom: -2px;
+    height: 2px;
+    background: var(--red-orange-color-wheel);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--default-transition);
+  }
+
+  .primary-nav-link:hover::after,
+  .primary-nav-item.is-active .primary-nav-link::after { transform: scaleX(1); }
+
+  .primary-nav-link:hover,
+  .primary-nav-item.is-active .primary-nav-link { color: var(--red-orange-color-wheel); }
+
+  /* on neutralise l'indicateur "barre au-dessus" de la version bottom bar */
+  .primary-nav-item.is-active .primary-nav-link::before { content: none; }
+
+  /* visibilité des items selon le contexte */
+  .primary-nav-item--header-only    { display: block; }
+  .primary-nav-item--bottombar-only { display: none; }
+
+  /* pas de bottom bar à escamoter ici : la nav du header reste visible dropdown ouvert */
+  .navbar.secondary-open .primary-nav {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+
+  /* ---- actions ---- */
+
+  .nav-account { display: flex; }
+
+
+  /* ---- menu secondaire : dropdown (au lieu du drawer), liens en colonne ---- */
+
+  .navbar .navbar-nav {
+    display: block;               /* neutralise l'ancien display:flex du @media 992 : liens empilés */
+    position: absolute;
+    inset: auto;
+    top:   calc(100% + 10px);
+    left:  auto;
+    right: 0;                       /* bord droit aligné sur le toggle (header sans padding) */
+    width: 300px;
+    max-width: none;
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 20px 45px -12px hsla(229, 84%, 12%, 0.28);
+    transform: translateY(-12px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--default-transition),
+                transform var(--default-transition),
+                visibility var(--default-transition);
+  }
+
+  /* le bouton X de fermeture ne sert qu'au drawer mobile */
+  .secondary-menu-close { display: none; }
+
+  .navbar .navbar-nav.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  /* en dropdown, le bandeau de tête est plus discret */
+  .secondary-menu-head { padding-top: 0; }
+
+  /* pas de voile en mode dropdown */
+  .secondary-menu-overlay { display: none; }
+
+
+  /* ---- toggle : visible aussi sur tablette / desktop ---- */
+
+  .navbar .nav-toggle-btn { display: flex; }
+
+}
+
+
+
+
+
+@media (min-width: 992px) {
+
+  /* CTA "S'inscrire" visible (comportement historique conservé) */
+  .navbar .navbar-cta { display: block; }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #SECTIONS PLEINE LARGEUR  (>=767px)
+
+  Demande client : occuper toute la largeur, comme le header. On réduit fortement
+  la gouttière latérale (--px passe de 30–140px à ~16–40px) : titres et
+  paragraphes restent lisibles (jamais collés au bord), et les grilles de cartes
+  débordent cette gouttière pour aller jusqu'aux bords du conteneur.
+  Mobile (<767px) : inchangé.
+\*-----------------------------------*/
+
+@media (min-width: 767px) {
+
+  :root { --px: clamp(16px, 2.6vw, 40px); }
+
+  /* grilles de cartes en plein cadre : elles annulent la gouttière de section */
+  .category .course-item-group,
+  .composantes-grid,
+  .course-grid,
+  .instructor-grid,
+  .stats-grid,
+  .blog-grid {
+    margin-left:  calc(-1 * var(--px));
+    margin-right: calc(-1 * var(--px));
+  }
+
+  .instructor-grid {
+    padding-left:  0;
+    padding-right: 0;
+  }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #HOME — AJUSTEMENTS (>=767px)
+
+  1. .home-left / .home-right ramenés à quelques pixels des bords (demande client :
+     encore plus proche du bord que la gouttière --px des autres sections).
+  2. hero-badges : on retrouve la disposition d'origine 2 + 1 (les 2 premiers sur
+     une ligne, le 3e sur la ligne suivante), que l'élargissement des sections
+     avait fait passer sur une seule ligne (3e badge alors coupé en deux).
+\*-----------------------------------*/
+
+@media (min-width: 767px) {
+
+  .home {
+    padding-right: 0px;
+  }
+
+  /* 3e badge seul sur sa propre ligne (disposition 2 + 1 d'origine).
+     justify-content: inherit -> il suit l'alignement du groupe .hero-badges :
+     centré en tablette (<992), aligné à gauche en desktop (>=992, règle existante). */
+  .hero-badges .hero-badge:nth-child(3) {
+    flex-basis: 100%;
+    justify-content: inherit;
+  }
 
 }

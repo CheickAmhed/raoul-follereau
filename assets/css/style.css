@@ -2,10 +2,6 @@
   #style.css
 \*-----------------------------------*/
 
-/**
- * copyright 2022 @codewithsadee 
- */
-
 
 
 
@@ -132,7 +128,9 @@ html {
 }
 
 .section-title {
-  font-size: var(--fs-2);
+  /* mobile : titre compact -> tient sur 2 lignes maxi dans toutes les sections.
+     Repasse à var(--fs-2) à partir de 767px (media_queries.css). */
+  font-size: 26px;
   font-weight: var(--fw-8);
   color: var(--oxford-blue);
   line-height: 1.3;
@@ -504,7 +502,12 @@ html {
 
 .about-right .section-subtitle { margin-bottom: 10px; }
 
-.about-right .section-title { margin-bottom: 30px; }
+/* Titre remonté en tête de section, centré au-dessus des 2 colonnes
+   (même traitement que .category .section-title / .composantes .section-title). */
+.about > .section-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
 
 .about-right .section-text { margin-bottom: 20px; }
 
@@ -540,7 +543,15 @@ html {
   #COURSE
 \*-----------------------------------*/
 
-.course { padding: var(--py) var(--px); }
+/* Padding vertical seulement : le retrait latéral est reporté sur .course-grid
+   et .course .section-head pour que les cartes ne bougent pas d'un pixel. */
+.course { padding: var(--py) 0; }
+
+/* mobile : l'en-tête (h2 + bouton) suit le même retrait que les cartes ;
+   à partir de 767px il passe au ras des bords (media_queries.css). */
+/* mobile : retrait à gauche ET à droite (le bouton "Voir tous" décollé du bord).
+   À partir de 767px : ras des bords des 2 côtés (media_queries.css). */
+.course .section-head { padding: 0 var(--px); }
 
 .course .section-subtitle { margin-bottom: 15px; }
 
@@ -551,6 +562,8 @@ html {
   grid-template-columns: 1fr;
   gap: 30px;
   margin-bottom: 60px;
+  /* compense le padding latéral retiré de .course : position des cartes inchangée */
+  padding: 0 var(--px);
 }
 
 .course-card {
@@ -563,6 +576,10 @@ html {
 .course-banner {
   position: relative;
   overflow: hidden;
+  /* hauteur fixe -> les 3 images d'une même ligne ont exactement la même hauteur.
+     Valeur mesurée sur la 1re carte (référence) : 377px en 3 colonnes desktop
+     (voir media_queries.css), réduite ici pour mobile puis tablette. */
+  height: 240px;
 }
 
 .course-banner img {
@@ -683,11 +700,6 @@ html {
   justify-content: center;
   align-items:     center;
   border-radius: 50%;
-}
-
-.course .btn-primary {
-  display: block;
-  margin: auto;
 }
 
 
@@ -817,6 +829,11 @@ html {
 .event-card:hover .event-name { color: var(--red-orange-color-wheel); }
 
 
+/* La bannière/play d'origine est désormais portée par .calendar-right ;
+   .event-left n'est révélé qu'à partir de 767px (media_queries.css). */
+.event-left { display: none; }
+
+
 
 
 
@@ -906,7 +923,9 @@ html {
   display: grid;
   grid-template-columns: 1fr;
   gap: 30px;
-  padding: 0 15px;
+  /* mobile : les cartes occupent toute la largeur de la section (plus de retrait
+     de 15px). À partir de 767px la grille déborde la gouttière (#SECTIONS PLEINE LARGEUR). */
+  padding: 0;
 }
 
 .instructor-card {
@@ -1023,6 +1042,14 @@ html {
   font-size: var(--fs-6);
   line-height: 1.6;
   margin-bottom: 20px;
+  /* tronque à 5 lignes + « … » ; min-height réserve toujours 5 lignes -> toutes
+     les cartes ont la même hauteur de texte, affichage uniforme. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  overflow: hidden;
+  min-height: calc(5 * 1.6em);
 }
 
 .testimonials-client {
@@ -1210,7 +1237,7 @@ footer { background: var(--oxford-blue); }
   display: grid;
   grid-template-columns: 1fr;
   gap: 50px;
-  padding: 220px var(--px) 80px;
+  padding: 170px var(--px) 70px;
 }
 
 .footer-logo { margin-bottom: 25px; }
@@ -1221,6 +1248,7 @@ footer { background: var(--oxford-blue); }
   color: var(--lavender-blue);
   margin-bottom: 35px;
   line-height: 1.6;
+  text-align: justify;   /* mobile, tablette et desktop */
 }
 
 .social-link {
@@ -1322,3 +1350,1214 @@ footer { background: var(--oxford-blue); }
 }
 
 .copyright a:hover { color: var(--ultramarine-blue); }
+
+
+
+
+
+/*-----------------------------------*\
+  #HERO BADGES  (réassurance — page d'accueil)
+\*-----------------------------------*/
+
+.hero-badges {
+  display:   flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px 25px;
+  margin-top: 35px;
+}
+
+.hero-badge {
+  display:     flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+}
+
+.hero-badge ion-icon {
+  font-size: 22px;
+  color: var(--ultramarine-blue);
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #COMPOSANTES  (IPS-RF / EPS-RF / CPFP-RF)
+\*-----------------------------------*/
+
+.composantes { padding: var(--py) var(--px); }
+
+.composantes .section-subtitle {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.composantes .section-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.composantes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.composante-card {
+  background: var(--white);
+  border: 1px solid hsl(0, 0%, 88%);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px hsla(0, 0%, 0%, 0.06);
+  padding: 40px 30px;
+  text-align: center;
+  transition: transform var(--default-transition), box-shadow var(--default-transition);
+}
+
+.composante-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px hsla(229, 84%, 12%, 0.25);
+}
+
+.composante-logo {
+  width:  90px;
+  height: 90px;
+  margin: 0 auto 25px;
+}
+
+.composante-logo img {
+  width:  100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.composante-name { margin-bottom: 10px; }
+
+.composante-name a {
+  color: var(--oxford-blue);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-8);
+  transition: var(--default-transition);
+}
+
+.composante-card:hover .composante-name a { color: var(--red-orange-color-wheel); }
+
+.composante-full {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+  margin-bottom: 15px;
+}
+
+.composante-desc {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--sonic-silver);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.composante-link {
+  display:     inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ultramarine-blue);
+  font-weight: var(--fw-6);
+  transition: var(--default-transition);
+}
+
+.composante-link ion-icon { font-size: 18px; }
+
+.composante-link:hover {
+  gap: 14px;
+  color: var(--red-orange-color-wheel);
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #COURSE META  (formations mises en avant)
+\*-----------------------------------*/
+
+.course-card .course-meta {
+  display:   flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin-bottom: 20px;
+}
+
+.course-card .course-meta li {
+  display:     flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--sonic-silver);
+}
+
+.course-card .course-meta ion-icon {
+  font-size: 18px;
+  color: var(--ultramarine-blue);
+}
+
+.course-card .course-meta .estab {
+  font-weight: var(--fw-7);
+  color: var(--oxford-blue);
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #CALENDAR  (calendrier des rentrées)
+\*-----------------------------------*/
+
+.calendar {
+  padding: var(--py) var(--px);
+  background: var(--cultured);
+}
+
+.calendar .section-subtitle { margin-bottom: 15px; }
+
+.calendar .section-title { margin-bottom: 60px; }
+
+.calendar-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border-left: 2px solid var(--light-gray);
+  padding-left: 25px;
+}
+
+.calendar-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px hsla(0, 0%, 0%, 0.08);
+  padding: 25px;
+  transition: transform var(--default-transition), box-shadow var(--default-transition);
+}
+
+.calendar-item::before {
+  content: '';
+  position: absolute;
+  top:   30px;
+  left: -33px;
+  width:  14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--red-orange-color-wheel);
+  border: 3px solid var(--cultured);
+  box-shadow: 0 0 0 2px var(--red-orange-color-wheel);
+}
+
+.calendar-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -15px hsla(229, 84%, 12%, 0.2);
+}
+
+.calendar-date {
+  display:     flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.calendar-day {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-8);
+  color: var(--oxford-blue);
+}
+
+.calendar-month {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--ultramarine-blue);
+  text-transform: uppercase;
+}
+
+.calendar-title {
+  font-size: var(--fs-4);
+  font-weight: var(--fw-7);
+  color: var(--oxford-blue);
+  line-height: 1.3;
+}
+
+.calendar-info {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--sonic-silver);
+}
+
+.calendar-deadline {
+  display:     flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--red-orange-color-wheel);
+}
+
+.calendar-deadline ion-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+
+/* Colonne droite : bannière dupliquée depuis .event-left (masquée en mobile,
+   révélée à partir de 767px dans media_queries.css). */
+
+.calendar-right { display: none; }
+
+.calendar-right .banner-img {
+  width: auto;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.calendar-right .play {
+  position: absolute;
+  bottom: 100px;
+  right: 0;
+  padding: 30px 40px;
+  background: var(--red-orange-color-wheel);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px hsla(15, 100%, 55%, 0.7);
+}
+
+.calendar-right .play-icon {
+  border-radius: 50%;
+  box-shadow: 0 0 0 15px transparent;
+}
+
+.calendar-right .play ion-icon {
+  display: block;
+  color: var(--white);
+  font-size: 70px;
+  margin: -8px;
+}
+
+.calendar-right .play p {
+  font-size: var(--fs-4);
+  font-weight: var(--fw-7);
+  color: var(--white);
+}
+
+.calendar-right {
+  position: relative;
+  max-width: max-content;
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #COUNTDOWN  (événement à venir)
+\*-----------------------------------*/
+
+.countdown {
+  padding: var(--py) var(--px);
+  background: var(--oxford-blue);
+}
+
+.countdown-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 35px;
+}
+
+.countdown-text .section-subtitle { margin-bottom: 15px; }
+
+.countdown-title {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-8);
+  color: var(--white);
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+.countdown-place {
+  display:     flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--lavender-blue);
+}
+
+.countdown-place ion-icon { font-size: 18px; }
+
+.countdown-timer {
+  /* mobile : les 4 blocs occupent toute la largeur de la section
+     (repasse en flex à partir de 767px — media_queries.css) */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.countdown-timer li {
+  min-width: 0;
+  background: hsla(0, 0%, 100%, 0.08);
+  border: 1px solid hsla(0, 0%, 100%, 0.15);
+  border-radius: 8px;
+  padding: 15px 6px;
+  text-align: center;
+}
+
+.count-value {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-8);
+  color: var(--white);
+  line-height: 1;
+}
+
+.count-label {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--lavender-blue);
+  margin-top: 6px;
+}
+
+.countdown-timer.is-over li { opacity: 0.45; }
+
+
+
+
+
+/*-----------------------------------*\
+  #STATS  (chiffres clés animés)
+\*-----------------------------------*/
+
+.stats { padding: var(--py) var(--px); }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  text-align: center;
+}
+
+.stat-item {
+  background: var(--cultured);
+  border-radius: 8px;
+  padding: 30px 15px;
+  transition: transform var(--default-transition), box-shadow var(--default-transition);
+}
+
+.stat-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px hsla(229, 84%, 12%, 0.2);
+}
+
+.stat-number {
+  font-size: var(--fs-2);
+  font-weight: var(--fw-9);
+  color: var(--red-orange-color-wheel);
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+  margin-top: 10px;
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #TESTIMONIALS SLIDER
+\*-----------------------------------*/
+
+.testimonials-slider {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 10px;
+}
+
+.testimonials-slider .testimonials-card {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+
+.testimonials-slider::-webkit-scrollbar { height: 5px; }
+
+
+
+
+
+/*-----------------------------------*\
+  #MAP  (accès & contact rapide)
+\*-----------------------------------*/
+
+/* padding-bottom élargi : la carte de contact flottante (.contact-card)
+   chevauche désormais le bas de cette section, comme le faisait .blog auparavant. */
+.map { padding: var(--py) var(--px) 200px; }
+
+.map-text { margin-bottom: 40px; }
+
+.map-text .section-subtitle { margin-bottom: 15px; }
+
+.map-text .section-title { margin-bottom: 30px; }
+
+.map-text .btn { display: inline-block; }
+
+.map-contact { margin-bottom: 30px; }
+
+.map-contact li {
+  display:     flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--sonic-silver);
+  line-height: 1.6;
+}
+
+.map-contact li:not(:last-child) { margin-bottom: 15px; }
+
+.map-contact ion-icon {
+  font-size: 20px;
+  color: var(--ultramarine-blue);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.map-contact a {
+  color: var(--sonic-silver);
+  transition: var(--default-transition);
+}
+
+.map-contact a:hover { color: var(--red-orange-color-wheel); }
+
+.map-embed {
+  overflow: hidden;
+  line-height: 0;
+  /* mobile : la carte suit la gouttière de section (décollée des bords).
+     À partir de 767px elle s'étend jusqu'aux bords du conteneur (media_queries.css). */
+}
+
+.map-embed iframe {
+  width:  100%;
+  height: 320px;
+  border: 0;
+  /* vue satellite : on garde les couleurs réelles (pas de désaturation) */
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #CTA CONVERTIS  (<button> -> <a> sur la page d'accueil)
+\*-----------------------------------*/
+
+.about-right .btn { display: inline-block; }
+
+
+
+
+
+/*-----------------------------------*\
+  #BLOG  (ajustement : l'espace pour la carte flottante
+   est repris par .map, .blog retrouve un rythme normal)
+\*-----------------------------------*/
+
+.blog { padding-bottom: var(--py); }
+
+
+
+
+
+/*-----------------------------------*\
+  #WHATSAPP FAB  (bouton flottant)
+\*-----------------------------------*/
+
+.whatsapp-fab {
+  position: fixed;
+  right:  20px;
+  bottom: 20px;
+  z-index: 200;
+  width:  56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--ultramarine-blue);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  filter: drop-shadow(0 8px 20px hsla(115, 59%, 46%, 0.45));
+  transition: transform var(--default-transition);
+}
+
+.whatsapp-fab:hover { transform: scale(1.08); }
+
+.whatsapp-fab ion-icon {
+  font-size: 30px;
+  color: var(--white);
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #ABOUT STATS  (chiffres clés — « pourquoi nous choisir »)
+\*-----------------------------------*/
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 25px;
+  margin-bottom: 40px;
+}
+
+.about-stat {
+  border-left: 3px solid var(--red-orange-color-wheel);
+  padding-left: 15px;
+}
+
+.about-stat-num {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-8);
+  color: var(--oxford-blue);
+  line-height: 1.1;
+}
+
+.about-stat-label {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--sonic-silver);
+  margin-top: 4px;
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #HEADER  (REFONTE)
+
+  Demande explicite du client : cette refonte prime sur « ne pas modifier
+  l'existant », mais UNIQUEMENT pour le header / la nav. L'ancienne section
+  #HEADER (plus haut dans ce fichier) n'est PAS supprimée : elle est repurposée
+  / étendue via la cascade (ces règles, plus spécifiques ou plus tardives,
+  gagnent). Tokens de variable.css uniquement.
+
+   - .navbar         : barre contenue (max-width .container), plus full-width.
+   - .primary-nav    : NOUVELLE nav principale — horizontale en >=767px,
+                       bottom bar flottante fixe en <767px.
+   - .navbar-nav     : RÔLE CHANGÉ — panneau « menu secondaire » (FAQ, mentions…)
+                       ouvert par .nav-toggle-btn. menuPopup n'est plus appliqué.
+   - .nav-toggle-btn : ouvre le menu secondaire (sandwich -> X, cf. animation.css).
+   - .nav-search-toggle / .site-search : recherche (UI + animation seules).
+   - .nav-account    : accès compte (placeholder compte.html).
+
+  Base = mobile. Bascule desktop/tablette : media_queries.css (>=767 / >=992).
+\*-----------------------------------*/
+
+/* ---- barre ---- */
+
+.navbar {
+  gap: 12px;
+  z-index: 300;                    /* header au-dessus du FAB WhatsApp et des panneaux */
+
+  /* Mobile : on neutralise transform + backdrop-filter, sinon .navbar devient le
+     bloc conteneur de ses descendants position:fixed et la bottom bar (.primary-nav)
+     ainsi que le drawer (.navbar-nav) se retrouvent ancrés à la barre au lieu du
+     viewport. Restaurés en >=767 (media_queries.css). */
+  left: 0;
+  transform: none;
+  background: var(--white);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.navbar-brand { flex-shrink: 0; }
+
+.navbar-brand img {
+  width: auto;
+  height: 44px;
+}
+
+.navbar-actions {
+  display:     flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* ---- boutons icône (recherche / compte) ---- */
+
+.icon-btn {
+  width:  44px;
+  height: 44px;
+  border-radius: 50%;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  background: hsla(229, 84%, 12%, 0.08);   /* --oxford-blue ~8 % */
+  color: var(--oxford-blue);
+  transition: background var(--default-transition), color var(--default-transition);
+}
+
+.icon-btn ion-icon { font-size: 20px; }
+
+.icon-btn:hover {
+  background: hsla(229, 84%, 12%, 0.14);
+  color: var(--red-orange-color-wheel);
+}
+
+.nav-account { display: none; }   /* mobile : le compte est dans la bottom bar */
+
+/* ---- nav-toggle-btn : plus petit + barre du milieu plus courte (sandwich) ---- */
+
+.nav-toggle-btn {
+  width:  42px;              /* légèrement plus petit (était 50px) */
+  height: 42px;
+}
+
+.nav-toggle-btn span { width: 20px; }        /* barres externes */
+
+.nav-toggle-btn .two { width: 12px; }        /* barre du milieu plus courte */
+
+/* ---- CTA « S'inscrire » : un peu moins haut ----
+   On ne touche QUE le padding vertical : le <span class="square"> et son animation
+   de survol (expansion à 102 %) restent ceux de .btn / .btn:hover, identiques au
+   bouton « Découvrir nos formations » du hero. */
+
+.navbar .navbar-cta {
+  padding-top:    13px;
+  padding-bottom: 13px;
+}
+
+
+/* ================= NAVIGATION PRINCIPALE ================= */
+/* Base MOBILE : bottom bar flottante fixe */
+
+.primary-nav {
+  position: fixed;
+  left:   12px;
+  right:  12px;
+  bottom: 12px;
+  z-index: 120;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -6px hsla(229, 84%, 12%, 0.22);
+  padding: 6px 4px;
+}
+
+.primary-nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.primary-nav-item { flex: 1; }
+
+.primary-nav-link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 2px 6px;
+  font-family: "Roboto", sans-serif;
+  font-size: 11px;
+  font-weight: var(--fw-5);
+  color: var(--sonic-silver);
+  text-align: center;
+  transition: color var(--default-transition);
+}
+
+.primary-nav-link ion-icon {
+  font-size: 22px;
+  transition: transform var(--default-transition);
+}
+
+.primary-nav-link:hover { color: var(--oxford-blue); }
+
+.primary-nav-item.is-active .primary-nav-link { color: var(--red-orange-color-wheel); }
+
+.primary-nav-item.is-active .primary-nav-link ion-icon { transform: translateY(-1px) scale(1.05); }
+
+/* indicateur d'actif : barre courte au-dessus de l'item (mode bottom bar) */
+.primary-nav-item.is-active .primary-nav-link::before {
+  content: '';
+  position: absolute;
+  top:  -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width:  22px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--red-orange-color-wheel);
+}
+
+/* Institution : absente de la bottom bar mobile */
+.primary-nav-item--header-only { display: none; }
+
+
+/* ================= MENU SECONDAIRE (.navbar-nav repurposé) ================= */
+/* Base MOBILE : drawer latéral droit + voile */
+
+.navbar .navbar-nav {
+  position: fixed;
+  inset: 0 0 0 auto;
+  left:  auto;
+  width: min(82vw, 320px);
+  max-width: none;
+  background: var(--white);
+  box-shadow: -10px 0 40px hsla(229, 84%, 12%, 0.25);
+  border-radius: 0;
+  padding: 20px 22px 30px;   /* le bandeau de tête (titre + X) occupe le haut du drawer */
+  text-align: left;
+  opacity: 1;
+  transform: translateX(100%);
+  transition: transform var(--default-transition);
+  pointer-events: none;
+  z-index: 220;
+}
+
+.navbar .navbar-nav.is-open {
+  transform: translateX(0);
+  pointer-events: all;
+}
+
+.secondary-menu-head {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 6px 12px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+}
+
+.secondary-menu-title {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-6);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--sonic-silver);
+}
+
+.secondary-menu-close {
+  width:  34px;
+  height: 34px;
+  border-radius: 50%;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: hsla(229, 84%, 12%, 0.08);
+  color: var(--oxford-blue);
+  transition: background var(--default-transition), color var(--default-transition);
+}
+
+.secondary-menu-close ion-icon { font-size: 20px; }
+
+.secondary-menu-close:hover {
+  background: hsla(229, 84%, 12%, 0.14);
+  color: var(--red-orange-color-wheel);
+}
+
+.navbar .navbar-nav .nav-item a {
+  display: block;
+  padding: 14px 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+  transition: color var(--default-transition), padding-left var(--default-transition);
+}
+
+.navbar .navbar-nav .nav-item:not(:last-child) a {
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.08);
+}
+
+.navbar .navbar-nav .nav-item a:hover {
+  color: var(--red-orange-color-wheel);
+  padding-left: 16px;
+}
+
+.secondary-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: hsla(229, 84%, 12%, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--default-transition);
+  z-index: 210;
+}
+
+.secondary-menu-overlay.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+
+/* ================= RECHERCHE ================= */
+
+.site-search {
+  position: absolute;
+  top:   100%;
+  left:  var(--px);
+  right: var(--px);
+  margin-top: 8px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 18px 40px -10px hsla(229, 84%, 12%, 0.28);
+  padding: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition: opacity var(--default-transition),
+              transform var(--default-transition),
+              visibility var(--default-transition);
+  z-index: 115;
+}
+
+.site-search.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.site-search-form {
+  display:     flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-search-form > ion-icon {
+  font-size: 20px;
+  color: var(--sonic-silver);
+  flex-shrink: 0;
+}
+
+.site-search-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--oxford-blue);
+  background: var(--white);
+  outline: none;
+  transition: border-color var(--default-transition);
+}
+
+.site-search-input:focus { border-color: var(--red-orange-color-wheel); }
+
+.site-search-submit {
+  flex-shrink: 0;
+  background: var(--red-orange-color-wheel);
+  color: var(--white);
+  font-family: "Roboto", sans-serif;
+  font-weight: var(--fw-6);
+  border-radius: 8px;
+  padding: 12px 18px;
+  transition: background var(--default-transition);
+}
+
+.site-search-submit:hover { background: var(--oxford-blue); }
+
+
+/* ================= décalages liés à la bottom bar (mobile) ================= */
+
+body { padding-bottom: 88px; }     /* place pour la bottom bar fixe */
+
+.whatsapp-fab { bottom: 104px; }   /* FAB remonté au-dessus de la bottom bar */
+
+
+
+
+
+/*-----------------------------------*\
+  #PLACEHOLDER PAGES  (pages liées créées en attendant leur vrai contenu)
+\*-----------------------------------*/
+
+.placeholder-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  text-align: center;
+  padding: 60px var(--px);
+}
+
+.placeholder-page .placeholder-logo { width: 90px; height: auto; }
+
+.placeholder-page .section-text { max-width: 420px; }
+
+
+
+
+
+/*-----------------------------------*\
+  #HERO INTRO  (support structurel de la séquence d'entrée — voir animation.css)
+\*-----------------------------------*/
+
+/* Les 2 lignes du titre doivent pouvoir recevoir un translateY :
+   un élément inline ignore transform, on passe donc en inline-block.
+   Rendu visuel inchangé (le titre est centré / aligné à gauche selon le palier). */
+.main-heading .heading-line { display: inline-block; }
+
+/* Nombre du 3e badge, animé de 0 à 1500 par hero-intro.js.
+   - display:inline : le reset global "span { display:block }" (#RESET) mettrait
+     sinon "1 500" sur sa propre ligne et couperait le texte du badge en 3 ;
+   - tabular-nums : largeur de chiffre constante -> pas de tremblement pendant le comptage. */
+.hero-badge .badge-number {
+  display: inline;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Chaque badge tient sur une seule ligne (icône + texte), y compris le 3e sur
+   mobile ("+1 500 apprenants formés" non coupé). Le passage à la ligne se fait
+   entre badges (flex-wrap du conteneur), pas à l'intérieur d'un badge. */
+.hero-badges .hero-badge { white-space: nowrap; }
+
+
+
+/*-----------------------------------*\
+  #SECTION HEAD  (titre de section + bouton "Voir tous" sur une seule ligne)
+  Motif réutilisé : course, calendar, event, instructor, testimonials, blog.
+\*-----------------------------------*/
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.section-head .section-title {
+  margin-bottom: 0;
+  text-align: left;   /* neutralise le centrage de .instructor/.blog .section-title */
+}
+
+/* Bouton : sur mobile il se réduit à un simple chevron ; le libellé + le carré
+   animé reviennent à partir de 767px (media_queries.css). */
+.section-head-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+.section-head-btn .btn-text,
+.section-head-btn .square { display: none; }
+
+.section-head-btn .btn-chevron {
+  position: relative;
+  z-index: 5;
+  font-size: 22px;
+  color: var(--white);
+}
+
+
+/*-----------------------------------*\
+  #FEATURES RIGHT  (image cachée tant qu'on n'est pas en 2 colonnes)
+\*-----------------------------------*/
+
+.features-right { display: none; }
+
+
+/*-----------------------------------*\
+  #INSTRUCTOR  (hauteur d'image uniforme -> cartes de hauteur égale)
+\*-----------------------------------*/
+
+.instructor-img-box { aspect-ratio: 3 / 4; }
+
+
+/*-----------------------------------*\
+  #BLOG  (hauteur de bannière uniforme — réf. : 1re carte)
+\*-----------------------------------*/
+
+.blog-banner-box { height: 240px; }
+
+
+/*-----------------------------------*\
+  #TESTIMONIALS MARQUEE  (remplace testimonials-left/right)
+\*-----------------------------------*/
+
+.testimonials-intro {
+  color: var(--sonic-silver);
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  line-height: 1.6;
+  max-width: 720px;
+  margin-bottom: 40px;
+}
+
+.marquee {
+  /* défilement auto + faisable à la main (drag / molette / swipe tactile) */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.marquee::-webkit-scrollbar { height: 6px; }
+
+.marquee::-webkit-scrollbar-thumb {
+  background: var(--light-gray);
+  border-radius: 10px;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  padding: 10px 0;
+  animation: marquee-ltr 45s linear infinite;
+}
+
+/* sens inversé (droite -> gauche) — utilisé par la section .partner */
+.marquee--reverse .marquee-track { animation-direction: reverse; }
+
+/* contrôle : pause au survol, au focus clavier et pendant qu'on scrolle/tape */
+.marquee:hover .marquee-track,
+.marquee:active .marquee-track,
+.marquee:focus-within .marquee-track { animation-play-state: paused; }
+
+/* chaque carte "porte" sa gouttière droite -> les 2 jeux font exactement 50 %
+   de la piste, la boucle translateX(-50%) -> 0 est donc sans saut. */
+.marquee .testimonials-card,
+.marquee .partner-card {
+  flex: 0 0 auto;
+  margin-right: 30px;
+}
+
+.marquee .testimonials-card { width: clamp(270px, 30vw, 380px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee { overflow-x: auto; }
+  .marquee-track { animation: none; }
+}
+
+
+/*-----------------------------------*\
+  #PARTNER  (partenaires — section calquée sur .testimonials, marquee inversé)
+\*-----------------------------------*/
+
+.partner {
+  padding: var(--py) var(--px);
+  background: var(--cultured);
+}
+
+.partner-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: clamp(190px, 22vw, 250px);
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 15px 30px hsla(0, 0%, 0%, 0.08);
+  padding: 30px 25px;
+  text-align: center;
+}
+
+.partner-card img {
+  width: auto;
+  max-width: 120px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.partner-card .partner-name {
+  color: var(--oxford-blue);
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-7);
+  line-height: 1.3;
+}
+
+
+/*-----------------------------------*\
+  #MAP  (panneau contact + réseaux sociaux)
+\*-----------------------------------*/
+
+.map-text {
+  background: var(--cultured);
+  border-radius: 12px;
+  padding: clamp(24px, 4vw, 40px);
+  box-shadow: 0 15px 40px hsla(0, 0%, 0%, 0.06);
+}
+
+.map-social {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.map-social a {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: hsla(229, 84%, 12%, 0.06);
+  color: var(--oxford-blue);
+  transition: var(--default-transition);
+}
+
+.map-social a:hover {
+  background: var(--red-orange-color-wheel);
+  color: var(--white);
+}
+
+.map-social ion-icon { font-size: 20px; }
+
+
+/*-----------------------------------*\
+  #FOOTER LOGO  (logo du header, agrandi, sur plaque claire pour rester lisible)
+\*-----------------------------------*/
+
+.footer-logo {
+  display: inline-block;
+  background: var(--white);
+  padding: 14px 18px;
+  border-radius: 10px;
+}
+
+.footer-logo img {
+  width: 130px;
+  height: auto;
+}

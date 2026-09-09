@@ -52,7 +52,7 @@
    */
 
   --px: 15px;
-  --py: 80px;
+  --py: 60px;   /* espacement vertical des sections resserré (était 80px) */
 
   /**
    * others 

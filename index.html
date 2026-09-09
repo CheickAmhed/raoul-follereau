@@ -5,7 +5,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IPS-RF : Institut Privée Superieur de formation en santé Raoul Follereau</title>
+  <title>Les Établissements Raoul Follereau — Institut, École de Santé & Centre de Formation Professionnelle</title>
+  <meta name="description"
+    content="Les Établissements Raoul Follereau à Fada N'Gourma (Burkina Faso) : formations certifiantes en santé, gestion, numérique et métiers techniques. IPS-RF, EPS-RF et CPFP-RF.">
 
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/media_queries.css">
@@ -17,6 +19,12 @@
     href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800;900&family=Roboto:wght@400;500&display=swap"
     rel="stylesheet">
 
+  <noscript>
+    <style>
+      .reveal-up, .reveal-fade, .reveal-left, .reveal-right { opacity: 1; transform: none; }
+    </style>
+  </noscript>
+
 </head>
 
 <body>
@@ -24,42 +32,104 @@
     <header>
       <nav class="navbar">
 
-        <div class="navbar-brand">
-          <img width="90" height="90" src="./assets/images/logo.png" alt="Educator Logo">
+        <a href="index.html" class="navbar-brand">
+          <img width="90" height="90" src="./assets/images/logo.png"
+            alt="Les Établissements Raoul Follereau — accueil">
+        </a>
+
+        <nav class="primary-nav" aria-label="Navigation principale">
+          <ul>
+            <li class="primary-nav-item is-active">
+              <a class="primary-nav-link" href="index.html" aria-current="page">
+                <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Accueil</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="formations.html">
+                <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Formations</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="institution.html">
+                <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Institution</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="actualites.html">
+                <ion-icon name="newspaper-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Actualités</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="contact.html">
+                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Contact</span>
+              </a>
+            </li>
+            <!-- Compte : présent uniquement dans la bottom bar mobile.
+                 Dans le header (desktop/tablette), le compte est l'icône .nav-account ci-dessous. -->
+            <li class="primary-nav-item primary-nav-item--bottombar-only">
+              <a class="primary-nav-link" href="compte.html">
+                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Compte</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="navbar-actions">
+
+          <button type="button" class="icon-btn nav-search-toggle" aria-label="Rechercher sur le site"
+            aria-expanded="false" aria-controls="site-search">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+          <a href="compte.html" class="icon-btn nav-account" aria-label="Mon compte">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          </a>
+
+          <a href="preinscription.html" class="btn btn-primary navbar-cta">
+            <p class="btn-text">S'inscrire</p>
+            <span class="square"></span>
+          </a>
+
+          <button type="button" class="nav-toggle-btn" aria-label="Ouvrir le menu secondaire"
+            aria-expanded="false" aria-controls="secondary-menu">
+            <span class="one"></span>
+            <span class="two"></span>
+            <span class="three"></span>
+          </button>
+
         </div>
 
-        <ul class="navbar-nav">
+        <div class="site-search" id="site-search" hidden>
+          <form class="site-search-form" role="search" action="#">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            <input type="search" name="q" class="site-search-input"
+              placeholder="Rechercher une formation, une actualité…" aria-label="Rechercher sur le site">
+            <button type="submit" class="site-search-submit">OK</button>
+          </form>
+        </div>
 
-          <li class="nav-item">
-            <a href="#home">Accueille</a>
+        <ul class="navbar-nav" id="secondary-menu" hidden>
+          <li class="secondary-menu-head">
+            <span class="secondary-menu-title">Informations</span>
+            <button type="button" class="secondary-menu-close" aria-label="Fermer le menu secondaire">
+              <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+            </button>
           </li>
-          <li class="nav-item">
-            <a href="#about">A propos</a>
-          </li>
-          <li class="nav-item">
-            <a href="#course">Cours</a>
-          </li>
-          <li class="nav-item">
-            <a href="#blog">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a href="#contact">Contact</a>
-          </li>
-
+          <li class="nav-item"><a href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a href="confidentialite.html">Politique de confidentialité</a></li>
+          <li class="nav-item"><a href="termes.html">Termes &amp; Conditions</a></li>
+          <li class="nav-item"><a href="mentions-legales.html">Mentions légales</a></li>
         </ul>
 
-        <button class="btn btn-primary">
-          <p class="btn-text">S'inscrire</p>
-          <span class="square"></span>
-        </button>
-
-        <button class="nav-toggle-btn">
-          <span class="one"></span>
-          <span class="two"></span>
-          <span class="three"></span>
-        </button>
-
       </nav>
+
+      <div class="secondary-menu-overlay" hidden></div>
     </header>
 
     <main>
@@ -83,8 +153,8 @@
           <p class="section-subtitle">Votre carrière commence ici !</p>
 
           <h1 class="main-heading">
-            Les Etablissements
-            <span class="underline-img">Raoul Follereau <img src="./assets/images/banner-line.png" alt="line"></span>
+            <span class="heading-line heading-line-1">Les Etablissements</span>
+            <span class="underline-img heading-line heading-line-2">Raoul Follereau <img src="./assets/images/banner-line.png" alt="line"></span>
           </h1>
 
           <p class="section-text">
@@ -92,16 +162,31 @@
           </p>
 
           <div class="home-btn-group">
-            <button class="btn btn-primary">
-              <p class="btn-text">Explorez nos cours</p>
+            <a href="formations.html" class="btn btn-primary">
+              <p class="btn-text">Découvrir nos formations</p>
               <span class="square"></span>
-            </button>
+            </a>
 
-            <button class="btn btn-secondary">
-              <p class="btn-text">Nous contacter</p>
+            <a href="preinscription.html" class="btn btn-secondary">
+              <p class="btn-text">S'inscrire en ligne</p>
               <span class="square"></span>
-            </button>
+            </a>
           </div>
+
+          <ul class="hero-badges">
+            <li class="hero-badge">
+              <ion-icon name="ribbon-outline"></ion-icon>
+              <span>Établissements reconnus</span>
+            </li>
+            <li class="hero-badge">
+              <ion-icon name="shield-checkmark-outline"></ion-icon>
+              <span>Formations certifiantes</span>
+            </li>
+            <li class="hero-badge">
+              <ion-icon name="people-outline"></ion-icon>
+              <span>+<span class="badge-number" data-target="1500">0</span> apprenants formés</span>
+            </li>
+          </ul>
 
         </div>
 
@@ -124,9 +209,6 @@
       </section>
 
       <section class="category">
-
-        <h2 class="section-title">Découvrez nos domaines de formations</h2>
-
         <ul class="course-item-group">
           <li class="course-category-item">
 
@@ -189,9 +271,64 @@
       </section>
 
 
+      <section class="composantes" id="composantes">
+
+        <h2 class="section-title">Nos trois composantes</h2>
+
+        <ul class="composantes-grid">
+
+          <li class="composante-card reveal-up">
+            <div class="composante-logo">
+              <img src="./assets/images/rf-ips.png" width="90" height="90" alt="Logo de l'IPS-RF">
+            </div>
+            <h3 class="composante-name">
+              <a href="institution.html#ips">IPS-RF</a>
+            </h3>
+            <p class="composante-full">Institut Privé Supérieur de formation en Santé Raoul Follereau</p>
+            <p class="composante-desc">Licences professionnelles, masters et recherche dans les métiers de la santé.</p>
+            <a href="institution.html#ips" class="composante-link">
+              Découvrir <ion-icon name="arrow-forward-outline"></ion-icon>
+            </a>
+          </li>
+
+          <li class="composante-card reveal-up">
+            <div class="composante-logo">
+              <img src="./assets/images/rf-eps.png" width="90" height="90" alt="Logo de l'EPS-RF">
+            </div>
+            <h3 class="composante-name">
+              <a href="institution.html#eps">EPS-RF</a>
+            </h3>
+            <p class="composante-full">École Privée de Santé Raoul Follereau</p>
+            <p class="composante-desc">Diplômes d'État et formations de techniciens de santé, alliant théorie et pratique clinique.</p>
+            <a href="institution.html#eps" class="composante-link">
+              Découvrir <ion-icon name="arrow-forward-outline"></ion-icon>
+            </a>
+          </li>
+
+          <li class="composante-card reveal-up">
+            <div class="composante-logo">
+              <img src="./assets/images/rf-cpfp.png" width="90" height="90" alt="Logo du CPFP-RF">
+            </div>
+            <h3 class="composante-name">
+              <a href="institution.html#cpfp">CPFP-RF</a>
+            </h3>
+            <p class="composante-full">Centre Professionnel de Formation Professionnelle Raoul Follereau</p>
+            <p class="composante-desc">Formations courtes et certifiantes en gestion, numérique et métiers techniques.</p>
+            <a href="institution.html#cpfp" class="composante-link">
+              Découvrir <ion-icon name="arrow-forward-outline"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </section>
+
+
       <section class="about" id="about">
 
-        <div class="about-left">
+        <h2 class="section-title">Pourquoi nous choisir ?</h2>
+
+        <div class="about-left reveal-fade">
 
           <div class="img-box">
             <img src="./assets/images/about-img-bg.png" alt="about bg" class="about-bg">
@@ -205,8 +342,6 @@
         </div>
 
         <div class="about-right">
-
-          <h2 class="section-title">Pourquoi nous choisir ?</h2>
 
           <p class="section-text">
             Les établissement Raoul Follereau vous offre des formations professionnelles certifiantes dans des metiers de la santé et d'avenir adaptées à tous les niveaux dans un cadre moderne et un methode d'apprentissage aliant théorie et pratique.
@@ -231,10 +366,29 @@
 
           </ul>
 
-          <button class="btn btn-primary">
+          <ul class="about-stats">
+            <li class="about-stat">
+              <span class="about-stat-num" data-count="25" data-suffix="+">0</span>
+              <span class="about-stat-label">Formations</span>
+            </li>
+            <li class="about-stat">
+              <span class="about-stat-num" data-count="3200" data-suffix="+">0</span>
+              <span class="about-stat-label">Diplômés</span>
+            </li>
+            <li class="about-stat">
+              <span class="about-stat-num" data-count="15" data-suffix="">0</span>
+              <span class="about-stat-label">Ans d'expérience</span>
+            </li>
+            <li class="about-stat">
+              <span class="about-stat-num" data-count="87" data-suffix="%">0</span>
+              <span class="about-stat-label">Taux d'insertion</span>
+            </li>
+          </ul>
+
+          <a href="institution.html" class="btn btn-primary">
             <p class="btn-text">En savoir plus</p>
             <span class="square"></span>
-          </button>
+          </a>
 
         </div>
 
@@ -243,26 +397,38 @@
 
       <section class="course" id="course">
 
-        <h2 class="section-title">Nos filières</h2>
+        <div class="section-head">
+          <h2 class="section-title">Nos filières</h2>
+          <a href="formations.html" class="btn btn-primary section-head-btn" aria-label="Voir toutes les filières">
+            <p class="btn-text">Voir tous</p>
+            <ion-icon class="btn-chevron" name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            <span class="square"></span>
+          </a>
+        </div>
 
         <div class="course-grid">
 
           <div class="course-card">
 
             <div class="course-banner">
-              <img src="./assets/images/course-1.jpg" alt="course banner">
+              <img src="./assets/images/course-1.jpg" alt="Apprenantes en soins obstétricaux">
 
               <div class="course-tag-box">
-                <a href="#" class="badge-tag orange">Détails</a>
-                <a href="#" class="badge-tag blue">Postuler</a>
+                <a href="formation-detail.html?id=sage-femme" class="badge-tag orange">Détails</a>
+                <a href="preinscription.html?formation=sage-femme" class="badge-tag blue">Postuler</a>
               </div>
             </div>
 
             <div class="course-content">
 
               <h3 class="card-title">
-                <a href="#">SIO - Sage-femme</a>
+                <a href="formation-detail.html?id=sage-femme">SIO - Sage-femme</a>
               </h3>
+
+              <ul class="course-meta">
+                <li><ion-icon name="business-outline"></ion-icon><span class="estab">EPS-RF</span></li>
+                <li><ion-icon name="time-outline"></ion-icon><span>3 ans</span></li>
+              </ul>
 
               <div class="wrapper border-bottom">
 
@@ -288,19 +454,24 @@
           <div class="course-card">
 
             <div class="course-banner">
-              <img src="./assets/images/course-2.png" alt="course banner">
+              <img src="./assets/images/course-2.png" alt="Salle de cours en gestion des entreprises">
 
               <div class="course-tag-box">
-                <a href="#" class="badge-tag orange">Détails</a>
-                <a href="#" class="badge-tag blue">Postuler</a>
+                <a href="formation-detail.html?id=gestion-entreprises" class="badge-tag orange">Détails</a>
+                <a href="preinscription.html?formation=gestion-entreprises" class="badge-tag blue">Postuler</a>
               </div>
             </div>
 
             <div class="course-content">
 
               <h3 class="card-title">
-                <a href="#">Gestion des entreprises</a>
+                <a href="formation-detail.html?id=gestion-entreprises">Gestion des entreprises</a>
               </h3>
+
+              <ul class="course-meta">
+                <li><ion-icon name="business-outline"></ion-icon><span class="estab">CPFP-RF</span></li>
+                <li><ion-icon name="time-outline"></ion-icon><span>2 ans</span></li>
+              </ul>
 
               <div class="wrapper border-bottom">
 
@@ -326,19 +497,24 @@
           <div class="course-card">
 
             <div class="course-banner">
-              <img src="./assets/images/course-3.jpg" alt="course banner">
+              <img src="./assets/images/course-3.jpg" alt="Apprenants en atelier bureautique">
 
               <div class="course-tag-box">
-                <a href="#" class="badge-tag orange">Détails</a>
-                <a href="#" class="badge-tag blue">Postuler</a>
+                <a href="formation-detail.html?id=agent-bureautique" class="badge-tag orange">Détails</a>
+                <a href="preinscription.html?formation=agent-bureautique" class="badge-tag blue">Postuler</a>
               </div>
             </div>
 
             <div class="course-content">
 
               <h3 class="card-title">
-                <a href="#">Agent en bureautique</a>
+                <a href="formation-detail.html?id=agent-bureautique">Agent en bureautique</a>
               </h3>
+
+              <ul class="course-meta">
+                <li><ion-icon name="business-outline"></ion-icon><span class="estab">CPFP-RF</span></li>
+                <li><ion-icon name="time-outline"></ion-icon><span>9 mois</span></li>
+              </ul>
 
               <div class="wrapper border-bottom">
 
@@ -364,19 +540,24 @@
           <div class="course-card">
 
             <div class="course-banner">
-              <img src="./assets/images/course-4.jpg" alt="course banner">
+              <img src="./assets/images/course-4.jpg" alt="Formation en transport et logistique">
 
               <div class="course-tag-box">
-                <a href="#" class="badge-tag orange">Détails</a>
-                <a href="#" class="badge-tag blue">Postuler</a>
+                <a href="formation-detail.html?id=transport-logistique" class="badge-tag orange">Détails</a>
+                <a href="preinscription.html?formation=transport-logistique" class="badge-tag blue">Postuler</a>
               </div>
             </div>
 
             <div class="course-content">
 
               <h3 class="card-title">
-                <a href="#">Transport & Logistique</a>
+                <a href="formation-detail.html?id=transport-logistique">Transport & Logistique</a>
               </h3>
+
+              <ul class="course-meta">
+                <li><ion-icon name="business-outline"></ion-icon><span class="estab">CPFP-RF</span></li>
+                <li><ion-icon name="time-outline"></ion-icon><span>2 ans</span></li>
+              </ul>
 
               <div class="wrapper border-bottom">
 
@@ -402,19 +583,24 @@
           <div class="course-card">
 
             <div class="course-banner">
-              <img src="./assets/images/course-5.png" alt="course banner">
+              <img src="./assets/images/course-5.png" alt="Apprenants en soins infirmiers">
 
               <div class="course-tag-box">
-                <a href="#" class="badge-tag orange">Détails</a>
-                <a href="#" class="badge-tag blue">Postuler</a>
+                <a href="formation-detail.html?id=infirmier" class="badge-tag orange">Détails</a>
+                <a href="preinscription.html?formation=infirmier" class="badge-tag blue">Postuler</a>
               </div>
             </div>
 
             <div class="course-content">
 
               <h3 class="card-title">
-                <a href="#">SIO - Infirmier</a>
+                <a href="formation-detail.html?id=infirmier">SIO - Infirmier</a>
               </h3>
+
+              <ul class="course-meta">
+                <li><ion-icon name="business-outline"></ion-icon><span class="estab">EPS-RF</span></li>
+                <li><ion-icon name="time-outline"></ion-icon><span>3 ans</span></li>
+              </ul>
 
               <div class="wrapper border-bottom">
 
@@ -440,19 +626,24 @@
           <div class="course-card">
 
             <div class="course-banner">
-              <img src="./assets/images/course-6.jpeg" alt="course banner">
+              <img src="./assets/images/course-6.jpeg" alt="Atelier de maintenance informatique">
 
               <div class="course-tag-box">
-                <a href="#" class="badge-tag orange">Détails</a>
-                <a href="#" class="badge-tag blue">Postuler</a>
+                <a href="formation-detail.html?id=maintenance-informatique" class="badge-tag orange">Détails</a>
+                <a href="preinscription.html?formation=maintenance-informatique" class="badge-tag blue">Postuler</a>
               </div>
             </div>
 
             <div class="course-content">
 
               <h3 class="card-title">
-                <a href="#">Maintenance Informatique</a>
+                <a href="formation-detail.html?id=maintenance-informatique">Maintenance Informatique</a>
               </h3>
+
+              <ul class="course-meta">
+                <li><ion-icon name="business-outline"></ion-icon><span class="estab">CPFP-RF</span></li>
+                <li><ion-icon name="time-outline"></ion-icon><span>2 ans</span></li>
+              </ul>
 
               <div class="wrapper border-bottom">
 
@@ -476,15 +667,98 @@
 
         </div>
 
-        <button class="btn btn-primary">
-          <p class="btn-text">Voir tous</p>
-          <span class="square"></span>
-        </button>
+      </section>
+
+
+      <section class="calendar" id="calendrier">
+
+        <div class="section-head">
+          <h2 class="section-title">Sessions & dates importantes</h2>
+          <!-- TODO: lien "Voir tous" -> page actualités / calendrier complet -->
+          <a href="actualites.html" class="btn btn-primary section-head-btn" aria-label="Voir toutes les sessions">
+            <p class="btn-text">Voir tous</p>
+            <ion-icon class="btn-chevron" name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            <span class="square"></span>
+          </a>
+        </div>
+
+        <div class="calendar-left">
+
+          <ol class="calendar-timeline">
+
+            <li class="calendar-item reveal-up">
+              <div class="calendar-date">
+                <span class="calendar-day">01</span>
+                <span class="calendar-month">Oct. 2026</span>
+              </div>
+              <h3 class="calendar-title">Rentrée académique 2026–2027</h3>
+              <p class="calendar-info">Toutes filières · Fada N'Gourma</p>
+              <p class="calendar-deadline">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                Clôture des candidatures : 20 septembre 2026
+              </p>
+            </li>
+
+            <li class="calendar-item reveal-up">
+              <div class="calendar-date">
+                <span class="calendar-day">04</span>
+                <span class="calendar-month">Jan. 2027</span>
+              </div>
+              <h3 class="calendar-title">Session de janvier — Centre de formation professionnelle</h3>
+              <p class="calendar-info">Formations courtes CPFP-RF · Présentiel &amp; hybride</p>
+              <p class="calendar-deadline">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                Clôture des candidatures : 15 décembre 2026
+              </p>
+            </li>
+
+            <li class="calendar-item reveal-up">
+              <div class="calendar-date">
+                <span class="calendar-day">01</span>
+                <span class="calendar-month">Avr. 2027</span>
+              </div>
+              <h3 class="calendar-title">Session de printemps — Concours d'entrée EPS-RF</h3>
+              <p class="calendar-info">Soins infirmiers &amp; obstétricaux · Épreuves écrites et orales</p>
+              <p class="calendar-deadline">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                Clôture des inscriptions : 10 mars 2027
+              </p>
+            </li>
+
+          </ol>
+
+        </div>
+
+        <div class="calendar-right">
+
+          <div class="event-banner">
+            <img src="./assets/images/event-img.jpg" height="650" alt="event banner" class="banner-img">
+          </div>
+
+          <button class="play smooth-zigzag-anim-1">
+            <div class="play-icon pulse-anim">
+              <ion-icon name="play-circle"></ion-icon>
+            </div>
+
+            <p>Watch Us !</p>
+          </button>
+
+        </div>
 
       </section>
 
 
       <section class="event">
+
+        <div class="section-head">
+          <h2 class="section-title">Evènements à venir</h2>
+          <!-- TODO: lien "Voir tous" -> agenda / actualités -->
+          <a href="actualites.html" class="btn btn-primary section-head-btn" aria-label="Voir tous les évènements">
+            <p class="btn-text">Voir tous</p>
+            <ion-icon class="btn-chevron" name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            <span class="square"></span>
+          </a>
+        </div>
 
         <div class="event-left">
 
@@ -503,8 +777,6 @@
         </div>
 
         <div class="event-right">
-
-          <h2 class="section-title">Evènements à venir</h2>
 
           <div class="event-card-group">
 
@@ -625,7 +897,16 @@
 
 
       <section class="instructor">
-        <h2 class="section-title">Notre équipe</h2>
+
+        <div class="section-head">
+          <h2 class="section-title">Notre équipe</h2>
+          <!-- TODO: lien "Voir tous" -> page institution / équipe -->
+          <a href="institution.html" class="btn btn-primary section-head-btn" aria-label="Voir toute l'équipe">
+            <p class="btn-text">Voir tous</p>
+            <ion-icon class="btn-chevron" name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            <span class="square"></span>
+          </a>
+        </div>
 
         <div class="instructor-grid">
 
@@ -736,41 +1017,281 @@
       </section>
 
 
-      <section class="testimonials">
+      <section class="partner">
 
-        <div class="testimonials-left">
-
-          <h2 class="section-title">Temoignage de nos anciens apprenants</h2>
-
-          <p class="section-text">
-            Leur succès est notre plus grande fierté. Parce que chaque parcours est unique, nous laissons la parole à nos anciens élèves. Laissez-vous inspirer par leurs témoignages authentiques et découvrez ce que notre école peut vous apporter au quotidien.
-          </p>
-
+        <div class="section-head">
+          <h2 class="section-title">Nos partenaires</h2>
+          <a href="institution.html" class="btn btn-primary section-head-btn" aria-label="Voir tous les partenaires">
+            <p class="btn-text">Voir tous</p>
+            <ion-icon class="btn-chevron" name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            <span class="square"></span>
+          </a>
         </div>
 
-        <div class="testimonials-right">
+        <div class="marquee marquee--reverse" data-marquee>
+          <div class="marquee-track">
 
-          <div class="testimonials-card">
-            <img src="./assets/images/quote.png" alt="quote icon" class="quote-img">
-
-            <p class="testimonials-text">
-              « Diplômée de cette école, j'ai pu intégrer le milieu hospitalier en toute confiance. La qualité de la formation théorique et l'accent mis sur la pratique clinique m'ont permis d'être immédiatement opérationnelle et sereine auprès des patientes. Je recommande vivement cet établissement ! »
-            </p>
-
-            <div class="testimonials-client">
-
-              <div class="client-img-box">
-                <img src="./assets/images/client.jpeg" width="50" height="50" alt="client christine rose">
-              </div>
-
-              <div class="client-detail">
-                <h4 class="client-name">Christine HOUESSOU</h4>
-
-                <p class="client-title">Sage-femme</p>
-              </div>
-
+            <div class="partner-card">
+              <img src="./assets/images/logo-min-ens.png" alt="Logo Ministère de la Santé et de l'Hygiène Publique" loading="lazy">
+              <p class="partner-name">Ministère de la Santé et de l'Hygiène Publique</p>
             </div>
+
+            <div class="partner-card">
+              <img src="./assets/images/logo-min-san.png" alt="Logo Ministère de l'Enseignement Supérieur" loading="lazy">
+              <p class="partner-name">Ministère de l'Enseignement Supérieur</p>
+            </div>
+
+            <div class="partner-card">
+              <img src="./assets/images/logo-chru-fada.png" alt="Logo CHR de Fada N'Gourma" loading="lazy">
+              <p class="partner-name">CHRU de Fada N'Gourma</p>
+            </div>
+
+            <div class="partner-card">
+              <img src="./assets/images/logo-croix-rouge.png" alt="Logo Croix-Rouge Burkinabè" loading="lazy">
+              <p class="partner-name">Croix-Rouge Burkinabè</p>
+            </div>
+
+            <div class="partner-card">
+              <img src="./assets/images/logo.png" alt="Logo Fondation Raoul Follereau" loading="lazy">
+              <p class="partner-name">Fondation Raoul Follereau</p>
+            </div>
+
+            <div class="partner-card" aria-hidden="true">
+              <img src="./assets/images/logo-min-san.png" alt="" loading="lazy">
+              <p class="partner-name">Ministère de la Santé et de l'Hygiène Publique</p>
+            </div>
+
+            <div class="partner-card" aria-hidden="true">
+              <img src="./assets/images/logo-min-ens.png" alt="" loading="lazy">
+              <p class="partner-name">Ministère de l'Enseignement Supérieur</p>
+            </div>
+
+            <div class="partner-card" aria-hidden="true">
+              <img src="./assets/images/logo-chru-fada.png" alt="" loading="lazy">
+              <p class="partner-name">CHR de Fada N'Gourma</p>
+            </div>
+
+            <div class="partner-card" aria-hidden="true">
+              <img src="./assets/images/logo-croix-rouge.png" alt="" loading="lazy">
+              <p class="partner-name">Croix-Rouge Burkinabè</p>
+            </div>
+
+            <div class="partner-card" aria-hidden="true">
+              <img src="./assets/images/logo.png" alt="" loading="lazy">
+              <p class="partner-name">Fondation Raoul Follereau</p>
+            </div>
+
           </div>
+        </div>
+
+      </section>
+
+
+      <section class="testimonials">
+
+        <div class="section-head">
+          <h2 class="section-title">Témoignages</h2>
+          <!-- TODO: lien "Voir tous" -> page témoignages / actualités -->
+          <a href="actualites.html" class="btn btn-primary section-head-btn" aria-label="Voir tous les témoignages">
+            <p class="btn-text">Voir tous</p>
+            <ion-icon class="btn-chevron" name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            <span class="square"></span>
+          </a>
+        </div>
+
+        <!-- Marquee auto (gauche -> droite), en pause au survol / focus. Piste dupliquée
+             pour une boucle sans couture ; le 2e jeu est masqué aux lecteurs d'écran. -->
+        <div class="marquee" data-marquee>
+          <div class="marquee-track">
+
+            <div class="testimonials-card">
+              <img src="./assets/images/quote.png" alt="" class="quote-img">
+
+              <p class="testimonials-text">
+                « Diplômée de cette école, j'ai pu intégrer le milieu hospitalier en toute confiance. La qualité de la formation théorique et l'accent mis sur la pratique clinique m'ont permis d'être immédiatement opérationnelle et sereine auprès des patientes. Je recommande vivement cet établissement ! »
+              </p>
+
+              <div class="testimonials-client">
+
+                <div class="client-img-box">
+                  <img src="./assets/images/client.jpeg" width="50" height="50" alt="Portrait de Christine HOUESSOU">
+                </div>
+
+                <div class="client-detail">
+                  <h4 class="client-name">Christine HOUESSOU</h4>
+
+                  <p class="client-title">Sage-femme</p>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="testimonials-card">
+              <img src="./assets/images/quote.png" alt="" class="quote-img">
+
+              <p class="testimonials-text">
+                « Le CPFP-RF m'a donné bien plus qu'un diplôme : un réseau, des stages concrets et la confiance nécessaire pour lancer ma propre activité de maintenance informatique dès la fin de ma formation. »
+              </p>
+
+              <div class="testimonials-client">
+
+                <div class="client-img-box">
+                  <!-- TODO: photo réelle de l'ancien apprenant à fournir par le client -->
+                  <img src="./assets/images/client.jpeg" width="50" height="50" alt="Portrait d'Ismaël OUALI">
+                </div>
+
+                <div class="client-detail">
+                  <h4 class="client-name">Ismaël OUALI</h4>
+
+                  <p class="client-title">Technicien de maintenance</p>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="testimonials-card">
+              <img src="./assets/images/quote.png" alt="" class="quote-img">
+
+              <p class="testimonials-text">
+                « Les formateurs de l'IPS-RF sont des professionnels en exercice. On apprend les gestes qui comptent, sur du matériel réel, et l'accompagnement vers l'emploi ne s'arrête pas à la remise du diplôme. »
+              </p>
+
+              <div class="testimonials-client">
+
+                <div class="client-img-box">
+                  <!-- TODO: photo réelle de l'ancienne apprenante à fournir par le client -->
+                  <img src="./assets/images/client.jpeg" width="50" height="50" alt="Portrait de Fatimata ZONGO">
+                </div>
+
+                <div class="client-detail">
+                  <h4 class="client-name">Fatimata ZONGO</h4>
+
+                  <p class="client-title">Infirmière diplômée d'État</p>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="testimonials-card" aria-hidden="true">
+              <img src="./assets/images/quote.png" alt="" class="quote-img">
+
+              <p class="testimonials-text">
+                « Diplômée de cette école, j'ai pu intégrer le milieu hospitalier en toute confiance. La qualité de la formation théorique et l'accent mis sur la pratique clinique m'ont permis d'être immédiatement opérationnelle et sereine auprès des patientes. Je recommande vivement cet établissement ! »
+              </p>
+
+              <div class="testimonials-client">
+
+                <div class="client-img-box">
+                  <img src="./assets/images/client.jpeg" width="50" height="50" alt="">
+                </div>
+
+                <div class="client-detail">
+                  <h4 class="client-name">Christine HOUESSOU</h4>
+
+                  <p class="client-title">Sage-femme</p>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="testimonials-card" aria-hidden="true">
+              <img src="./assets/images/quote.png" alt="" class="quote-img">
+
+              <p class="testimonials-text">
+                « Le CPFP-RF m'a donné bien plus qu'un diplôme : un réseau, des stages concrets et la confiance nécessaire pour lancer ma propre activité de maintenance informatique dès la fin de ma formation. »
+              </p>
+
+              <div class="testimonials-client">
+
+                <div class="client-img-box">
+                  <img src="./assets/images/client.jpeg" width="50" height="50" alt="">
+                </div>
+
+                <div class="client-detail">
+                  <h4 class="client-name">Ismaël OUALI</h4>
+
+                  <p class="client-title">Technicien de maintenance</p>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="testimonials-card" aria-hidden="true">
+              <img src="./assets/images/quote.png" alt="" class="quote-img">
+
+              <p class="testimonials-text">
+                « Les formateurs de l'IPS-RF sont des professionnels en exercice. On apprend les gestes qui comptent, sur du matériel réel, et l'accompagnement vers l'emploi ne s'arrête pas à la remise du diplôme. »
+              </p>
+
+              <div class="testimonials-client">
+
+                <div class="client-img-box">
+                  <img src="./assets/images/client.jpeg" width="50" height="50" alt="">
+                </div>
+
+                <div class="client-detail">
+                  <h4 class="client-name">Fatimata ZONGO</h4>
+
+                  <p class="client-title">Infirmière diplômée d'État</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+
+      <section class="stats" aria-label="Chiffres clés des Établissements Raoul Follereau">
+
+        <ul class="stats-grid">
+
+          <li class="stat-item reveal-up">
+            <span class="stat-number" data-count="1500" data-suffix="+">0</span>
+            <span class="stat-label">Apprenants formés</span>
+          </li>
+
+          <li class="stat-item reveal-up">
+            <span class="stat-number" data-count="92" data-suffix="%">0</span>
+            <span class="stat-label">Taux de réussite</span>
+          </li>
+
+          <li class="stat-item reveal-up">
+            <span class="stat-number" data-count="25" data-suffix="+">0</span>
+            <span class="stat-label">Formations proposées</span>
+          </li>
+
+          <li class="stat-item reveal-up">
+            <span class="stat-number" data-count="15" data-suffix="">0</span>
+            <span class="stat-label">Années d'expérience</span>
+          </li>
+
+        </ul>
+
+      </section>
+
+
+      <section class="countdown" aria-label="Compte à rebours du prochain événement">
+
+        <div class="countdown-inner">
+
+          <div class="countdown-text reveal-up">
+            <p class="section-subtitle">Prochain grand rendez-vous</p>
+            <h2 class="countdown-title">Rentrée académique 2026–2027</h2>
+            <p class="countdown-place">
+              <ion-icon name="location-outline"></ion-icon>
+              Fada N'Gourma · 1er octobre 2026 à 08:00
+            </p>
+          </div>
+
+          <ul class="countdown-timer" data-countdown="2026-10-01T08:00:00">
+            <li><span class="count-value" data-unit="days">00</span><span class="count-label">Jours</span></li>
+            <li><span class="count-value" data-unit="hours">00</span><span class="count-label">Heures</span></li>
+            <li><span class="count-value" data-unit="minutes">00</span><span class="count-label">Min</span></li>
+            <li><span class="count-value" data-unit="seconds">00</span><span class="count-label">Sec</span></li>
+          </ul>
 
         </div>
 
@@ -778,7 +1299,16 @@
 
 
       <section class="blog" id="blog">
-        <h2 class="section-title">Blog & Dernières nouvelles</h2>
+
+        <div class="section-head">
+          <h2 class="section-title">Blog & Dernières nouvelles</h2>
+          <!-- TODO: lien "Voir tous" -> page actualités / blog -->
+          <a href="actualites.html" class="btn btn-primary section-head-btn" aria-label="Voir toutes les actualités">
+            <p class="btn-text">Voir tous</p>
+            <ion-icon class="btn-chevron" name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            <span class="square"></span>
+          </a>
+        </div>
 
         <div class="blog-grid">
           <div class="blog-card">
@@ -880,17 +1410,30 @@
       </section>
 
 
+      <section class="map" id="acces">
+
+        <div class="map-embed reveal-up">
+          <iframe
+            src="https://maps.google.com/maps?q=12.075926548348908,0.3381905088250529(Les+Établissements+Raoul+Follereau)&amp;t=k&amp;z=17&amp;output=embed"
+            width="600" height="450" style="border:0;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Carte de localisation — Les Établissements Raoul Follereau, Fada N'Gourma"></iframe>
+        </div>
+
+      </section>
+
+
       <section class="contact">
 
         <div class="contact-card" id="contact">
-          <img src="./assets/images/cta-bg-img.png" alt="shape" class="contact-card-bg">
+          <img src="./assets/images/cta-bg-img.png" alt="" class="contact-card-bg">
 
           <h2>Envie de vous lancer dans une belle aventure ?</h2>
 
-          <button class="btn btn-primary">
+          <a href="contact.html" class="btn btn-primary">
             <p class="btn-text">Contactez nous</p>
             <span class="square"></span>
-          </button>
+          </a>
         </div>
 
       </section>
@@ -902,13 +1445,13 @@
         <div class="grid-item">
 
           <div class="footer-logo">
-            <img src="./assets/images/logo-footer.png" alt="educator logo white">
+            <img src="./assets/images/logo.png" alt="Les Établissements Raoul Follereau">
           </div>
 
           <p class="footer-text">
-            Duis a tempor magna. Maecenas ligula felis, imperdiet quis arcu eget, blandit ultricies risus. Vivamus
-            fringilla urna
-            vel risus congue accumsan.
+            Les Établissements Raoul Follereau, à Fada N'Gourma, regroupent l'Institut Privé Supérieur de formation
+            en Santé, l'École Privée de Santé et le Centre Professionnel de Formation Professionnelle : des formations
+            certifiantes en santé, gestion, numérique et métiers techniques, tournées vers l'insertion professionnelle.
           </p>
 
           <div class="social-link">
@@ -933,7 +1476,7 @@
           <h4 class="item-heading">Liens</h4>
 
           <li class="list-item">
-            <a href="#home">Accueille</a>
+            <a href="#home">Accueil</a>
           </li>
 
           <li class="list-item">
@@ -1002,6 +1545,16 @@
     </footer>
   </div>
 
+  <!-- Bouton flottant WhatsApp — à terme injecté sur toutes les pages via components.js -->
+  <!-- TODO: remplacer le numéro par la ligne WhatsApp réelle des Établissements -->
+  <a href="https://wa.me/22670249765" class="whatsapp-fab whatsapp-pulse-anim" target="_blank" rel="noopener"
+    aria-label="Écrire aux Établissements Raoul Follereau sur WhatsApp">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+  </a>
+
+  <script src="./assets/js/premium-animations.js"></script>
+  <script src="./assets/js/hero-intro.js"></script>
+  <script src="./assets/js/header-nav.js"></script>
   <script src="./assets/js/script.js"></script>
 
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

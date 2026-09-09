@@ -69,3 +69,625 @@
   100% { box-shadow: 0 0 0 15px transparent; }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #SCROLL REVEAL  (nouvelles sections — page d'accueil)
+\*-----------------------------------*/
+
+.reveal-up,
+.reveal-fade,
+.reveal-left,
+.reveal-right {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.reveal-up    { transform: translateY(40px); }
+.reveal-left  { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+
+.reveal-up.is-visible,
+.reveal-fade.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal-up,
+  .reveal-fade,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #WHATSAPP PULSE  (bouton flottant)
+\*-----------------------------------*/
+
+.whatsapp-pulse-anim { animation: whatsapp-pulse 2.5s ease-out infinite; }
+
+@keyframes whatsapp-pulse {
+
+  0%   { box-shadow: 0 0 0 0 hsla(115, 59%, 46%, 0.7); }
+  70%  { box-shadow: 0 0 0 18px hsla(115, 59%, 46%, 0); }
+  100% { box-shadow: 0 0 0 0 hsla(115, 59%, 46%, 0); }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #PREMIUM — ANIMATIONS SPÉCIFIQUES ACCUEIL
+  (pilotées par assets/js/premium-animations.js — voir l'en-tête de ce fichier.
+   Set volontairement plus riche que le scroll-reveal générique du §8.)
+\*-----------------------------------*/
+
+
+/**
+ * 1. Reveal en cascade (stagger) — enfants de grilles.
+ *    Actif uniquement quand premium-animations.js a posé .premium-anim sur <html>
+ *    et --reveal-delay sur chaque enfant (sinon rien n'est masqué).
+ */
+
+.premium-anim .reveal-rise { opacity: 0; }
+
+.premium-anim .reveal-rise.is-visible {
+  animation: reveal-rise 0.6s ease both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+/* reveal terminé : on relâche le fill de l'animation pour laisser les
+   transform inline (tilt 3D) reprendre la main sur les mêmes cartes */
+.premium-anim .reveal-rise.reveal-done {
+  opacity: 1;
+  animation: none;
+}
+
+@keyframes reveal-rise {
+
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes reveal-fade-simple {
+
+  from { opacity: 0; }
+  to   { opacity: 1; }
+
+}
+
+
+/**
+ * 2. Tilt 3D léger — .course-card / .instructor-card
+ *    (transform posé en inline par le JS ; ici, retour fluide au repos)
+ */
+
+.course-card { transition: transform var(--default-transition); }
+/* .instructor-card conserve son "transition: var(--default-transition)" existant,
+   qui couvre déjà la propriété transform. */
+
+
+/**
+ * 3. Boutons magnétiques — CTA du hero uniquement
+ */
+
+.magnetic-btn { transition: transform var(--default-transition); }
+
+
+/**
+ * 4. Pop de fin de comptage (chiffres clés « pourquoi nous choisir »)
+ */
+
+.count-pop-anim { animation: count-pop 0.4s ease; }
+
+@keyframes count-pop {
+
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+
+}
+
+
+/**
+ * 5. Navbar compressée après un léger défilement (.is-scrolled posé par le JS)
+ */
+
+.navbar {
+  transition: padding var(--default-transition),
+              box-shadow var(--default-transition),
+              background var(--default-transition);
+}
+
+.navbar.is-scrolled {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  box-shadow: 0 8px 24px -6px hsla(0, 0%, 0%, 0.12);
+}
+
+.navbar-brand img { transition: transform var(--default-transition); }
+
+.navbar.is-scrolled .navbar-brand img { transform: scale(0.85); }
+
+
+/**
+ * prefers-reduced-motion : seul un fondu d'opacité simple est conservé.
+ * Le JS n'initialise déjà ni le tilt, ni le magnétique, ni les compteurs animés.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .premium-anim .reveal-rise.is-visible {
+    animation: reveal-fade-simple 0.3s ease both;
+    animation-delay: 0ms;
+  }
+
+  .course-card,
+  .magnetic-btn,
+  .navbar,
+  .navbar-brand img { transition: none; }
+
+  .navbar.is-scrolled .navbar-brand img { transform: none; }
+
+  .count-pop-anim { animation: none; }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #SANDWICH -> X  (nav-toggle-btn — refonte header)
+
+  L'effet repose sur les transitions DÉJÀ présentes sur .nav-toggle-btn span
+  (#HEADER de style.css) : .one et .three pivotent en croix via les règles
+  .nav-toggle-btn.active .one / .three existantes, inchangées.
+  On complète seulement la barre du milieu : fondu + écrasement au lieu d'un
+  display:none sec. Transitions CSS pures, pas de @keyframes nécessaire.
+\*-----------------------------------*/
+
+.nav-toggle-btn .two {
+  transition: opacity var(--default-transition), transform var(--default-transition);
+}
+
+/* X parfaitement centré : chaque barre externe est d'abord ramenée au centre de
+   la pile — translateY = demi-barre + gap + demi-barre = 1 + 6 + 1 = 8px — PUIS
+   pivotée de 45° autour de son propre centre. Les deux axes se croisent donc
+   exactement au milieu. Même timing qu'avant (transition sur .nav-toggle-btn span). */
+.nav-toggle-btn.active .one {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle-btn.active .three {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.nav-toggle-btn.active .two {
+  display: block;          /* neutralise l'ancien display:none (rien n'est supprimé) */
+  opacity: 0;
+  transform: scaleX(0.1);
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #SECTION REVEAL  (accueil — reveal bidirectionnel de chaque section au scroll)
+
+  Piloté par premium-animations.js : la classe .is-visible est ajoutée à l'entrée
+  dans le viewport ET retirée à la sortie (animation au scroll montant comme
+  descendant). Actif seulement quand .section-anim est posé sur <html> par le JS
+  (sinon rien n'est masqué).
+\*-----------------------------------*/
+
+.section-anim .section-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+/* hero / contact / footer : fondu d'opacité seul, sans déplacement */
+.section-anim .section-reveal--fade { transform: none; }
+
+.section-anim .section-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .section-anim .section-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #HERO INTRO  (séquence d'entrée AU CHARGEMENT — page d'accueil uniquement)
+
+  Orchestration : assets/js/hero-intro.js pose .hero-intro sur <html> (état
+  initial masqué de chaque élément), puis .hero-intro-go pour lancer la séquence
+  après le premier paint. Les délais staggés sont portés ici en CSS (une seule
+  passe, pas de --var injectée élément par élément).
+
+  Durées : les valeurs 0.4s–0.7s sont propres à un effet d'ENTRÉE cinématique ;
+  --default-transition (0.25s) est trop court pour ça, on ne l'utilise donc pas
+  pour cette séquence. Couleurs : aucune couleur peinte ici (fade / translate /
+  clip-path uniquement) → aucun token à référencer.
+
+  Handoff icônes : .icon-1/-2/-3 (smooth-zigzag-anim-1/2/3) et .icon-4 (drop-anim)
+  gardent leur `animation` shorthand D'ORIGINE intacte. On se contente de :
+   - la mettre en pause (animation-play-state) pendant l'entrée,
+   - repousser son démarrage (animation-delay) au moment où le pop-in se termine.
+  Le pop-in se joue en `transition` (opacity + transform:scale), il finit à
+  scale(1) — soit exactement le transform du keyframe 0% de smooth-zigzag
+  (translate(0)) et de drop (translateY(0)). Reprise de la boucle sans saut ni
+  superposition de propriétés animées.
+\*-----------------------------------*/
+
+/* --- Éléments animés par @keyframes (état armé : masqué + en pause) --- */
+
+.hero-intro .home .shape-1,
+.hero-intro .home .shape-2,
+.hero-intro .home .shape-3,
+.hero-intro .home .shape-4,
+.hero-intro .home .section-subtitle,
+.hero-intro .home .main-heading .heading-line,
+.hero-intro .home .underline-img img,
+.hero-intro .home .section-text,
+.hero-intro .home .home-btn-group .btn,
+.hero-intro .home .hero-badge,
+.hero-intro .home-right .background-shape,
+.hero-intro .home-right .banner-img {
+  animation-duration: 0.55s;
+  animation-timing-function: ease;
+  animation-fill-mode: backwards;   /* tient l'état "from" pendant le delay, puis rend la main à l'état naturel */
+  animation-play-state: paused;
+}
+
+.hero-intro.hero-intro-go .home .shape-1,
+.hero-intro.hero-intro-go .home .shape-2,
+.hero-intro.hero-intro-go .home .shape-3,
+.hero-intro.hero-intro-go .home .shape-4,
+.hero-intro.hero-intro-go .home .section-subtitle,
+.hero-intro.hero-intro-go .home .main-heading .heading-line,
+.hero-intro.hero-intro-go .home .underline-img img,
+.hero-intro.hero-intro-go .home .section-text,
+.hero-intro.hero-intro-go .home .home-btn-group .btn,
+.hero-intro.hero-intro-go .home .hero-badge,
+.hero-intro.hero-intro-go .home-right .background-shape,
+.hero-intro.hero-intro-go .home-right .banner-img {
+  animation-play-state: running;
+}
+
+/* Colonne gauche (.home-left) --------------------------------------------- */
+
+/* 1. shape-1 : fade rapide, en premier */
+.hero-intro .home .shape-1 {
+  animation-name: hero-fade;
+  animation-duration: 0.4s;
+  animation-delay: 0ms;
+}
+
+/* 2. sous-titre : fade + glissé court depuis la gauche */
+.hero-intro .home .section-subtitle {
+  animation-name: hero-fade-left;
+  animation-delay: 120ms;
+}
+
+/* 3. titre : les 2 lignes montent + fade, décalées entre elles */
+.hero-intro .home .main-heading .heading-line-1 {
+  animation-name: hero-rise;
+  animation-delay: 240ms;
+}
+
+.hero-intro .home .main-heading .heading-line-2 {
+  animation-name: hero-rise;
+  animation-delay: 360ms;
+}
+
+/* 4. trait rouge : tracé progressif gauche -> droite, juste après la 2e ligne */
+.hero-intro .home .underline-img img {
+  animation-name: hero-line-draw;
+  animation-duration: 0.6s;
+  animation-delay: 760ms;
+}
+
+/* 5. texte : fade + léger glissé vertical */
+.hero-intro .home .section-text {
+  animation-name: hero-fade-up;
+  animation-delay: 620ms;
+}
+
+/* 6. boutons : fade + slide up, staggés entre eux (structure .btn-text/.square intacte) */
+.hero-intro .home .home-btn-group .btn:nth-child(1) {
+  animation-name: hero-fade-up;
+  animation-duration: 0.45s;
+  animation-delay: 760ms;
+}
+
+.hero-intro .home .home-btn-group .btn:nth-child(2) {
+  animation-name: hero-fade-up;
+  animation-duration: 0.45s;
+  animation-delay: 850ms;
+}
+
+/* 7. badges : fade + slide staggé (le compteur du 3e est lancé par hero-intro.js) */
+.hero-intro .home .hero-badge:nth-child(1) {
+  animation-name: hero-fade-up;
+  animation-duration: 0.4s;
+  animation-delay: 960ms;
+}
+
+.hero-intro .home .hero-badge:nth-child(2) {
+  animation-name: hero-fade-up;
+  animation-duration: 0.4s;
+  animation-delay: 1040ms;
+}
+
+.hero-intro .home .hero-badge:nth-child(3) {
+  animation-name: hero-fade-up;
+  animation-duration: 0.4s;
+  animation-delay: 1120ms;
+}
+
+/* 8. shape-3 : fade discret, en tout dernier côté gauche */
+.hero-intro .home .shape-3 {
+  animation-name: hero-fade;
+  animation-duration: 0.5s;
+  animation-delay: 1300ms;
+}
+
+/* Colonne droite (.home-right) — en parallèle, léger décalage global ------- */
+
+/* 9a. background-shape : scale-in 0.85 -> 1 + fade (garde son translateX(-50%)) */
+.hero-intro .home-right .background-shape {
+  animation-name: hero-scale-in;
+  animation-duration: 0.6s;
+  animation-delay: 200ms;
+}
+
+/* 9b. banner-img : reveal par clip-path, balayage bas -> haut */
+.hero-intro .home-right .banner-img {
+  animation-name: hero-wipe-up;
+  animation-duration: 0.7s;
+  animation-delay: 320ms;
+}
+
+/* 9c + 9d. icônes : pop-in (transition), PUIS reprise de la boucle d'origine.
+   La boucle (smooth-zigzag / drop) est juste mise en pause + retardée ici. */
+.hero-intro .home-right .icon-1,
+.hero-intro .home-right .icon-2,
+.hero-intro .home-right .icon-3,
+.hero-intro .home-right .icon-4 {
+  opacity: 0;
+  transition: opacity 0.5s ease,
+              transform 0.5s cubic-bezier(0.34, 1.45, 0.64, 1);
+  animation-play-state: paused;
+}
+
+.hero-intro .home-right .icon-1,
+.hero-intro .home-right .icon-2,
+.hero-intro .home-right .icon-3 {
+  transform: scale(0.8);
+}
+
+/* 9d. icon-4 : pop-in avec un rebond un peu plus marqué */
+.hero-intro .home-right .icon-4 {
+  transform: scale(0.55);
+  transition: opacity 0.5s ease,
+              transform 0.6s cubic-bezier(0.34, 1.6, 0.5, 1);
+}
+
+.hero-intro .home-right .icon-1 { transition-delay: 700ms;  animation-delay: 1250ms; }
+.hero-intro .home-right .icon-2 { transition-delay: 820ms;  animation-delay: 1370ms; }
+.hero-intro .home-right .icon-3 { transition-delay: 940ms;  animation-delay: 1490ms; }
+.hero-intro .home-right .icon-4 { transition-delay: 1060ms; animation-delay: 1780ms; }
+
+.hero-intro.hero-intro-go .home-right .icon-1,
+.hero-intro.hero-intro-go .home-right .icon-2,
+.hero-intro.hero-intro-go .home-right .icon-3,
+.hero-intro.hero-intro-go .home-right .icon-4 {
+  opacity: 1;
+  transform: scale(1);
+  animation-play-state: running;   /* redémarre smooth-zigzag / drop, delay ci-dessus */
+}
+
+/* 9e. shape-2 et shape-4 : fade en tout dernier.
+   (shape-4 est un <img>, pas un SVG inline -> pas de tracé stroke-dashoffset,
+    simple fondu comme demandé dans ce cas.) */
+.hero-intro .home .shape-2 {
+  animation-name: hero-fade;
+  animation-duration: 0.5s;
+  animation-delay: 1400ms;
+}
+
+.hero-intro .home .shape-4 {
+  animation-name: hero-fade;
+  animation-duration: 0.5s;
+  animation-delay: 1450ms;
+}
+
+
+/* --- Keyframes (convention nom-anim / @keyframes nom) --- */
+
+@keyframes hero-fade {
+
+  from { opacity: 0; }
+  to   { opacity: 1; }
+
+}
+
+@keyframes hero-fade-up {
+
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes hero-fade-left {
+
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+}
+
+@keyframes hero-rise {
+
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/* trait rouge « tracé » : le clip masque 100 % à droite -> 0 % (gauche vers droite) */
+@keyframes hero-line-draw {
+
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+
+}
+
+/* background-shape : conserve le translateX(-50%) déjà posé sur l'élément */
+@keyframes hero-scale-in {
+
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+
+}
+
+/* banner-img : le clip masque tout en haut (100 %) -> 0 % (révélé bas vers haut) */
+@keyframes hero-wipe-up {
+
+  from { clip-path: inset(100% 0 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+
+}
+
+
+/* --- prefers-reduced-motion : aucune séquence d'entrée ---
+   hero-intro.js ne pose alors pas .hero-intro (rien n'est masqué) ; ce bloc
+   est une sécurité si la classe est présente malgré tout. Les boucles
+   smooth-zigzag-anim-1/2/3 et drop-anim ne sont PAS touchées ici. */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-intro .home .shape-1,
+  .hero-intro .home .shape-2,
+  .hero-intro .home .shape-3,
+  .hero-intro .home .shape-4,
+  .hero-intro .home .section-subtitle,
+  .hero-intro .home .main-heading .heading-line,
+  .hero-intro .home .section-text,
+  .hero-intro .home .home-btn-group .btn,
+  .hero-intro .home .hero-badge,
+  .hero-intro .home-right .background-shape,
+  .hero-intro .home-right .banner-img {
+    opacity: 1;
+    transform: none;
+    animation-name: none;
+    animation-play-state: running;
+    transition: none;
+  }
+
+  .hero-intro .home-right .background-shape { transform: translateX(-50%); }
+
+  .hero-intro .home .underline-img img {
+    clip-path: none;
+    animation-name: none;
+  }
+
+  /* Icônes : on rétablit seulement l'état visible + on retire le pop-in.
+     On NE touche PAS à `animation` : smooth-zigzag-anim-1/2/3 et drop-anim
+     restent exactement ce qu'elles étaient avant cette étape. */
+  .hero-intro .home-right .icon-1,
+  .hero-intro .home-right .icon-2,
+  .hero-intro .home-right .icon-3,
+  .hero-intro .home-right .icon-4 {
+    opacity: 1;
+    transition: none;
+    animation-play-state: running;
+    animation-delay: 0s;
+  }
+
+}
+
+
+
+/*-----------------------------------*\
+  #MARQUEE  (défilement auto des témoignages, gauche -> droite)
+
+  La piste .marquee-track contient 2 jeux de cartes identiques. On démarre à
+  translateX(-50%) (2e jeu visible) et on ramène à 0 (1er jeu) : le contenu se
+  déplace vers la DROITE et la boucle est sans couture. Pause au survol/focus
+  gérée en CSS (voir #TESTIMONIALS MARQUEE dans style.css) ; prefers-reduced-motion
+  coupe l'animation et rend la piste défilable à la main.
+\*-----------------------------------*/
+
+@keyframes marquee-ltr {
+
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+
+}
