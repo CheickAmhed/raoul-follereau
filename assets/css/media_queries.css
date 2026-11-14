@@ -946,3 +946,91 @@
   .filters-grid { grid-template-columns: repeat(5, 1fr); }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #FORMATION DETAIL  (formation-detail.html)
+\*-----------------------------------*/
+
+@media (min-width: 767px) {
+
+  /* session : infos à gauche, bouton à droite */
+  .session-card {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .session-btn { justify-self: end; }
+
+}
+
+
+
+
+
+@media (min-width: 992px) {
+
+  /* contenu à gauche, colonne infos clés à droite et collante sous le header fixe
+     (order : l'aside est 1er dans le DOM pour l'ordre de lecture mobile) */
+  .detail-layout {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 50px;
+    align-items: start;
+  }
+
+  .detail-content { order: 1; }
+
+  .detail-aside {
+    order: 2;
+    position: sticky;
+    top: 100px;
+  }
+
+}
+
+
+
+
+
+@media (min-width: 1200px) {
+
+  .detail-layout {
+    grid-template-columns: minmax(0, 1fr) 400px;
+    gap: 60px;
+  }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #FORMS / #WIZARD  (preinscription.html)
+\*-----------------------------------*/
+
+@media (min-width: 575px) {
+
+  .form-row { grid-template-columns: 1fr 1fr; }
+
+  .wizard-steplabel { display: block; }
+
+  .recap-list > div { grid-template-columns: 190px 1fr; }
+
+  /* boutons de navigation : largeur naturelle, « Continuer » à droite */
+  .wizard-nav .btn { flex: 0 0 auto; }
+
+}
+
+
+
+
+
+@media (min-width: 767px) {
+
+  .wizard-box { padding: 40px; }
+
+}

@@ -143,7 +143,9 @@
   /* --- État actif de la navigation principale ------------------------ */
 
   if (primaryNav) {
-    const here = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    // page courante : data-page sur <body> pour les pages rattachées à une entrée du
+    // menu (ex. fiche formation -> formations.html), sinon le nom du fichier
+    const here = (document.body.dataset.page || location.pathname.split('/').pop() || 'index.html').toLowerCase();
     const links = primaryNav.querySelectorAll('a[href]');
 
     links.forEach(function (a) {

@@ -840,3 +840,33 @@
   }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #WIZARD  (préinscription — apparition de chaque étape)
+\*-----------------------------------*/
+
+.wizard-step.is-active { animation: wizard-step-in 0.35s ease both; }
+
+@keyframes wizard-step-in {
+
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .wizard-step.is-active { animation: none; }
+
+}

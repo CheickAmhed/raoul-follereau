@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Préinscription en ligne — Les Établissements Raoul Follereau</title>
+  <meta name="description"
+    content="Préinscrivez-vous en ligne à une formation des Établissements Raoul Follereau (IPS-RF, EPS-RF, CPFP-RF) : formulaire en 5 étapes, choix de la session, pièces justificatives et confirmation immédiate.">
+
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/media_queries.css">
+  <link rel="stylesheet" href="./assets/css/animation.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800;900&family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header dupliqué depuis index.html : deviendra un @include Blade lors de la phase Laravel. -->
+    <header>
+      <nav class="navbar">
+
+        <a href="index.html" class="navbar-brand">
+          <img width="90" height="90" src="./assets/images/logo.png"
+            alt="Les Établissements Raoul Follereau — accueil">
+        </a>
+
+        <nav class="primary-nav" aria-label="Navigation principale">
+          <ul>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="index.html">
+                <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Accueil</span>
+              </a>
+            </li>
+            <li class="primary-nav-item is-active">
+              <a class="primary-nav-link" href="formations.html" aria-current="page">
+                <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Formations</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="institution.html">
+                <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Institution</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="actualites.html">
+                <ion-icon name="newspaper-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Actualités</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="contact.html">
+                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Contact</span>
+              </a>
+            </li>
+            <!-- Compte : présent uniquement dans la bottom bar mobile.
+                 Dans le header (desktop/tablette), le compte est l'icône .nav-account ci-dessous. -->
+            <li class="primary-nav-item primary-nav-item--bottombar-only">
+              <a class="primary-nav-link" href="compte.html">
+                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Compte</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="navbar-actions">
+
+          <button type="button" class="icon-btn nav-search-toggle" aria-label="Rechercher sur le site"
+            aria-expanded="false" aria-controls="site-search">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+          <a href="compte.html" class="icon-btn nav-account" aria-label="Mon compte">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          </a>
+
+          <a href="preinscription.html" class="btn btn-primary navbar-cta">
+            <p class="btn-text">S'inscrire</p>
+            <span class="square"></span>
+          </a>
+
+          <button type="button" class="nav-toggle-btn" aria-label="Ouvrir le menu secondaire"
+            aria-expanded="false" aria-controls="secondary-menu">
+            <span class="one"></span>
+            <span class="two"></span>
+            <span class="three"></span>
+          </button>
+
+        </div>
+
+        <div class="site-search" id="site-search" hidden>
+          <form class="site-search-form" role="search" action="#">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            <input type="search" name="q" class="site-search-input"
+              placeholder="Rechercher une formation, une actualité…" aria-label="Rechercher sur le site">
+            <button type="submit" class="site-search-submit">OK</button>
+          </form>
+        </div>
+
+        <ul class="navbar-nav" id="secondary-menu" hidden>
+          <li class="secondary-menu-head">
+            <span class="secondary-menu-title">Informations</span>
+            <button type="button" class="secondary-menu-close" aria-label="Fermer le menu secondaire">
+              <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </li>
+          <li class="nav-item"><a href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a href="confidentialite.html">Politique de confidentialité</a></li>
+          <li class="nav-item"><a href="termes.html">Termes &amp; Conditions</a></li>
+          <li class="nav-item"><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+
+      </nav>
+
+      <div class="secondary-menu-overlay" hidden></div>
+    </header>
+
+    <main>
+
+      <!-- Bannière de page (voir PROJECT_CONTEXT.md §3.3) -->
+      <section class="page-banner" aria-labelledby="wizard-page-title">
+
+        <div class="deco-shape shape-1">
+          <img src="./assets/images/shape-1.png" alt="" width="70">
+        </div>
+        <div class="deco-shape shape-3">
+          <img src="./assets/images/shape-3.png" alt="" width="120">
+        </div>
+
+        <div class="page-banner-text">
+
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <ol>
+              <li><a href="index.html">Accueil</a></li>
+              <li><a href="formations.html">Formations</a></li>
+              <li aria-current="page">Préinscription</li>
+            </ol>
+          </nav>
+
+          <p class="section-subtitle">Candidature</p>
+
+          <h1 class="section-title" id="wizard-page-title"><span class="heading-line">Préinscription en ligne</span></h1>
+
+          <p class="section-text">
+            Choisissez votre formation, renseignez vos informations et joignez vos pièces : votre dossier
+            est enregistré en quelques minutes, nous vous recontactons pour la suite.
+          </p>
+
+        </div>
+
+        <div class="page-banner-visual" aria-hidden="true">
+          <div class="img-box">
+            <img src="./assets/images/banner-img-bg.png" alt="" class="background-shape">
+            <img src="./assets/images/banner-img.png" width="550" height="452" alt="" class="banner-img">
+
+            <ul class="banner-badges">
+              <li class="banner-badge badge-1 smooth-zigzag-anim-1">
+                <ion-icon name="list-outline"></ion-icon>
+                <span><strong>5</strong> étapes</span>
+              </li>
+              <li class="banner-badge badge-2 smooth-zigzag-anim-2">
+                <ion-icon name="shield-checkmark-outline"></ion-icon>
+                <span><strong>Gratuit</strong> et sans engagement</span>
+              </li>
+              <li class="banner-badge badge-3 smooth-zigzag-anim-3">
+                <ion-icon name="time-outline"></ion-icon>
+                <span>Réponse sous <strong>72 h</strong></span>
+              </li>
+            </ul>
+
+            <img src="./assets/images/banner-aliment-icon-4.png" alt="" class="icon-4 drop-anim" width="50">
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- Wizard : 5 étapes dans un seul <form> (un <fieldset> par étape), piloté par
+           pages/preinscription.js. Sans backend : aucune donnée n'est envoyée (voir TODO dans le script). -->
+      <section class="wizard" id="preinscription" aria-labelledby="wizard-title">
+        <div class="wizard-box">
+
+          <h2 class="wizard-title" id="wizard-title">Votre candidature en 5 étapes</h2>
+
+          <nav class="wizard-progress" aria-label="Progression de la candidature">
+            <ol class="wizard-steps">
+              <li class="wizard-stepitem is-active" data-step-item="1">
+                <button type="button" class="wizard-steplink" data-step-link="1" aria-current="step">
+                  <span class="wizard-stepnum">1</span>
+                  <span class="wizard-steplabel">Formation</span>
+                </button>
+              </li>
+              <li class="wizard-stepitem" data-step-item="2">
+                <button type="button" class="wizard-steplink" data-step-link="2" disabled>
+                  <span class="wizard-stepnum">2</span>
+                  <span class="wizard-steplabel">Identité</span>
+                </button>
+              </li>
+              <li class="wizard-stepitem" data-step-item="3">
+                <button type="button" class="wizard-steplink" data-step-link="3" disabled>
+                  <span class="wizard-stepnum">3</span>
+                  <span class="wizard-steplabel">Parcours</span>
+                </button>
+              </li>
+              <li class="wizard-stepitem" data-step-item="4">
+                <button type="button" class="wizard-steplink" data-step-link="4" disabled>
+                  <span class="wizard-stepnum">4</span>
+                  <span class="wizard-steplabel">Pièces</span>
+                </button>
+              </li>
+              <li class="wizard-stepitem" data-step-item="5">
+                <button type="button" class="wizard-steplink" data-step-link="5" disabled>
+                  <span class="wizard-stepnum">5</span>
+                  <span class="wizard-steplabel">Récapitulatif</span>
+                </button>
+              </li>
+            </ol>
+            <div class="wizard-bar" aria-hidden="true"><div class="wizard-bar-fill"></div></div>
+            <p class="wizard-status" aria-live="polite">Étape 1 sur 5 : Formation</p>
+          </nav>
+
+          <div class="wizard-context" hidden>
+            <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+            <p>
+              <span class="wizard-context-label">Vous candidatez à</span>
+              <strong data-context="formation"></strong>
+              <span data-context="session"></span>
+            </p>
+            <button type="button" class="wizard-context-edit" data-goto="1">Modifier</button>
+          </div>
+
+          <form class="wizard-form" novalidate>
+
+            <!-- ============ Étape 1 : formation ============ -->
+            <fieldset class="wizard-step is-active" data-step="1">
+              <legend class="wizard-step-title">Choisissez votre formation</legend>
+              <p class="wizard-step-intro section-text">
+                Sélectionnez l'établissement, la formation puis la session à laquelle vous souhaitez candidater.
+              </p>
+
+              <div class="form-field">
+                <label class="form-label" for="f-etablissement">Établissement <span class="form-required" aria-hidden="true">*</span></label>
+                <div class="form-control">
+                  <select id="f-etablissement" name="etablissement" class="form-input" required>
+                    <option value="">Sélectionnez un établissement</option>
+                  </select>
+                  <ion-icon name="chevron-down-outline" aria-hidden="true"></ion-icon>
+                </div>
+                <p class="field-error" id="err-etablissement" hidden></p>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="f-formation">Formation <span class="form-required" aria-hidden="true">*</span></label>
+                <div class="form-control">
+                  <select id="f-formation" name="formation" class="form-input" required disabled>
+                    <option value="">Choisissez d'abord un établissement</option>
+                  </select>
+                  <ion-icon name="chevron-down-outline" aria-hidden="true"></ion-icon>
+                </div>
+                <p class="field-error" id="err-formation" hidden></p>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="f-session">Session <span class="form-required" aria-hidden="true">*</span></label>
+                <div class="form-control">
+                  <select id="f-session" name="session" class="form-input" required disabled>
+                    <option value="">Choisissez d'abord une formation</option>
+                  </select>
+                  <ion-icon name="chevron-down-outline" aria-hidden="true"></ion-icon>
+                </div>
+                <p class="form-hint">Les sessions complètes ou dont les inscriptions ne sont pas encore ouvertes ne sont pas sélectionnables.</p>
+                <p class="form-hint form-hint--warning" data-session-hint hidden>
+                  Aucune session n'est ouverte pour cette formation actuellement.
+                  <a href="contact.html">Laissez-nous vos coordonnées</a> : nous vous préviendrons dès l'ouverture des inscriptions.
+                </p>
+                <p class="field-error" id="err-session" hidden></p>
+              </div>
+
+              <div class="wizard-selection" hidden>
+                <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                <div>
+                  <p class="wizard-selection-title" data-sel="titre"></p>
+                  <p class="wizard-selection-meta" data-sel="meta"></p>
+                  <p class="wizard-selection-price"><span data-sel="prix"></span> · <a href="formations.html" data-sel="lien">Voir la fiche</a></p>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- ============ Étape 2 : identité ============ -->
+            <fieldset class="wizard-step" data-step="2">
+              <legend class="wizard-step-title">Vos informations personnelles</legend>
+              <p class="wizard-step-intro section-text">Ces informations figureront sur votre dossier de candidature.</p>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label" for="f-nom">Nom <span class="form-required" aria-hidden="true">*</span></label>
+                  <input type="text" id="f-nom" name="nom" class="form-input" required minlength="2" autocomplete="family-name" placeholder="Ex. : OUEDRAOGO">
+                  <p class="field-error" id="err-nom" hidden></p>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="f-prenom">Prénom(s) <span class="form-required" aria-hidden="true">*</span></label>
+                  <input type="text" id="f-prenom" name="prenom" class="form-input" required minlength="2" autocomplete="given-name" placeholder="Ex. : Aminata">
+                  <p class="field-error" id="err-prenom" hidden></p>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label" for="f-naissance">Date de naissance <span class="form-required" aria-hidden="true">*</span></label>
+                  <input type="date" id="f-naissance" name="naissance" class="form-input" required autocomplete="bday"
+                    data-error="Vous devez avoir au moins 15 ans pour candidater.">
+                  <p class="field-error" id="err-naissance" hidden></p>
+                </div>
+                <div class="form-field">
+                  <span class="form-label" id="label-sexe">Sexe <span class="form-required" aria-hidden="true">*</span></span>
+                  <div class="form-choices" role="radiogroup" aria-labelledby="label-sexe">
+                    <div class="form-choice">
+                      <input type="radio" id="f-sexe-f" name="sexe" value="F" required>
+                      <label for="f-sexe-f">Féminin</label>
+                    </div>
+                    <div class="form-choice">
+                      <input type="radio" id="f-sexe-m" name="sexe" value="M" required>
+                      <label for="f-sexe-m">Masculin</label>
+                    </div>
+                  </div>
+                  <p class="field-error" id="err-sexe" hidden></p>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label" for="f-telephone">Téléphone <span class="form-required" aria-hidden="true">*</span></label>
+                  <input type="tel" id="f-telephone" name="telephone" class="form-input" required autocomplete="tel"
+                    pattern="[+]?[0-9][0-9 ]{7,19}" data-error="Numéro invalide : 8 chiffres minimum (ex. : 70 12 34 56)." placeholder="Ex. : +226 70 12 34 56">
+                  <p class="field-error" id="err-telephone" hidden></p>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="f-email">Adresse email <span class="form-required" aria-hidden="true">*</span></label>
+                  <input type="email" id="f-email" name="email" class="form-input" required autocomplete="email" placeholder="Ex. : aminata@exemple.com">
+                  <p class="form-hint">La confirmation de votre candidature vous sera envoyée à cette adresse.</p>
+                  <p class="field-error" id="err-email" hidden></p>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="f-adresse">Adresse de résidence <span class="form-required" aria-hidden="true">*</span></label>
+                <input type="text" id="f-adresse" name="adresse" class="form-input" required minlength="3" autocomplete="street-address" placeholder="Ville, quartier ou secteur">
+                <p class="field-error" id="err-adresse" hidden></p>
+              </div>
+            </fieldset>
+
+            <!-- ============ Étape 3 : parcours ============ -->
+            <fieldset class="wizard-step" data-step="3">
+              <legend class="wizard-step-title">Votre parcours scolaire et professionnel</legend>
+              <p class="wizard-step-intro section-text">Indiquez votre dernier diplôme et, si vous en avez, votre expérience professionnelle.</p>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label" for="f-diplome">Dernier diplôme obtenu <span class="form-required" aria-hidden="true">*</span></label>
+                  <div class="form-control">
+                    <select id="f-diplome" name="diplome" class="form-input" required>
+                      <option value="">Sélectionnez</option>
+                      <option value="cep">CEP (fin de primaire)</option>
+                      <option value="bepc">BEPC</option>
+                      <option value="bac">Baccalauréat</option>
+                      <option value="bt">Brevet ou diplôme professionnel (BT, BEP, CQP…)</option>
+                      <option value="de">Diplôme d'État paramédical</option>
+                      <option value="licence">Licence ou plus</option>
+                      <option value="autre">Autre</option>
+                    </select>
+                    <ion-icon name="chevron-down-outline" aria-hidden="true"></ion-icon>
+                  </div>
+                  <p class="field-error" id="err-diplome" hidden></p>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="f-serie">Série ou spécialité</label>
+                  <input type="text" id="f-serie" name="serie" class="form-input" placeholder="Ex. : D, C, A4, G2…">
+                  <p class="field-error" id="err-serie" hidden></p>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label" for="f-origine">Établissement d'origine <span class="form-required" aria-hidden="true">*</span></label>
+                  <input type="text" id="f-origine" name="etablissementOrigine" class="form-input" required minlength="2" placeholder="Nom du lycée, collège ou école">
+                  <p class="field-error" id="err-origine" hidden></p>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="f-annee">Année d'obtention <span class="form-required" aria-hidden="true">*</span></label>
+                  <input type="number" id="f-annee" name="annee" class="form-input" required min="1980" inputmode="numeric" placeholder="Ex. : 2025"
+                    data-error="Indiquez une année valide (depuis 1980).">
+                  <p class="field-error" id="err-annee" hidden></p>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="f-experience">Expérience professionnelle <span class="form-optional">(facultatif)</span></label>
+                <textarea id="f-experience" name="experience" class="form-input" rows="4" maxlength="800"
+                  placeholder="Postes occupés, stages, bénévolat… (800 caractères maximum)"></textarea>
+                <p class="field-error" id="err-experience" hidden></p>
+              </div>
+            </fieldset>
+
+            <!-- ============ Étape 4 : pièces ============ -->
+            <fieldset class="wizard-step" data-step="4">
+              <legend class="wizard-step-title">Pièces justificatives</legend>
+              <p class="wizard-step-intro section-text">
+                Joignez les pièces demandées pour cette formation (PDF, JPG ou PNG, 5 Mo maximum par fichier).
+                Vous pourrez compléter votre dossier plus tard si certaines pièces vous manquent.
+              </p>
+              <!-- Champs générés d'après documentsRequis de la formation choisie (pages/preinscription.js).
+                   TODO (phase Laravel) : l'upload réel sera branché lors de l'intégration backend ; ici seuls les
+                   noms de fichiers sont conservés en mémoire pour le récapitulatif. -->
+              <div class="form-files" data-files></div>
+            </fieldset>
+
+            <!-- ============ Étape 5 : récapitulatif ============ -->
+            <fieldset class="wizard-step" data-step="5">
+              <legend class="wizard-step-title">Vérifiez votre candidature</legend>
+              <p class="wizard-step-intro section-text">Relisez vos informations : vous pouvez modifier chaque section avant d'envoyer.</p>
+
+              <div class="recap" data-recap></div>
+
+              <div class="form-field form-check">
+                <input type="checkbox" id="f-accepte" name="accepte" required
+                  data-error-required="Vous devez accepter les conditions pour envoyer votre candidature.">
+                <label for="f-accepte">
+                  J'atteste l'exactitude des informations fournies et j'accepte les
+                  <a href="termes.html">conditions d'utilisation</a> et la
+                  <a href="confidentialite.html">politique de confidentialité</a>.
+                </label>
+                <p class="field-error" id="err-accepte" hidden></p>
+              </div>
+            </fieldset>
+
+            <p class="wizard-error" role="alert" hidden></p>
+
+            <div class="wizard-nav">
+              <button type="button" class="btn btn-secondary wizard-prev" hidden>
+                <p class="btn-text">Précédent</p>
+                <span class="square"></span>
+              </button>
+              <button type="submit" class="btn btn-primary wizard-next">
+                <p class="btn-text">Continuer</p>
+                <span class="square"></span>
+              </button>
+            </div>
+
+          </form>
+
+          <!-- ============ Confirmation ============ -->
+          <div class="wizard-done" hidden>
+            <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+            <h3 class="wizard-done-title">Votre préinscription est enregistrée !</h3>
+            <p class="section-text">Conservez votre numéro de candidature, il vous sera demandé pour tout échange avec nos services.</p>
+            <p class="wizard-ref" data-done="ref"></p>
+            <p class="section-text">
+              Formation : <strong data-done="formation"></strong><br>
+              Session : <strong data-done="session"></strong>
+            </p>
+            <p class="section-text">Un email de confirmation vous sera envoyé à <strong data-done="email"></strong>.</p>
+
+            <ul class="wizard-done-steps">
+              <li><ion-icon name="call-outline" aria-hidden="true"></ion-icon><p>Notre équipe vous contacte sous 72 h ouvrées pour valider votre dossier.</p></li>
+              <li><ion-icon name="document-attach-outline" aria-hidden="true"></ion-icon><p>Les pièces manquantes pourront être déposées à l'accueil de l'établissement ou envoyées par email.</p></li>
+              <li><ion-icon name="calendar-outline" aria-hidden="true"></ion-icon><p>Vous recevrez ensuite la date de la rentrée ou du concours d'entrée.</p></li>
+            </ul>
+
+            <div class="wizard-done-actions">
+              <a href="index.html" class="btn btn-primary">
+                <p class="btn-text">Retour à l'accueil</p>
+                <span class="square"></span>
+              </a>
+              <a href="formations.html" class="btn btn-secondary">
+                <p class="btn-text">Voir d'autres formations</p>
+                <span class="square"></span>
+              </a>
+            </div>
+
+            <p class="wizard-note">Le suivi en ligne de votre dossier sera bientôt disponible depuis votre espace candidat.</p>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Carte de contact flottante : identique à l'accueil -->
+      <section class="contact">
+
+        <div class="contact-card" id="contact">
+          <img src="./assets/images/cta-bg-img.png" alt="" class="contact-card-bg">
+
+          <h2>Besoin d'aide pour votre candidature ?</h2>
+
+          <a href="contact.html" class="btn btn-primary">
+            <p class="btn-text">Contactez nous</p>
+            <span class="square"></span>
+          </a>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer dupliqué depuis index.html (liens pointés vers les vraies pages) : deviendra un @include Blade. -->
+    <footer>
+      <div class="footer-grid">
+
+        <div class="grid-item">
+
+          <div class="footer-logo">
+            <img src="./assets/images/logo.png" alt="Les Établissements Raoul Follereau">
+          </div>
+
+          <p class="footer-text">
+            Les Établissements Raoul Follereau, à Fada N'Gourma, regroupent l'Institut Privé Supérieur de formation
+            en Santé, l'École Privée de Santé et le Centre Professionnel de Formation Professionnelle : des formations
+            certifiantes en santé, gestion, numérique et métiers techniques, tournées vers l'insertion professionnelle.
+          </p>
+
+          <div class="social-link">
+            <a href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </div>
+
+        </div>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Liens</h4>
+
+          <li class="list-item">
+            <a href="index.html#home">Accueil</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#about">A propos</a>
+          </li>
+
+          <li class="list-item">
+            <a href="formations.html">Formations</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#blog">Blog</a>
+          </li>
+
+          <li class="list-item">
+            <a href="contact.html">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Autres liens</h4>
+
+          <li class="list-item">
+            <a href="#">Nos enseignants</a>
+          </li>
+
+          <li class="list-item">
+            <a href="faq.html">FAQ</a>
+          </li>
+
+          <li class="list-item">
+            <a href="actualites.html">Evènements</a>
+          </li>
+
+          <li class="list-item">
+            <a href="confidentialite.html">Politique de confidentialité</a>
+          </li>
+
+          <li class="list-item">
+            <a href="termes.html">Termes & Conditions</a>
+          </li>
+
+        </ul>
+
+        <div class="grid-item">
+
+          <h4 class="item-heading">Newsletter</h4>
+
+          <div class="wrapper">
+            <input type="text" name="subscribe" placeholder="Adresse Email">
+            
+            <button class="send-btn">
+              <ion-icon name="paper-plane"></ion-icon>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <p class="copyright">
+        Copyright © 2026 <a href="#">Les Etablissements Raoul Follereau</a>. Tout droit reservé.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Bouton flottant WhatsApp — dupliqué sur chaque page en attendant l'@include Blade -->
+  <!-- TODO: remplacer le numéro par la ligne WhatsApp réelle des Établissements -->
+  <a href="https://wa.me/22670249765" class="whatsapp-fab whatsapp-pulse-anim" target="_blank" rel="noopener"
+    aria-label="Écrire aux Établissements Raoul Follereau sur WhatsApp">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+  </a>
+
+  <!-- Données puis helpers puis script de page ; premium-animations.js et hero-intro.js APRÈS
+       pages/preinscription.js. -->
+  <script src="./assets/data/formations.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/formation-card.js"></script>
+  <script src="./assets/js/pages/preinscription.js"></script>
+  <script src="./assets/js/premium-animations.js"></script>
+  <script src="./assets/js/hero-intro.js"></script>
+  <script src="./assets/js/header-nav.js"></script>
+  <script src="./assets/js/script.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

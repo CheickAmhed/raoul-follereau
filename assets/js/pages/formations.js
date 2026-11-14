@@ -5,7 +5,8 @@
  * ============================================================================
  * Catalogue filtrable des formations (formations.html).
  *
- *  - lit RF_FORMATIONS & co (assets/data/formations.js) et RF_UTILS (utils.js) ;
+ *  - lit RF_FORMATIONS & co (assets/data/formations.js), RF_UTILS (utils.js) et
+ *    RF_FORMATION_CARD (formation-card.js : carte + règles de disponibilité) ;
  *  - remplit les <select> de filtres à partir des référentiels : ajouter une
  *    formation dans le fichier de données suffit, les filtres suivent ;
  *  - génère les cartes UNE SEULE FOIS avec les classes existantes (.course-card)
@@ -14,7 +15,8 @@
  *  - filtrage 100 % côté client, pré-sélection depuis l'URL
  *    (?etablissement=eps&domaine=sante…) et URL tenue à jour (replaceState)
  *    pour pouvoir partager un filtre ;
- *  - état « aucun résultat » + compteur annoncé aux lecteurs d'écran (aria-live).
+ *  - état « aucun résultat » + compteur annoncé aux lecteurs d'écran (aria-live) ;
+ *  - chiffres des badges de la bannière (.page-banner) recalculés depuis les données.
  *
  * Doit être chargé AVANT premium-animations.js (qui observe les enfants de
  * .course-grid au chargement). Vanilla JS, IIFE 'use strict', aucun global.
@@ -25,7 +27,8 @@
 (function () {
 
   const section = document.querySelector('.catalog');
-  if (!section || typeof RF_FORMATIONS === 'undefined' || typeof RF_UTILS === 'undefined') return;
+  if (!section || typeof RF_FORMATIONS === 'undefined' || typeof RF_UTILS === 'undefined' ||
+      typeof RF_FORMATION_CARD === 'undefined') return;
 
   const grid    = section.querySelector('.course-grid');
   const form    = section.querySelector('.filters');
@@ -33,7 +36,8 @@
   const empty   = section.querySelector('.catalog-empty');
   if (!grid || !form) return;
 
-  const U = RF_UTILS;
+  const U    = RF_UTILS;
+  const CARD = RF_FORMATION_CARD;
 
 
   /* --- Référentiels propres aux filtres --------------------------------- */
@@ -44,27 +48,13 @@
     { id: 'longue',  label: 'Longue (3 ans et plus)',   match: function (mois) { return mois > 24; } }
   ];
 
-  const DISPONIBILITES = [
-    { id: 'ouvert',  label: 'Inscriptions ouvertes' },
-    { id: 'a-venir', label: 'Ouverture prochaine' },
-    { id: 'complet', label: 'Complet' }
-  ];
-
-  /* libellé du badge qui remplace « Postuler » quand on ne peut pas candidater */
-  const BADGE_INDISPONIBLE = { 'a-venir': 'Bientôt', complet: 'Complet' };
+  const DISPONIBILITES = Object.keys(CARD.LABELS).map(function (key) {
+    return { id: key, label: CARD.LABELS[key] };
+  });
 
   function dureeId(formation) {
     const found = DUREES.find(function (d) { return d.match(formation.dureeMois); });
     return found ? found.id : '';
-  }
-
-  /* ouvert dès qu'une session l'est ; complet si une session l'est sans autre
-     session ouverte ; sinon ouverture prochaine */
-  function disponibiliteId(formation) {
-    const statuts = (formation.sessions || []).map(function (s) { return s.statut; });
-    if (statuts.indexOf('ouvert') !== -1) return 'ouvert';
-    if (statuts.indexOf('complet') !== -1) return 'complet';
-    return 'a-venir';
   }
 
 
@@ -72,7 +62,7 @@
 
   const bannerCounts = {
     formations: RF_FORMATIONS.length,
-    ouvertes:   RF_FORMATIONS.filter(function (f) { return disponibiliteId(f) === 'ouvert'; }).length
+    ouvertes:   RF_FORMATIONS.filter(function (f) { return CARD.disponibilite(f) === 'ouvert'; }).length
   };
 
   document.querySelectorAll('[data-banner-count]').forEach(function (el) {
@@ -113,59 +103,15 @@
   fillSelect(selects.disponibilite, DISPONIBILITES);
 
 
-  /* --- Cartes (même structure que les .course-card de index.html) ------- */
-
-  function cardMarkup(f, disponibilite) {
-    const etab      = RF_ETABLISSEMENTS[f.etablissement] || {};
-    const detailUrl = 'formation-detail.html?id=' + encodeURIComponent(f.id);
-    const applyUrl  = 'preinscription.html?formation=' + encodeURIComponent(f.id);
-
-    const applyBadge = disponibilite === 'ouvert'
-      ? '<a href="' + applyUrl + '" class="badge-tag blue">Postuler</a>'
-      : '<span class="badge-tag gray">' + BADGE_INDISPONIBLE[disponibilite] + '</span>';
-
-    const period = f.prixPeriode
-      ? '<span class="course-price-period">/ ' + U.escapeHtml(f.prixPeriode) + '</span>'
-      : '';
-
-    return (
-      '<div class="course-banner">' +
-        '<img src="' + U.escapeHtml(f.image) + '" alt="' + U.escapeHtml(f.imageAlt) + '" loading="lazy">' +
-        '<div class="course-tag-box">' +
-          '<a href="' + detailUrl + '" class="badge-tag orange">Détails</a>' +
-          applyBadge +
-        '</div>' +
-      '</div>' +
-
-      '<div class="course-content">' +
-        '<h3 class="card-title"><a href="' + detailUrl + '">' + U.escapeHtml(f.titre) + '</a></h3>' +
-        '<ul class="course-meta">' +
-          '<li><ion-icon name="business-outline"></ion-icon><span class="estab">' + U.escapeHtml(etab.sigle || '') + '</span></li>' +
-          '<li><ion-icon name="time-outline"></ion-icon><span>' + U.escapeHtml(f.duree) + '</span></li>' +
-          '<li><ion-icon name="ribbon-outline"></ion-icon><span>' + U.escapeHtml(RF_NIVEAUX[f.niveau] || '') + '</span></li>' +
-        '</ul>' +
-        '<div class="wrapper border-bottom"></div>' +
-        '<div class="wrapper">' +
-          '<div class="course-price">' + U.formatPrice(f.prix) + period + '</div>' +
-          '<div class="enrolled">' +
-            '<div class="icon-user"><img src="./assets/images/student-icon.png" alt=""></div>' +
-            '<p>' + U.formatNumber(f.apprenants) + '</p>' +
-          '</div>' +
-        '</div>' +
-      '</div>'
-    );
-  }
+  /* --- Cartes (composant partagé) + attributs de filtrage ---------------- */
 
   const cards = RF_FORMATIONS.map(function (f) {
-    const disponibilite = disponibiliteId(f);
-    const card = document.createElement('article');
-    card.className = 'course-card';
+    const card = CARD.create(f);
     card.dataset.etablissement = f.etablissement;
     card.dataset.domaine       = f.domaine;
     card.dataset.niveau        = f.niveau;
     card.dataset.duree         = dureeId(f);
-    card.dataset.disponibilite = disponibilite;
-    card.innerHTML = cardMarkup(f, disponibilite);
+    card.dataset.disponibilite = CARD.disponibilite(f);
     return card;
   });
 
