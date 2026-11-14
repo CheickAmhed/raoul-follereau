@@ -3,12 +3,14 @@
 /**
  * premium-animations.js
  * ============================================================================
- * Jeu d'animations « premium » SPÉCIFIQUE À LA PAGE D'ACCUEIL (index.html).
+ * Jeu d'animations « premium » de la page d'accueil (index.html), réutilisé
+ * par le catalogue des formations (formations.html).
  *
  * Ce set est volontairement plus riche que le scroll-reveal générique prévu au
  * §8 de PROJECT_CONTEXT.md (simple fade / translate, destiné à être appliqué
- * plus tard à toutes les pages via un scroll-reveal.js dédié). Il ne concerne
- * QUE la home tant que les autres pages n'existent pas.
+ * plus tard à toutes les pages via un scroll-reveal.js dédié). Sur
+ * formations.html, pages/formations.js doit être chargé AVANT ce script pour
+ * que le reveal en cascade et le tilt s'attachent aux cartes générées.
  *
  * Respect de PROJECT_CONTEXT.md §2 / §3 / §8 :
  *  - vanilla JS, zéro dépendance externe, IIFE en 'use strict' : aucune variable
@@ -272,8 +274,9 @@
 
     blocks.forEach(function (el) {
       el.classList.add('section-reveal');
-      // hero / contact (carte flottante) / footer : opacité seule, pas de translate
-      if (el.matches('.home, .contact') || el.tagName === 'FOOTER') {
+      // hero / bannière de page (séquence d'entrée propre) / contact (carte flottante) /
+      // footer : opacité seule, pas de translate
+      if (el.matches('.home, .page-banner, .contact') || el.tagName === 'FOOTER') {
         el.classList.add('section-reveal--fade');
       }
     });
@@ -283,11 +286,28 @@
       return;
     }
 
+    // Une section est visible dès que 10 % de sa hauteur OU au moins MIN_VISIBLE_PX
+    // sont dans le viewport. La 2e condition sert aux sections de plusieurs écrans
+    // (catalogue des formations) : 10 % de leur hauteur dépasserait la fenêtre et
+    // elles resteraient masquées. Pour les sections courtes (< 1600 px), le seuil
+    // de 10 % reste atteint en premier : comportement inchangé.
+    const MIN_VISIBLE_PX = 160;
+
+    function isRevealed(entry) {
+      return entry.isIntersecting &&
+        (entry.intersectionRatio >= 0.1 || entry.intersectionRect.height >= MIN_VISIBLE_PX);
+    }
+
     const observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        entry.target.classList.toggle('is-visible', entry.isIntersecting);
+        entry.target.classList.toggle('is-visible', isRevealed(entry));
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    }, {
+      // paliers fins jusqu'à 10 % : le callback est rappelé assez souvent pour
+      // détecter le passage des MIN_VISIBLE_PX sur une section très haute
+      threshold: [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1],
+      rootMargin: '0px 0px -6% 0px'
+    });
 
     blocks.forEach(function (el) { observer.observe(el); });
   }

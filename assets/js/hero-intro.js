@@ -3,7 +3,9 @@
 /**
  * hero-intro.js
  * ============================================================================
- * Séquence d'animations AU CHARGEMENT de la section .home (index.html uniquement).
+ * Séquence d'animations AU CHARGEMENT de la section .home (index.html) et de la
+ * bannière .page-banner des pages intérieures (formations.html…), voir
+ * #HERO INTRO et #PAGE BANNER INTRO dans animation.css.
  *
  * Rôle de ce fichier :
  *  - armer la séquence : pose .hero-intro sur <html> -> chaque élément du hero
@@ -29,7 +31,7 @@
 (function () {
 
   const root = document.documentElement;
-  const home = document.querySelector('.home');
+  const home = document.querySelector('.home, .page-banner');   // hero de l'accueil OU bannière de page intérieure
   if (!home) return;
 
   const counterEl = home.querySelector('.badge-number[data-target]');

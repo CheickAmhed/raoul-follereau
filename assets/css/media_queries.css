@@ -872,3 +872,77 @@
   }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #PAGES INTÉRIEURES — BANNIÈRE & CATALOGUE  (formations.html)
+\*-----------------------------------*/
+
+@media (min-width: 575px) {
+
+  .filters-grid { grid-template-columns: 1fr 1fr; }
+
+}
+
+
+
+
+
+@media (min-width: 767px) {
+
+  /* bannière : visuel un peu plus grand, badges débordant légèrement l'image */
+  .page-banner .img-box { width: min(100%, 440px); }
+
+  .banner-badge.badge-1 { left:  -8%; }
+  .banner-badge.badge-2 { right: -10%; }
+  .banner-badge.badge-3 { left:  -4%; }
+
+  /* barre de filtres et état vide alignés sur les cartes : ras des bords du
+     conteneur, comme .course .section-head */
+  .catalog .filters,
+  .catalog-empty {
+    margin-left:  0;
+    margin-right: 0;
+  }
+
+  .catalog .filters { padding: 25px; }
+
+  .filters-grid { grid-template-columns: repeat(3, 1fr); }
+
+}
+
+
+
+
+
+@media (min-width: 992px) {
+
+  /* bannière : texte à gauche, visuel à droite (comme .home) ; margin-top = navbar
+     fixe plus haute (padding 20px). Le visuel est calé en bas de la ligne (align-self)
+     pour toucher le bord inférieur de la section, le texte reste centré verticalement. */
+  .page-banner {
+    margin-top: 84px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+  }
+
+  .page-banner .breadcrumb ol { justify-content: flex-start; }
+
+  .page-banner .section-text { margin: 0; }
+
+  .page-banner-visual {
+    margin-top: 0;
+    align-self: end;
+  }
+
+  .page-banner .img-box { width: min(100%, 480px); }
+
+  .filters-grid { grid-template-columns: repeat(5, 1fr); }
+
+}

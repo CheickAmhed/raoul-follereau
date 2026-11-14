@@ -54,6 +54,10 @@
   --px: 15px;
   --py: 60px;   /* espacement vertical des sections resserré (était 80px) */
 
+  /* largeur maxi de la page (.container et .navbar) : 1800px au lieu de 1440px
+     pour mieux exploiter les écrans desktop ; au-delà, le site reste centré */
+  --container-max: 1800px;
+
   /**
    * others 
    */

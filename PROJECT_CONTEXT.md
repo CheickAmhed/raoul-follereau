@@ -62,6 +62,7 @@ Toutes les couleurs, tailles de police et espacements DOIVENT passer par ces var
   /* Espacement */
   --px: 15px;   /* padding horizontal des sections (mobile) */
   --py: 80px;   /* padding vertical des sections */
+  --container-max: 1800px;   /* largeur maxi de .container / .navbar (était 1440px) */
 
   --default-transition: 0.25s ease;
 }
@@ -97,7 +98,8 @@ Polices : `Jost` (titres, `font-family` par défaut sur `html`) + `Roboto` (text
 `.btn-primary` = fond rouge-orangé, `.btn-secondary` = fond bleu oxford (inversion des couleurs). Le `<span class="square">` gère l'effet de hover animé — ne jamais l'omettre.
 - Icônes : Ionicons via `<ion-icon name="...">`, chargé en `type="module"` + fallback `nomodule` en fin de `<body>` (déjà en place, ne pas dupliquer le script sur les nouvelles pages — le remettre une seule fois par page HTML, comme sur `index.html`).
 - Images avec double état (icône par défaut + icône colorée au survol) : pattern `.category-icon.default` / `.category-icon.hover`, à réutiliser si un composant similaire est nécessaire.
-- Tout conteneur racine de page est un `<div class="container">` (max-width 1440px, centré, fond blanc, `overflow:hidden`).
+- Tout conteneur racine de page est un `<div class="container">` (max-width `var(--container-max)` = 1800px, centré, fond blanc, `overflow:hidden`).
+- Pages intérieures : l'en-tête de page est la section `.page-banner` (voir `formations.html`) : fil d'Ariane `.breadcrumb`, `.section-subtitle` + `h1.section-title` (avec `<span class="heading-line">`) + `.section-text` dans `.page-banner-text`, et un visuel `.page-banner-visual` (image détourée sur `.background-shape`, badges flottants `.banner-badge` animés par `smooth-zigzag-anim-1/2/3`, icône `.icon-4` en `drop-anim`). La séquence d'entrée est jouée par `hero-intro.js` (#PAGE BANNER INTRO dans `animation.css`) : charger ce script sur chaque page qui utilise la bannière. Réutiliser ce bloc tel quel sur les autres pages en changeant l'image et le texte des badges.
 
 ### 3.4 JavaScript existant — `assets/js/script.js`
 ```js
@@ -114,6 +116,8 @@ C'est TOUT le JS actuel. Pas de framework, pas de bundler, vanilla pur en `'use 
 ---
 
 ## 4. PROBLÈME STRUCTUREL À RÉSOUDRE EN PREMIER : LE HEADER/FOOTER DUPLIQUÉ
+
+> **Décision du 14/11/2026 (maître d'ouvrage) : cette étape est abandonnée côté statique.** Le header, le footer et le bouton WhatsApp partagés seront des `@include` Blade lors de la phase Laravel. En attendant, chaque page statique embarque une copie du header/footer de `index.html` (voir `formations.html`). Ne pas créer `components.js`.
 
 Le site va compter **9 à 12 pages HTML**. Header et footer identiques sur chaque page = un cauchemar de maintenance si dupliqués en dur (corriger un lien de menu = éditer 12 fichiers).
 
@@ -147,6 +151,7 @@ Comme il n'y a pas encore de backend, tout contenu variable (formations, actuali
 
 Crée un dossier `assets/data/` avec un fichier par entité :
 - `assets/data/formations.js` → tableau d'objets formation (id, etablissement, titre, domaine, niveau, duree, prix, image, description, objectifs[], modules[], diplome, debouches[], conditionsAdmission[], documentsRequis[], sessions[])
+  - **Implémenté (14/11/2026)** : le fichier expose les globaux `RF_ETABLISSEMENTS`, `RF_DOMAINES`, `RF_NIVEAUX` et `RF_FORMATIONS` (9 formations : 2 IPS-RF, 3 EPS-RF, 4 CPFP-RF ; champs supplémentaires `sousTitre`, `dureeMois`, `prixPeriode`, `rythme`, `imageAlt`, `resume`, `apprenants`, `sessions[].statut` = `ouvert` | `complet` | `a-venir`). Les helpers partagés sont dans `assets/js/utils.js` (`RF_UTILS`: `getParam`, `formatPrice`, `formatNumber`, `formatDate`, `escapeHtml`, `pluralize`). `formations.html` + `assets/js/pages/formations.js` consomment ces données ; `formation-detail.html` et `preinscription.html` devront faire de même.
 - `assets/data/actualites.js` → tableau d'objets actu/événement (id, titre, categorie, date, image, extrait, contenu, estEvenement, lieu, heure)
 - `assets/data/formateurs.js`, `assets/data/temoignages.js`, `assets/data/galerie.js`, `assets/data/documents.js`
 

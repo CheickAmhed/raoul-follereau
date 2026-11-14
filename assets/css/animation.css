@@ -691,3 +691,152 @@
   to   { transform: translateX(0); }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #PAGE BANNER INTRO  (séquence d'entrée de la bannière des pages intérieures)
+
+  Même orchestration que #HERO INTRO : hero-intro.js pose .hero-intro puis
+  .hero-intro-go sur <html> dès qu'une .page-banner est présente. Mêmes
+  keyframes (hero-fade / hero-fade-left / hero-rise / hero-fade-up /
+  hero-scale-in / hero-wipe-up), mêmes durées, et même handoff : les badges
+  flottants (.banner-badge, smooth-zigzag-anim-1/2/3) et l'icône (.icon-4,
+  drop-anim) gardent leur `animation` d'origine, mise en pause puis retardée
+  le temps du pop-in.
+\*-----------------------------------*/
+
+.hero-intro .page-banner .shape-1,
+.hero-intro .page-banner .shape-3,
+.hero-intro .page-banner .breadcrumb,
+.hero-intro .page-banner .section-subtitle,
+.hero-intro .page-banner .section-title .heading-line,
+.hero-intro .page-banner .section-text,
+.hero-intro .page-banner .background-shape,
+.hero-intro .page-banner .banner-img {
+  animation-duration: 0.55s;
+  animation-timing-function: ease;
+  animation-fill-mode: backwards;
+  animation-play-state: paused;
+}
+
+.hero-intro.hero-intro-go .page-banner .shape-1,
+.hero-intro.hero-intro-go .page-banner .shape-3,
+.hero-intro.hero-intro-go .page-banner .breadcrumb,
+.hero-intro.hero-intro-go .page-banner .section-subtitle,
+.hero-intro.hero-intro-go .page-banner .section-title .heading-line,
+.hero-intro.hero-intro-go .page-banner .section-text,
+.hero-intro.hero-intro-go .page-banner .background-shape,
+.hero-intro.hero-intro-go .page-banner .banner-img {
+  animation-play-state: running;
+}
+
+/* texte ---------------------------------------------------------------- */
+
+.hero-intro .page-banner .shape-1 {
+  animation-name: hero-fade;
+  animation-duration: 0.4s;
+  animation-delay: 0ms;
+}
+
+.hero-intro .page-banner .breadcrumb {
+  animation-name: hero-fade;
+  animation-duration: 0.4s;
+  animation-delay: 60ms;
+}
+
+.hero-intro .page-banner .section-subtitle {
+  animation-name: hero-fade-left;
+  animation-delay: 120ms;
+}
+
+.hero-intro .page-banner .section-title .heading-line {
+  animation-name: hero-rise;
+  animation-delay: 240ms;
+}
+
+.hero-intro .page-banner .section-text {
+  animation-name: hero-fade-up;
+  animation-delay: 480ms;
+}
+
+.hero-intro .page-banner .shape-3 {
+  animation-name: hero-fade;
+  animation-duration: 0.5s;
+  animation-delay: 1300ms;
+}
+
+/* visuel ---------------------------------------------------------------- */
+
+.hero-intro .page-banner .background-shape {
+  animation-name: hero-scale-in;
+  animation-duration: 0.6s;
+  animation-delay: 200ms;
+}
+
+.hero-intro .page-banner .banner-img {
+  animation-name: hero-wipe-up;
+  animation-duration: 0.7s;
+  animation-delay: 320ms;
+}
+
+/* badges + icône : pop-in (transition), PUIS reprise de la boucle d'origine */
+.hero-intro .page-banner .banner-badge,
+.hero-intro .page-banner .icon-4 {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease,
+              transform 0.5s cubic-bezier(0.34, 1.45, 0.64, 1);
+  animation-play-state: paused;
+}
+
+.hero-intro .page-banner .icon-4 {
+  transform: scale(0.55);
+  transition: opacity 0.5s ease,
+              transform 0.6s cubic-bezier(0.34, 1.6, 0.5, 1);
+}
+
+.hero-intro .page-banner .badge-1 { transition-delay: 700ms;  animation-delay: 1250ms; }
+.hero-intro .page-banner .badge-2 { transition-delay: 820ms;  animation-delay: 1370ms; }
+.hero-intro .page-banner .badge-3 { transition-delay: 940ms;  animation-delay: 1490ms; }
+.hero-intro .page-banner .icon-4  { transition-delay: 1060ms; animation-delay: 1780ms; }
+
+.hero-intro.hero-intro-go .page-banner .banner-badge,
+.hero-intro.hero-intro-go .page-banner .icon-4 {
+  opacity: 1;
+  transform: scale(1);
+  animation-play-state: running;
+}
+
+/* prefers-reduced-motion : sécurité si .hero-intro est posée malgré tout
+   (hero-intro.js ne l'arme pas dans ce cas) */
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-intro .page-banner .shape-1,
+  .hero-intro .page-banner .shape-3,
+  .hero-intro .page-banner .breadcrumb,
+  .hero-intro .page-banner .section-subtitle,
+  .hero-intro .page-banner .section-title .heading-line,
+  .hero-intro .page-banner .section-text,
+  .hero-intro .page-banner .background-shape,
+  .hero-intro .page-banner .banner-img {
+    opacity: 1;
+    transform: none;
+    animation-name: none;
+    animation-play-state: running;
+    transition: none;
+  }
+
+  .hero-intro .page-banner .background-shape { transform: translateX(-50%); }
+
+  .hero-intro .page-banner .banner-badge,
+  .hero-intro .page-banner .icon-4 {
+    opacity: 1;
+    transition: none;
+    animation-play-state: running;
+    animation-delay: 0s;
+  }
+
+}
