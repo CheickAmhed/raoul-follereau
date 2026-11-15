@@ -28,7 +28,7 @@ const RF_UTILS = (function () {
   }
 
   /**
-   * "2027-04-01" -> "1 avril 2027".
+   * "2027-04-01" -> "1er avril 2027" (usage français : le premier du mois prend l'ordinal).
    * La date ISO est découpée à la main pour rester en heure locale : new Date('AAAA-MM-JJ')
    * serait interprétée en UTC et pourrait reculer d'un jour selon le fuseau.
    */
@@ -36,7 +36,9 @@ const RF_UTILS = (function () {
     const parts = String(iso || '').split('-').map(Number);
     if (parts.length < 3 || parts.some(isNaN)) return '';
     const date = new Date(parts[0], parts[1] - 1, parts[2]);
-    return date.toLocaleDateString('fr-FR', options || { day: 'numeric', month: 'long', year: 'numeric' });
+    const opts = options || { day: 'numeric', month: 'long', year: 'numeric' };
+    const text = date.toLocaleDateString('fr-FR', opts);
+    return opts.day && date.getDate() === 1 ? text.replace(/(^|\s)1(?=\s)/, '$11er') : text;
   }
 
   /** Échappe une valeur avant injection dans innerHTML. */

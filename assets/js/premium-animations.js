@@ -54,7 +54,8 @@
       '.inst-values-grid',
       '.etab-details',
       '.inst-infra-grid',
-      '.inst-partners-grid'
+      '.inst-partners-grid',
+      '.agenda-grid'
     ];
 
     document.documentElement.classList.add('premium-anim');
@@ -284,7 +285,8 @@
       // de la page Institution (.inst-anchor) : le navigateur calcule le point d'arrivée d'une
       // ancre sur la position décalée (translateY 32px) : le haut de la section finirait
       // caché de 32px derrière la barre collante une fois l'animation terminée.
-      if (el.matches('.home, .page-banner, .contact, .inst-anchor') || el.tagName === 'FOOTER') {
+      // .anchor-target : section visée par un lien avec ancre depuis une autre page (même raison).
+      if (el.matches('.home, .page-banner, .contact, .inst-anchor, .anchor-target') || el.tagName === 'FOOTER') {
         el.classList.add('section-reveal--fade');
       }
     });

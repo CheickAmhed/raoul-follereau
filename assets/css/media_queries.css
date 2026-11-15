@@ -1180,3 +1180,51 @@
   .inst-values-grid { grid-template-columns: repeat(4, 1fr); }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #ACTUALITES  (actualites.html, actualite-detail.html)
+\*-----------------------------------*/
+
+@media (min-width: 575px) {
+
+  /* la carte d'agenda passe en ligne (date à gauche) : badge, horaire et lieu alignés à gauche */
+  .agenda-when { justify-content: flex-start; }
+
+  .agenda-card .schedule { align-items: flex-start; }
+
+  .news-filter ion-icon { display: block; }
+
+}
+
+
+
+
+
+@media (min-width: 767px) {
+
+  .agenda-grid { grid-template-columns: 1fr 1fr; }
+
+  /* filtres au ras des bords, alignés sur les cartes et l'en-tête (.blog .section-head) */
+  .news-toolbar {
+    margin-left:  calc(-1 * var(--px));
+    margin-right: calc(-1 * var(--px));
+  }
+
+}
+
+
+
+
+
+@media (min-width: 992px) {
+
+  /* .event est en grille 2 colonnes sur l'accueil (bannière + cartes) : l'agenda reste en bloc */
+  .agenda { display: block; }
+
+  .agenda > .section-head { margin-bottom: 60px; }
+
+}

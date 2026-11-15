@@ -4787,3 +4787,491 @@ select.form-input {
   line-height: 1.5;
   margin-top: 4px;
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #ACTUALITES  (actualites.html — prochain rendez-vous, agenda, liste filtrable ;
+  réutilise .countdown, .event-card et .blog-card de l'accueil)
+\*-----------------------------------*/
+
+/* section ciblée par un lien avec ancre venu d'une autre page (index.html -> #agenda,
+   #publications) : arrêt sous le header compressé ; apparition en fondu seul
+   (premium-animations.js), sinon le translate décalerait le point d'arrivée */
+.anchor-target { scroll-margin-top: 56px; }
+
+/* ---- prochain rendez-vous : bande .countdown de l'accueil ---- */
+.countdown[hidden] { display: none; }
+
+.countdown-title a {
+  color: inherit;
+  transition: color var(--default-transition);
+}
+
+.countdown-title a:hover { color: var(--red-orange-color-wheel); }
+
+/* ---- agenda : section .event de l'accueil, cartes .event-card ---- */
+.agenda-grid[hidden] { display: none; }
+
+/* toute la carte est cliquable : le lien du titre est étiré sur la carte */
+.agenda-card { position: relative; }
+
+.agenda-card .event-name::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+}
+
+.agenda-card .event-name:focus-visible { outline: none; }
+
+.agenda-card:focus-within { box-shadow: 0 0 0 3px hsla(0, 90%, 45%, 0.35), 0 10px 30px hsla(0, 0%, 0%, 0.1); }
+
+.agenda-card .content-right { min-width: 0; }
+
+/* horaire et lieu l'un sous l'autre : côte à côte, ils se coupaient dans les cartes étroites */
+.agenda-card .schedule {
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.agenda-card .schedule .time {
+  padding-right: 0;
+  margin-right: 0;
+  box-shadow: none;
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+}
+
+.agenda-when {
+  display:     flex;
+  flex-wrap:   wrap;
+  align-items: center;
+  justify-content: center;          /* carte centrée sous 575px, comme .event .schedule */
+  gap: 6px 10px;
+  margin-bottom: 10px;
+}
+
+/* badge d'état d'un événement (agenda, encart de la fiche) */
+.agenda-badge,
+.article-state-badge {
+  display: inline-block;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: var(--fw-5);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: hsla(115, 59%, 46%, 0.12);   /* --ultramarine-blue ~12 % */
+  color: var(--ultramarine-blue);
+}
+
+.agenda-badge--today,
+.article-state-badge--today {
+  background: hsla(0, 90%, 45%, 0.1);      /* --red-orange-color-wheel ~10 % */
+  color: var(--red-orange-color-wheel);
+}
+
+.article-state-badge--termine {
+  background: hsla(0, 0%, 47%, 0.12);
+  color: var(--sonic-silver);
+}
+
+.agenda-relative,
+.article-state-when {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  color: var(--sonic-silver);
+}
+
+/* agenda vide / liste vide : encadré « aucun résultat » du catalogue, sans retrait */
+.agenda-empty,
+.news-empty {
+  margin-left:  0;
+  margin-right: 0;
+}
+
+/* ---- liste des publications ---- */
+.news { padding-bottom: 200px; }   /* place pour la carte flottante .contact-card */
+
+.news > .section-head { margin-bottom: 30px; }
+
+.news-toolbar {
+  display:         flex;
+  flex-wrap:       wrap;
+  align-items:     center;
+  justify-content: space-between;
+  gap: 15px 25px;
+  margin-bottom: 40px;
+}
+
+.news-filters {
+  display:   flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.news-filter {
+  display:     inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+  transition: color var(--default-transition), background var(--default-transition), border-color var(--default-transition);
+}
+
+/* icône affichée à partir de 575px : sur mobile, les 4 filtres tiennent sur 2 lignes */
+.news-filter ion-icon {
+  display: none;
+  font-size: 18px;
+}
+
+.news-filter-count {
+  display: inline-block;
+  min-width: 24px;
+  padding: 2px 7px;
+  border-radius: 12px;
+  background: var(--cultured);
+  font-size: 12px;
+  font-weight: var(--fw-7);
+  text-align: center;
+  color: var(--oxford-blue);
+  transition: background var(--default-transition), color var(--default-transition);
+}
+
+.news-filter:hover {
+  border-color: var(--red-orange-color-wheel);
+  color: var(--red-orange-color-wheel);
+}
+
+.news-filter.is-active {
+  background: var(--red-orange-color-wheel);
+  border-color: var(--red-orange-color-wheel);
+  color: var(--white);
+}
+
+.news-filter.is-active .news-filter-count {
+  background: hsla(0, 0%, 100%, 0.2);
+  color: var(--white);
+}
+
+.news-filter:focus-visible {
+  outline: 2px solid var(--oxford-blue);
+  outline-offset: 2px;
+}
+
+.news-grid[hidden] { display: none; }
+
+/* carte : .blog-card de l'accueil + badges, extrait et repères d'événement ;
+   colonne flex pour caler le pied de carte en bas */
+.news-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card[hidden] { display: none; }
+
+.news-card .blog-banner-box {
+  position: relative;
+  flex-shrink: 0;
+  background: var(--cultured);      /* images détourées (fond transparent) */
+}
+
+.news-badges {
+  position: absolute;
+  top:   15px;
+  left:  15px;
+  right: 15px;
+  display:   flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.news-tag,
+.news-status {
+  display:     inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: var(--fw-5);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.news-tag {
+  background: var(--white);
+  color: var(--oxford-blue);
+  box-shadow: 0 6px 16px hsla(0, 0%, 0%, 0.12);
+}
+
+.news-tag ion-icon { font-size: 15px; }
+
+.news-tag--actualite ion-icon { color: var(--blue-crayola); }
+
+.news-tag--annonce ion-icon { color: var(--red-orange-color-wheel); }
+
+.news-tag--evenement ion-icon { color: var(--ultramarine-blue); }
+
+.news-status {
+  background: var(--ultramarine-blue);
+  color: var(--white);
+}
+
+.news-status--aujourdhui { background: var(--red-orange-color-wheel); }
+
+.news-status--termine { background: var(--sonic-silver); }
+
+.news-card .blog-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-event-meta { margin-bottom: 12px; }
+
+.news-event-meta li {
+  display:     flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: var(--fw-5);
+  color: var(--ultramarine-blue);
+  line-height: 1.5;
+}
+
+.news-event-meta li + li { margin-top: 4px; }
+
+.news-event-meta ion-icon {
+  flex-shrink: 0;
+  font-size: 16px;
+  margin-top: 1px;
+}
+
+/* titre sans filet (l'extrait suit) ; lien étiré : toute la carte est cliquable */
+.news-card .blog-title {
+  padding-bottom: 0;
+  border-bottom: 0;
+  margin-bottom: 12px;
+}
+
+.news-card .blog-title a {
+  font-size: var(--fs-5);
+  line-height: 1.4;
+}
+
+.news-card .blog-title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.news-card .blog-title a:focus-visible { outline: none; }
+
+.news-card:focus-within { box-shadow: 0 0 0 3px hsla(0, 90%, 45%, 0.35), 0 10px 30px hsla(0, 0%, 0%, 0.1); }
+
+.news-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--sonic-silver);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.news-card .wrapper {
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid var(--light-gray);
+}
+
+/* le séparateur central de l'accueil chevaucherait la date (plus longue ici) */
+.news-card .wrapper::before { display: none; }
+
+.news-card .blog-publish-date img {
+  width:  15px;
+  height: 15px;
+}
+
+.news-card .blog-publish-date time {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--sonic-silver);
+}
+
+.news-read {
+  display:     inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+  transition: color var(--default-transition);
+}
+
+.news-read ion-icon {
+  font-size: 16px;
+  transition: transform var(--default-transition);
+}
+
+.news-card:hover .news-read { color: var(--red-orange-color-wheel); }
+
+.news-card:hover .news-read ion-icon { transform: translateX(4px); }
+
+.news-more {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.news-more[hidden] { display: none; }
+
+.news-more .btn { display: inline-block; }
+
+
+
+
+
+/*-----------------------------------*\
+  #ACTUALITE DETAIL  (actualite-detail.html — réutilise .page-banner--detail,
+  .detail-layout, .facts-card, .detail-list, .detail-notfound et .blog-card)
+\*-----------------------------------*/
+
+/* images détourées (fond transparent) : la photo de bannière garde un fond blanc */
+.page-banner--article .banner-photo { background: var(--white); }
+
+.article-meta {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+  margin-bottom: 15px;
+}
+
+.article-meta:empty { display: none; }
+
+/* corps : texte courant plus sombre et plus aéré que .section-text (lecture longue) */
+.article-body { max-width: 760px; }
+
+.article-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: var(--oxford-blue);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.article-subtitle { margin-top: 35px; }
+
+.article-body > :first-child { margin-top: 0; }
+
+.article-list { margin-bottom: 20px; }
+
+.article-quote {
+  margin: 30px 0;
+  padding: 25px 30px;
+  background: var(--cultured);
+  border-left: 4px solid var(--red-orange-color-wheel);
+  border-radius: 8px;
+}
+
+.article-quote p {
+  font-size: var(--fs-5);
+  font-weight: var(--fw-7);
+  color: var(--oxford-blue);
+  line-height: 1.5;
+}
+
+.article-quote figcaption {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  color: var(--sonic-silver);
+  margin-top: 10px;
+}
+
+.article-actions { margin-top: 30px; }
+
+.article-actions[hidden] { display: none; }
+
+.article-actions .btn {
+  display: inline-block;
+  padding-left:  20px;               /* texte à l'écart du carré animé, comme le bouton d'agenda */
+  padding-right: 60px;
+}
+
+/* encart : un élément masqué par le JS (span, a, .btn) doit le rester malgré le
+   display:block du reset et des composants */
+.article-facts [hidden] { display: none; }
+
+/* bouton d'agenda : texte décalé vers la gauche, à l'écart du carré animé (une seule ligne dès 360px) */
+.article-facts .facts-cta {
+  padding-left:  20px;
+  padding-right: 60px;
+}
+
+.article-state {
+  display:     flex;
+  flex-wrap:   wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 5px 0 10px;
+}
+
+.article-share {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--light-gray);
+}
+
+.article-share-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.article-share-btn {
+  width:  42px;
+  height: 42px;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  border-radius: 8px;
+  background: hsla(229, 84%, 12%, 0.06);   /* --oxford-blue ~6 % */
+  color: var(--oxford-blue);
+  transition: var(--default-transition);
+}
+
+.article-share-btn ion-icon { font-size: 20px; }
+
+.article-share-btn:hover {
+  background: var(--red-orange-color-wheel);
+  color: var(--white);
+}
+
+.article-share-status {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  color: var(--ultramarine-blue);
+  margin-top: 8px;
+}
+
+.article-share-status:empty { display: none; }
