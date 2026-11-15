@@ -3,9 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Institution — Les Établissements Raoul Follereau</title>
-  <meta name="description" content="Institution — page en cours de préparation.">
+  <meta name="description"
+    content="Les Établissements Raoul Follereau à Fada N'Gourma : présentation, histoire, mission et valeurs, les trois composantes IPS-RF, EPS-RF et CPFP-RF, infrastructures, équipe de direction et partenaires.">
 
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/media_queries.css">
@@ -16,20 +18,997 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800;900&family=Roboto:wght@400;500&display=swap"
     rel="stylesheet">
+
 </head>
 
 <body>
-  <main class="placeholder-page">
-    <img class="placeholder-logo" src="./assets/images/logo.png" width="90" height="90"
-      alt="Les Établissements Raoul Follereau">
-    <h1 class="section-title">Institution</h1>
-    <p class="section-text">Contenu à venir.</p>
-    <!-- TODO: présentation institutionnelle IPS-RF / EPS-RF / CPFP-RF (étape 5). -->
-    <a class="btn btn-primary" href="index.html">
-      <p class="btn-text">Retour à l'accueil</p>
-      <span class="square"></span>
-    </a>
-  </main>
+  <div class="container">
+    <!-- Header dupliqué depuis index.html : deviendra un @include Blade lors de la phase Laravel. -->
+    <header>
+      <nav class="navbar">
+
+        <a href="index.html" class="navbar-brand">
+          <img width="90" height="90" src="./assets/images/logo.png"
+            alt="Les Établissements Raoul Follereau — accueil">
+        </a>
+
+        <nav class="primary-nav" aria-label="Navigation principale">
+          <ul>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="index.html">
+                <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Accueil</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="formations.html">
+                <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Formations</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only is-active">
+              <a class="primary-nav-link" href="institution.html" aria-current="page">
+                <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Institution</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="actualites.html">
+                <ion-icon name="newspaper-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Actualités</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="contact.html">
+                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Contact</span>
+              </a>
+            </li>
+            <!-- Compte : présent uniquement dans la bottom bar mobile.
+                 Dans le header (desktop/tablette), le compte est l'icône .nav-account ci-dessous. -->
+            <li class="primary-nav-item primary-nav-item--bottombar-only">
+              <a class="primary-nav-link" href="compte.html">
+                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Compte</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="navbar-actions">
+
+          <button type="button" class="icon-btn nav-search-toggle" aria-label="Rechercher sur le site"
+            aria-expanded="false" aria-controls="site-search">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+          <a href="compte.html" class="icon-btn nav-account" aria-label="Mon compte">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          </a>
+
+          <a href="preinscription.html" class="btn btn-primary navbar-cta">
+            <p class="btn-text">S'inscrire</p>
+            <span class="square"></span>
+          </a>
+
+          <button type="button" class="nav-toggle-btn" aria-label="Ouvrir le menu secondaire"
+            aria-expanded="false" aria-controls="secondary-menu">
+            <span class="one"></span>
+            <span class="two"></span>
+            <span class="three"></span>
+          </button>
+
+        </div>
+
+        <div class="site-search" id="site-search" hidden>
+          <form class="site-search-form" role="search" action="#">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            <input type="search" name="q" class="site-search-input"
+              placeholder="Rechercher une formation, une actualité…" aria-label="Rechercher sur le site">
+            <button type="submit" class="site-search-submit">OK</button>
+          </form>
+        </div>
+
+        <ul class="navbar-nav" id="secondary-menu" hidden>
+          <li class="secondary-menu-head">
+            <span class="secondary-menu-title">Informations</span>
+            <button type="button" class="secondary-menu-close" aria-label="Fermer le menu secondaire">
+              <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </li>
+          <li class="nav-item"><a href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a href="confidentialite.html">Politique de confidentialité</a></li>
+          <li class="nav-item"><a href="termes.html">Termes &amp; Conditions</a></li>
+          <li class="nav-item"><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+
+      </nav>
+
+      <div class="secondary-menu-overlay" hidden></div>
+    </header>
+
+    <main>
+
+      <!-- Bannière de page (voir PROJECT_CONTEXT.md §3.3), variante photo comme la fiche formation -->
+      <section class="page-banner page-banner--institution" aria-labelledby="institution-page-title">
+
+        <div class="deco-shape shape-1">
+          <img src="./assets/images/shape-1.png" alt="" width="70">
+        </div>
+        <div class="deco-shape shape-3">
+          <img src="./assets/images/shape-3.png" alt="" width="120">
+        </div>
+
+        <div class="page-banner-text">
+
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <ol>
+              <li><a href="index.html">Accueil</a></li>
+              <li aria-current="page">Institution</li>
+            </ol>
+          </nav>
+
+          <p class="section-subtitle">Qui sommes-nous</p>
+
+          <h1 class="section-title" id="institution-page-title"><span class="heading-line">Les Établissements Raoul Follereau</span></h1>
+
+          <p class="section-text">
+            Trois établissements réunis sur un même site à Fada N'Gourma pour former, de la qualification
+            professionnelle à la licence, des professionnels compétents et engagés au service de leur communauté.
+          </p>
+
+        </div>
+
+        <div class="page-banner-visual" aria-hidden="true">
+          <div class="img-box">
+            <!-- TODO: photo réelle des Établissements à fournir par le client (visuel provisoire) -->
+            <img src="./assets/images/blog-3.jpeg" width="480" height="360" alt="" class="banner-img banner-photo">
+
+            <ul class="banner-badges">
+              <li class="banner-badge badge-1 smooth-zigzag-anim-1">
+                <ion-icon name="business-outline"></ion-icon>
+                <span><strong>3</strong> établissements</span>
+              </li>
+              <li class="banner-badge badge-2 smooth-zigzag-anim-2">
+                <ion-icon name="school-outline"></ion-icon>
+                <span><strong data-inst-count="formations">9</strong> formations</span>
+              </li>
+              <li class="banner-badge badge-3 smooth-zigzag-anim-3">
+                <ion-icon name="ribbon-outline"></ion-icon>
+                <span><strong>15 ans</strong> d'expérience</span>
+              </li>
+            </ul>
+
+            <img src="./assets/images/banner-aliment-icon-4.png" alt="" class="icon-4 drop-anim" width="50">
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- Sous-navigation collante (sommaire de la page) ; lien actif piloté par pages/institution.js.
+           Hors <section> : la révélation au défilement de premium-animations.js ne la masque jamais. -->
+      <nav class="inst-nav" aria-label="Sommaire de la page">
+        <ul class="inst-nav-list">
+          <li><a class="inst-nav-link" href="#presentation">Présentation</a></li>
+          <li><a class="inst-nav-link" href="#histoire">Histoire</a></li>
+          <li><a class="inst-nav-link" href="#mission">Mission &amp; valeurs</a></li>
+          <li><a class="inst-nav-link" href="#ips"><img src="./assets/images/rf-ips.png" width="20" height="20" alt="">IPS-RF</a></li>
+          <li><a class="inst-nav-link" href="#eps"><img src="./assets/images/rf-eps.png" width="20" height="20" alt="">EPS-RF</a></li>
+          <li><a class="inst-nav-link" href="#cpfp"><img src="./assets/images/rf-cpfp.png" width="20" height="20" alt="">CPFP-RF</a></li>
+          <li><a class="inst-nav-link" href="#infrastructures">Infrastructures</a></li>
+          <li><a class="inst-nav-link" href="#equipe">Équipe</a></li>
+          <li><a class="inst-nav-link" href="#partenaires">Partenaires</a></li>
+        </ul>
+      </nav>
+
+
+      <!-- TODO: textes institutionnels provisoires (présentation, histoire, mission, vision, valeurs,
+           composantes), à valider par le client -->
+      <section class="about inst-about inst-anchor" id="presentation" aria-labelledby="presentation-title">
+
+        <div class="inst-about-media reveal-fade">
+          <img src="./assets/images/blog-1.jpg" width="640" height="480" class="inst-about-photo"
+            alt="Lancer de toques lors d'une cérémonie de remise de diplômes" loading="lazy">
+
+          <figure class="inst-motto smooth-zigzag-anim-2">
+            <ion-icon name="heart" aria-hidden="true"></ion-icon>
+            <div>
+              <blockquote class="inst-motto-quote">« Nul n'a le droit d'être heureux tout seul. »</blockquote>
+              <figcaption class="inst-motto-author">Raoul Follereau, devise des Établissements</figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <div class="about-right">
+
+          <p class="section-subtitle">Présentation</p>
+
+          <h2 class="section-title" id="presentation-title">Former les compétences dont la région a besoin</h2>
+
+          <p class="section-text">
+            Implantés à Fada N'Gourma, dans l'est du Burkina Faso, les Établissements Raoul Follereau regroupent
+            trois structures complémentaires : l'Institut Privé Supérieur de formation en Santé (IPS-RF), l'École
+            Privée de Santé (EPS-RF) et le Centre Professionnel de Formation Professionnelle (CPFP-RF).
+          </p>
+
+          <p class="section-text">
+            Leur vocation : offrir aux jeunes comme aux professionnels une formation exigeante, ancrée dans la
+            pratique, et les accompagner jusqu'à l'emploi, dans l'esprit de solidarité de Raoul Follereau.
+          </p>
+
+          <ul class="about-ul">
+            <li><ion-icon name="checkmark-circle"></ion-icon><p>Trois établissements et trois niveaux de formation sur un même site</p></li>
+            <li><ion-icon name="checkmark-circle"></ion-icon><p>Des enseignants et des praticiens expérimentés</p></li>
+            <li><ion-icon name="checkmark-circle"></ion-icon><p>Des stages dans les structures sanitaires et les entreprises partenaires</p></li>
+            <li><ion-icon name="checkmark-circle"></ion-icon><p>Un accompagnement personnalisé jusqu'à l'insertion professionnelle</p></li>
+          </ul>
+
+          <!-- TODO: « 15 ans » et « 87 % » repris de l'accueil, à valider par le client ;
+               le nombre de formations est recalculé depuis formations.js -->
+          <ul class="about-stats">
+            <li class="about-stat">
+              <span class="about-stat-num" data-count="3" data-suffix="">0</span>
+              <span class="about-stat-label">Établissements</span>
+            </li>
+            <li class="about-stat">
+              <span class="about-stat-num" data-count="9" data-suffix="" data-inst-count="formations">0</span>
+              <span class="about-stat-label">Formations au catalogue</span>
+            </li>
+            <li class="about-stat">
+              <span class="about-stat-num" data-count="15" data-suffix="">0</span>
+              <span class="about-stat-label">Ans d'expérience</span>
+            </li>
+            <li class="about-stat">
+              <span class="about-stat-num" data-count="87" data-suffix="%">0</span>
+              <span class="about-stat-label">Taux d'insertion</span>
+            </li>
+          </ul>
+
+        </div>
+
+      </section>
+
+
+      <section class="inst-history inst-anchor" id="histoire" aria-labelledby="histoire-title">
+
+        <div class="inst-head">
+          <p class="section-subtitle">Notre histoire</p>
+          <h2 class="section-title" id="histoire-title">Quinze ans au service de la formation</h2>
+          <p class="section-text">
+            Les Établissements portent le nom de Raoul Follereau (1903-1977), journaliste et humaniste français qui
+            consacra sa vie à la lutte contre la lèpre et contre toutes les formes d'exclusion. Fidèles à cet
+            héritage, ils se sont développés étape par étape autour d'une même conviction : la formation est le
+            premier levier du développement.
+          </p>
+        </div>
+
+        <!-- TODO: dates et étapes provisoires, à remplacer par l'historique réel fourni par le client -->
+        <ol class="calendar-timeline inst-timeline">
+
+          <li class="calendar-item">
+            <div class="calendar-date">
+              <span class="calendar-day">2011</span>
+              <span class="calendar-month">Fondation</span>
+            </div>
+            <h3 class="calendar-title">Ouverture de l'École Privée de Santé</h3>
+            <p class="calendar-info">Premières promotions d'élèves infirmiers et sages-femmes à Fada N'Gourma.</p>
+          </li>
+
+          <li class="calendar-item">
+            <div class="calendar-date">
+              <span class="calendar-day">2014</span>
+              <span class="calendar-month">Premiers diplômés</span>
+            </div>
+            <h3 class="calendar-title">Sortie de la première promotion</h3>
+            <p class="calendar-info">Les premiers diplômés d'État rejoignent les formations sanitaires de la région.</p>
+          </li>
+
+          <li class="calendar-item">
+            <div class="calendar-date">
+              <span class="calendar-day">2016</span>
+              <span class="calendar-month">Diversification</span>
+            </div>
+            <h3 class="calendar-title">Création du Centre Professionnel de Formation Professionnelle</h3>
+            <p class="calendar-info">Des filières courtes en gestion, en bureautique et dans les métiers techniques.</p>
+          </li>
+
+          <li class="calendar-item">
+            <div class="calendar-date">
+              <span class="calendar-day">2019</span>
+              <span class="calendar-month">Enseignement supérieur</span>
+            </div>
+            <h3 class="calendar-title">Naissance de l'Institut Privé Supérieur de formation en Santé</h3>
+            <p class="calendar-info">Premières licences professionnelles en santé, dans le système LMD.</p>
+          </li>
+
+          <li class="calendar-item">
+            <div class="calendar-date">
+              <span class="calendar-day">2023</span>
+              <span class="calendar-month">Campus</span>
+            </div>
+            <h3 class="calendar-title">Nouveaux espaces pédagogiques</h3>
+            <p class="calendar-info">Laboratoire de travaux pratiques, salle informatique et salles de cours équipées.</p>
+          </li>
+
+          <li class="calendar-item">
+            <div class="calendar-date">
+              <span class="calendar-day">2026</span>
+              <span class="calendar-month">Numérique</span>
+            </div>
+            <h3 class="calendar-title">Préinscriptions en ligne</h3>
+            <p class="calendar-info">Le nouveau site permet de candidater à toutes les formations en quelques minutes.</p>
+          </li>
+
+        </ol>
+
+      </section>
+
+
+      <!-- Mission : bande sombre .features de l'accueil, avec les descriptions (.item-text) -->
+      <section class="features inst-mission inst-anchor" id="mission" aria-labelledby="mission-title">
+
+        <div class="features-left">
+
+          <p class="section-subtitle">Mission, vision &amp; valeurs</p>
+
+          <h2 class="section-title" id="mission-title">Notre mission</h2>
+
+          <ul>
+
+            <li class="features-item">
+              <div class="item-icon-box blue">
+                <img src="./assets/images/feature-icon-1.png" alt="">
+              </div>
+              <div class="wrapper">
+                <h3 class="item-title">Transmettre les savoirs et compétences</h3>
+                <p class="item-text">Des enseignements solides, complétés par des travaux pratiques et des stages encadrés sur le terrain.</p>
+              </div>
+            </li>
+
+            <li class="features-item">
+              <div class="item-icon-box pink">
+                <img src="./assets/images/feature-icon-2.png" alt="">
+              </div>
+              <div class="wrapper">
+                <h3 class="item-title">Favoriser l'employabilité et l'insertion</h3>
+                <p class="item-text">Des formations alignées sur les besoins du terrain et un suivi des apprenants jusqu'à leur premier emploi.</p>
+              </div>
+            </li>
+
+            <li class="features-item">
+              <div class="item-icon-box purple">
+                <img src="./assets/images/feature-icon-3.png" alt="">
+              </div>
+              <div class="wrapper">
+                <h3 class="item-title">Cultiver l'innovation et l'excellence professionnelle</h3>
+                <p class="item-text">Des méthodes pédagogiques actives, des outils numériques et une exigence de qualité à chaque étape.</p>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <div class="features-right">
+          <img src="./assets/images/event-img.jpg" width="612" height="408"
+            alt="Étudiant souriant, sac au dos, sur le chemin des cours" loading="lazy">
+        </div>
+
+      </section>
+
+
+      <section class="inst-values" id="valeurs" aria-labelledby="valeurs-title">
+
+        <div class="inst-vision">
+          <p class="section-subtitle">Notre vision</p>
+          <p class="inst-vision-text">
+            Être, dans l'est du Burkina Faso, la référence de la formation en santé et aux métiers, reconnue
+            pour la compétence et l'engagement de ses diplômés.
+          </p>
+        </div>
+
+        <h2 class="section-title" id="valeurs-title">Nos valeurs</h2>
+
+        <ul class="inst-values-grid">
+
+          <li class="inst-value">
+            <div class="inst-value-icon"><ion-icon name="people-outline" aria-hidden="true"></ion-icon></div>
+            <h3 class="inst-value-title">Solidarité</h3>
+            <p class="inst-value-text">Fidèles à la devise de Raoul Follereau, nous formons des professionnels au service des populations, à commencer par les plus vulnérables.</p>
+          </li>
+
+          <li class="inst-value">
+            <div class="inst-value-icon"><ion-icon name="ribbon-outline" aria-hidden="true"></ion-icon></div>
+            <h3 class="inst-value-title">Excellence</h3>
+            <p class="inst-value-text">Exigence académique, encadrement de proximité et évaluation continue pour des diplômés opérationnels dès leur sortie.</p>
+          </li>
+
+          <li class="inst-value">
+            <div class="inst-value-icon"><ion-icon name="shield-checkmark-outline" aria-hidden="true"></ion-icon></div>
+            <h3 class="inst-value-title">Éthique</h3>
+            <p class="inst-value-text">Respect de la personne, rigueur et intégrité guident la pratique professionnelle que nous enseignons.</p>
+          </li>
+
+          <li class="inst-value">
+            <div class="inst-value-icon"><ion-icon name="hand-left-outline" aria-hidden="true"></ion-icon></div>
+            <h3 class="inst-value-title">Accompagnement</h3>
+            <p class="inst-value-text">Chaque apprenant est suivi de l'admission à l'insertion : orientation, tutorat, préparation aux stages et à l'emploi.</p>
+          </li>
+
+        </ul>
+
+      </section>
+
+
+      <!-- Composantes : en-tête commun puis une sous-section ancrée par établissement
+           (#ips, #eps, #cpfp : liens des cartes « Nos trois composantes » de l'accueil) -->
+      <section class="inst-etabs" aria-labelledby="etabs-title">
+
+        <div class="inst-head">
+          <p class="section-subtitle">Nos composantes</p>
+          <h2 class="section-title" id="etabs-title">Trois établissements, un même engagement</h2>
+          <p class="section-text">
+            De la qualification professionnelle à la licence, chaque établissement couvre un niveau de formation et
+            partage les mêmes exigences : encadrement de proximité, pratique sur le terrain et suivi jusqu'à l'emploi.
+          </p>
+        </div>
+
+      </section>
+
+      <section class="etab inst-anchor" id="ips" data-etab="ips" aria-labelledby="ips-title">
+
+        <div class="etab-main">
+
+          <div class="etab-media">
+            <img src="./assets/images/course-6.jpg" width="640" height="480" class="etab-photo"
+              alt="Étudiants de l'IPS-RF travaillant en équipe sur ordinateur" loading="lazy">
+            <div class="etab-logo">
+              <img src="./assets/images/rf-ips.png" width="96" height="96" alt="Logo de l'IPS-RF">
+            </div>
+          </div>
+
+          <div class="etab-body">
+            <p class="section-subtitle">Enseignement supérieur</p>
+            <h2 class="section-title" id="ips-title">IPS-RF</h2>
+            <p class="etab-fullname">Institut Privé Supérieur de formation en Santé Raoul Follereau</p>
+            <p class="section-text">
+              L'IPS-RF prépare aux licences professionnelles en santé, dans le système LMD. Ses parcours associent
+              enseignements universitaires, travaux pratiques et stages en milieu hospitalier et communautaire,
+              et ouvrent la voie aux masters et à la recherche.
+            </p>
+
+            <!-- chiffres recalculés depuis formations.js par pages/institution.js -->
+            <ul class="about-stats etab-stats">
+              <li class="about-stat" data-etab-stat="formations">
+                <span class="about-stat-num" data-count="2">0</span>
+                <span class="about-stat-label">Formations au catalogue</span>
+              </li>
+              <li class="about-stat" data-etab-stat="ouvertes">
+                <span class="about-stat-num" data-count="1">0</span>
+                <span class="about-stat-label">Formation ouverte aux inscriptions</span>
+              </li>
+            </ul>
+
+            <a href="formations.html?etablissement=ips" class="btn btn-primary">
+              <p class="btn-text">Voir les formations</p>
+              <span class="square"></span>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="etab-details">
+
+          <div class="etab-panel">
+            <h3 class="etab-panel-title"><ion-icon name="sparkles-outline" aria-hidden="true"></ion-icon>Spécialités</h3>
+            <ul class="about-ul">
+              <li><ion-icon name="checkmark-circle"></ion-icon><p>Sciences infirmières</p></li>
+              <li><ion-icon name="checkmark-circle"></ion-icon><p>Santé publique et santé communautaire</p></li>
+              <li><ion-icon name="checkmark-circle"></ion-icon><p>Stages hospitaliers à chaque semestre</p></li>
+              <li><ion-icon name="checkmark-circle"></ion-icon><p>Admission sur dossier et entretien, avec une passerelle pour les infirmiers diplômés d'État</p></li>
+            </ul>
+          </div>
+
+          <div class="etab-panel">
+            <h3 class="etab-panel-title"><ion-icon name="school-outline" aria-hidden="true"></ion-icon>Formations proposées</h3>
+            <!-- liste générée depuis formations.js (lien fiche + statut) ; repli sans JS : le catalogue filtré -->
+            <ul class="etab-formations" data-etab-list>
+              <li>
+                <a class="etab-formation" href="formations.html?etablissement=ips">
+                  <span class="etab-formation-text"><span class="etab-formation-title">Consulter les formations de l'IPS-RF</span></span>
+                  <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </section>
+
+      <section class="etab etab--alt etab--reverse inst-anchor" id="eps" data-etab="eps" aria-labelledby="eps-title">
+
+        <div class="etab-main">
+
+          <div class="etab-media">
+            <img src="./assets/images/course-1.jpg" width="640" height="480" class="etab-photo"
+              alt="Apprenante sage-femme auprès d'une mère et de son nouveau-né" loading="lazy">
+            <div class="etab-logo">
+              <img src="./assets/images/rf-eps.png" width="96" height="96" alt="Logo de l'EPS-RF">
+            </div>
+          </div>
+
+          <div class="etab-body">
+            <p class="section-subtitle">Formation des personnels de santé</p>
+            <h2 class="section-title" id="eps-title">EPS-RF</h2>
+            <p class="etab-fullname">École Privée de Santé Raoul Follereau</p>
+            <p class="section-text">
+              L'EPS-RF forme les infirmiers, les sages-femmes et les agents itinérants de santé. Recrutés sur
+              concours, ses élèves alternent cours, travaux pratiques et stages cliniques encadrés jusqu'au
+              diplôme d'État.
+            </p>
+
+            <!-- chiffres recalculés depuis formations.js par pages/institution.js -->
+            <ul class="about-stats etab-stats">
+              <li class="about-stat" data-etab-stat="formations">
+                <span class="about-stat-num" data-count="3">0</span>
+                <span class="about-stat-label">Formations au catalogue</span>
+              </li>
+              <li class="about-stat" data-etab-stat="ouvertes">
+                <span class="about-stat-num" data-count="3">0</span>
+                <span class="about-stat-label">Formations ouvertes aux inscriptions</span>
+              </li>
+            </ul>
+
+            <a href="formations.html?etablissement=eps" class="btn btn-primary">
+              <p class="btn-text">Voir les formations</p>
+              <span class="square"></span>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="etab-details">
+
+          <div class="etab-panel">
+            <h3 class="etab-panel-title"><ion-icon name="sparkles-outline" aria-hidden="true"></ion-icon>Spécialités</h3>
+            <ul class="about-ul">
+              <li><ion-icon name="checkmark-circle"></ion-icon><p>Soins infirmiers</p></li>
+              <li><ion-icon name="checkmark-circle"></ion-icon><p>Soins obstétricaux : sage-femme et maïeuticien</p></li>
+              <li><ion-icon name="checkmark-circle"></ion-icon><p>Agent itinérant de santé</p></li>
+              <li><ion-icon name="checkmark-circle"></ion-icon><p>Admission sur concours d'entrée, dès le BEPC pour les agents itinérants de santé</p></li>
+            </ul>
+          </div>
+
+          <div class="etab-panel">
+            <h3 class="etab-panel-title"><ion-icon name="school-outline" aria-hidden="true"></ion-icon>Formations proposées</h3>
+            <!-- liste générée depuis formations.js (lien fiche + statut) ; repli sans JS : le catalogue filtré -->
+            <ul class="etab-formations" data-etab-list>
+              <li>
+                <a class="etab-formation" href="formations.html?etablissement=eps">
+                  <span class="etab-formation-text"><span class="etab-formation-title">Consulter les formations de l'EPS-RF</span></span>
+                  <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </section>
+
+      <section class="etab inst-anchor" id="cpfp" data-etab="cpfp" aria-labelledby="cpfp-title">
+
+        <div class="etab-main">
+
+          <div class="etab-media">
+            <img src="./assets/images/course-4.jpg" width="640" height="480" class="etab-photo"
+              alt="Apprenant en logistique contrôlant un chargement devant des camions" loading="lazy">
+            <div class="etab-logo">
+              <img src="./assets/images/rf-cpfp.png" width="96" height="96" alt="Logo du CPFP-RF">
+            </div>
+          </div>
+
+          <div class="etab-body">
+            <p class="section-subtitle">Formation professionnelle</p>
+            <h2 class="section-title" id="cpfp-title">CPFP-RF</h2>
+            <p class="etab-fullname">Centre Professionnel de Formation Professionnelle Raoul Follereau</p>
+            <p class="section-text">
+              Le CPFP-RF propose des formations courtes et certifiantes, de 9 mois à 2 ans, en gestion, en numérique
+              et dans les métiers techniques. Elles mènent à un certificat de qualification ou à un brevet de
+              technicien.
+            </p>
+
+            <!-- chiffres recalculés depuis formations.js par pages/institution.js -->
+            <ul class="about-stats etab-stats">
+              <li class="about-stat" data-etab-stat="formations">
+                <span class="about-stat-num" data-count="4">0</span>
+                <span class="about-stat-label">Formations au catalogue</span>
+              </li>
+              <li class="about-stat" data-etab-stat="ouvertes">
+                <span class="about-stat-num" data-count="3">0</span>
+                <span class="about-stat-label">Formations ouvertes aux inscriptions</span>
+              </li>
+            </ul>
+
+            <a href="formations.html?etablissement=cpfp" class="btn btn-primary">
+              <p class="btn-text">Voir les formations</p>
+              <span class="square"></span>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="etab-details">
+
+          <div class="etab-panel">
+            <h3 class="etab-panel-title"><ion-icon name="sparkles-outline" aria-hidden="true"></ion-icon>Spécialités</h3>
+            <ul class="about-ul">
+              <li><ion-icon name="checkmark-circle"></ion-icon><p>Gestion des entreprises</p></li>
+              <li><ion-icon name="checkmark-circle"></ion-icon><p>Transport et logistique</p></li>
+              <li><ion-icon name="checkmark-circle"></ion-icon><p>Bureautique et maintenance informatique</p></li>
+              <li><ion-icon name="checkmark-circle"></ion-icon><p>Accessible dès le niveau troisième ou le BEPC, sur test de niveau</p></li>
+            </ul>
+          </div>
+
+          <div class="etab-panel">
+            <h3 class="etab-panel-title"><ion-icon name="school-outline" aria-hidden="true"></ion-icon>Formations proposées</h3>
+            <!-- liste générée depuis formations.js (lien fiche + statut) ; repli sans JS : le catalogue filtré -->
+            <ul class="etab-formations" data-etab-list>
+              <li>
+                <a class="etab-formation" href="formations.html?etablissement=cpfp">
+                  <span class="etab-formation-text"><span class="etab-formation-title">Consulter les formations du CPFP-RF</span></span>
+                  <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section class="inst-infra inst-anchor" id="infrastructures" aria-labelledby="infra-title">
+
+        <div class="inst-head">
+          <p class="section-subtitle">Infrastructures</p>
+          <h2 class="section-title" id="infra-title">Des espaces pensés pour la pratique</h2>
+          <p class="section-text">
+            Laboratoire, salle de soins, ateliers et salles équipées : les apprenants s'exercent dans des conditions
+            proches de la réalité professionnelle.
+          </p>
+        </div>
+
+        <!-- TODO: remplacer ces visuels provisoires (banque d'images du site) par des photos réelles des locaux -->
+        <ul class="inst-infra-grid">
+
+          <li>
+            <figure class="inst-infra-card">
+              <div class="inst-infra-img"><img src="./assets/images/blog-2.jpg" width="640" height="480" alt="Étudiants en blouse blanche lors d'une séance de travaux pratiques" loading="lazy"></div>
+              <figcaption class="inst-infra-caption">
+                <h3 class="inst-infra-title">Laboratoire de travaux pratiques</h3>
+                <p class="inst-infra-text">Manipulations et analyses encadrées pour les filières de santé.</p>
+              </figcaption>
+            </figure>
+          </li>
+
+          <li>
+            <figure class="inst-infra-card">
+              <div class="inst-infra-img"><img src="./assets/images/course-5.png" width="640" height="480" alt="Apprenante infirmière prenant la tension artérielle d'une patiente" loading="lazy"></div>
+              <figcaption class="inst-infra-caption">
+                <h3 class="inst-infra-title">Salle de soins et de simulation</h3>
+                <p class="inst-infra-text">Gestes techniques, prise des constantes et soins répétés avant chaque stage.</p>
+              </figcaption>
+            </figure>
+          </li>
+
+          <li>
+            <figure class="inst-infra-card">
+              <div class="inst-infra-img"><img src="./assets/images/course-3.jpg" width="640" height="480" alt="Apprenante travaillant sur un poste informatique" loading="lazy"></div>
+              <figcaption class="inst-infra-caption">
+                <h3 class="inst-infra-title">Salle informatique</h3>
+                <p class="inst-infra-text">Postes connectés pour la bureautique, la gestion et la recherche documentaire.</p>
+              </figcaption>
+            </figure>
+          </li>
+
+          <li>
+            <figure class="inst-infra-card">
+              <div class="inst-infra-img"><img src="./assets/images/course-6.jpeg" width="640" height="480" alt="Apprenants réparant l'unité centrale d'un ordinateur" loading="lazy"></div>
+              <figcaption class="inst-infra-caption">
+                <h3 class="inst-infra-title">Atelier de maintenance</h3>
+                <p class="inst-infra-text">Montage, diagnostic et réparation de matériel informatique.</p>
+              </figcaption>
+            </figure>
+          </li>
+
+          <li>
+            <figure class="inst-infra-card">
+              <div class="inst-infra-img"><img src="./assets/images/course-2.png" width="640" height="480" alt="Salle de réunion équipée d'un grand écran" loading="lazy"></div>
+              <figcaption class="inst-infra-caption">
+                <h3 class="inst-infra-title">Salles de cours équipées</h3>
+                <p class="inst-infra-text">Vidéoprojection et espaces de travail en groupe pour tous les parcours.</p>
+              </figcaption>
+            </figure>
+          </li>
+
+          <li>
+            <!-- TODO: photo de la bibliothèque à fournir par le client -->
+            <figure class="inst-infra-card">
+              <div class="inst-infra-img inst-infra-placeholder">
+                <ion-icon name="library-outline" aria-hidden="true"></ion-icon>
+                <span>Photo à venir</span>
+              </div>
+              <figcaption class="inst-infra-caption">
+                <h3 class="inst-infra-title">Bibliothèque et centre de documentation</h3>
+                <p class="inst-infra-text">Ouvrages de référence, revues et espace de travail au calme.</p>
+              </figcaption>
+            </figure>
+          </li>
+
+        </ul>
+
+      </section>
+
+
+      <!-- Équipe de direction : cartes .instructor-card de l'accueil (sans les liens sociaux factices) -->
+      <section class="instructor inst-anchor" id="equipe" aria-labelledby="equipe-title">
+
+        <div class="inst-head">
+          <p class="section-subtitle">Gouvernance</p>
+          <h2 class="section-title" id="equipe-title">L'équipe de direction</h2>
+          <p class="section-text">
+            Les responsables des Établissements veillent à la qualité des formations et à l'accompagnement de
+            chaque apprenant, de l'admission jusqu'à l'insertion.
+          </p>
+        </div>
+
+        <div class="instructor-grid">
+
+          <div class="instructor-card">
+            <div class="instructor-img-box">
+              <img src="./assets/images/instructor-1.jpg" alt="Portrait de Djibril OUEDRAOGO" loading="lazy">
+            </div>
+            <h3 class="instructor-name">Djibril OUEDRAOGO</h3>
+            <p class="instructor-title">Fondateur &amp; Président</p>
+          </div>
+
+          <div class="instructor-card">
+            <div class="instructor-img-box">
+              <img src="./assets/images/instructor-2.webp" alt="Portrait de Hamadi OUEDRAOGO" loading="lazy">
+            </div>
+            <h3 class="instructor-name">Hamadi OUEDRAOGO</h3>
+            <p class="instructor-title">Directeur Général</p>
+          </div>
+
+          <div class="instructor-card">
+            <div class="instructor-img-box">
+              <img src="./assets/images/instructor-3.jpg" alt="Portrait de Aminata Sanfo" loading="lazy">
+            </div>
+            <h3 class="instructor-name">Aminata Sanfo</h3>
+            <p class="instructor-title">Directrice Académique</p>
+          </div>
+
+          <div class="instructor-card">
+            <div class="instructor-img-box">
+              <img src="./assets/images/instructor-4.jpg" alt="Portrait de Privat Nakulma" loading="lazy">
+            </div>
+            <h3 class="instructor-name">Privat Nakulma</h3>
+            <p class="instructor-title">Chef de département informatique</p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Partenaires : cartes .partner-card de l'accueil, en grille statique avec le rôle de chacun -->
+      <section class="partner inst-partners inst-anchor" id="partenaires" aria-labelledby="partenaires-title">
+
+        <div class="inst-head">
+          <p class="section-subtitle">Ils nous accompagnent</p>
+          <h2 class="section-title" id="partenaires-title">Nos partenaires</h2>
+          <p class="section-text">
+            Institutions, structures de santé et acteurs de la solidarité : nos partenaires accueillent nos
+            apprenants en stage et soutiennent nos missions.
+          </p>
+        </div>
+
+        <!-- TODO: rôles des partenaires à valider ; logo de la Fondation Raoul Follereau à fournir
+             (le logo des Établissements est utilisé provisoirement, comme sur l'accueil) -->
+        <ul class="inst-partners-grid">
+
+          <li class="partner-card">
+            <img src="./assets/images/logo-min-san.png" alt="Logo du Ministère de la Santé et de l'Hygiène Publique" loading="lazy">
+            <div class="partner-text">
+              <p class="partner-name">Ministère de la Santé et de l'Hygiène Publique</p>
+              <p class="partner-role">Encadrement des formations en santé</p>
+            </div>
+          </li>
+
+          <li class="partner-card">
+            <img src="./assets/images/logo-min-ens.png" alt="Logo du Ministère de l'Enseignement Supérieur" loading="lazy">
+            <div class="partner-text">
+              <p class="partner-name">Ministère de l'Enseignement Supérieur</p>
+              <p class="partner-role">Tutelle de l'enseignement supérieur</p>
+            </div>
+          </li>
+
+          <li class="partner-card">
+            <img src="./assets/images/logo-chru-fada.png" alt="Logo du CHRU de Fada N'Gourma" loading="lazy">
+            <div class="partner-text">
+              <p class="partner-name">CHRU de Fada N'Gourma</p>
+              <p class="partner-role">Stages cliniques</p>
+            </div>
+          </li>
+
+          <li class="partner-card">
+            <img src="./assets/images/logo-croix-rouge.png" alt="Logo de la Croix-Rouge Burkinabè" loading="lazy">
+            <div class="partner-text">
+              <p class="partner-name">Croix-Rouge Burkinabè</p>
+              <p class="partner-role">Santé communautaire et secourisme</p>
+            </div>
+          </li>
+
+          <li class="partner-card">
+            <img src="./assets/images/logo.png" alt="Logo des Établissements Raoul Follereau (provisoire)" loading="lazy">
+            <div class="partner-text">
+              <p class="partner-name">Fondation Raoul Follereau</p>
+              <p class="partner-role">Solidarité et soutien aux projets</p>
+            </div>
+          </li>
+
+        </ul>
+
+      </section>
+
+
+      <!-- Carte flottante : invitation à prendre contact (objet « Contact général » pré-sélectionné) -->
+      <section class="contact">
+
+        <div class="contact-card" id="contact">
+          <img src="./assets/images/cta-bg-img.png" alt="" class="contact-card-bg">
+
+          <h2>Envie de visiter nos établissements ?</h2>
+
+          <a href="contact.html?objet=general" class="btn btn-primary">
+            <p class="btn-text">Contactez-nous</p>
+            <span class="square"></span>
+          </a>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer dupliqué depuis index.html (liens pointés vers les vraies pages) : deviendra un @include Blade. -->
+    <footer>
+      <div class="footer-grid">
+
+        <div class="grid-item">
+
+          <div class="footer-logo">
+            <img src="./assets/images/logo.png" alt="Les Établissements Raoul Follereau">
+          </div>
+
+          <p class="footer-text">
+            Les Établissements Raoul Follereau, à Fada N'Gourma, regroupent l'Institut Privé Supérieur de formation
+            en Santé, l'École Privée de Santé et le Centre Professionnel de Formation Professionnelle : des formations
+            certifiantes en santé, gestion, numérique et métiers techniques, tournées vers l'insertion professionnelle.
+          </p>
+
+          <div class="social-link">
+            <a href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </div>
+
+        </div>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Liens</h4>
+
+          <li class="list-item">
+            <a href="index.html#home">Accueil</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#about">A propos</a>
+          </li>
+
+          <li class="list-item">
+            <a href="formations.html">Formations</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#blog">Blog</a>
+          </li>
+
+          <li class="list-item">
+            <a href="contact.html">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Autres liens</h4>
+
+          <li class="list-item">
+            <a href="#">Nos enseignants</a>
+          </li>
+
+          <li class="list-item">
+            <a href="faq.html">FAQ</a>
+          </li>
+
+          <li class="list-item">
+            <a href="actualites.html">Evènements</a>
+          </li>
+
+          <li class="list-item">
+            <a href="confidentialite.html">Politique de confidentialité</a>
+          </li>
+
+          <li class="list-item">
+            <a href="termes.html">Termes & Conditions</a>
+          </li>
+
+        </ul>
+
+        <div class="grid-item">
+
+          <h4 class="item-heading">Newsletter</h4>
+
+          <div class="wrapper">
+            <input type="text" name="subscribe" placeholder="Adresse Email">
+            
+            <button class="send-btn">
+              <ion-icon name="paper-plane"></ion-icon>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <p class="copyright">
+        Copyright © 2026 <a href="#">Les Etablissements Raoul Follereau</a>. Tout droit reservé.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Bouton flottant WhatsApp — dupliqué sur chaque page en attendant l'@include Blade -->
+  <!-- TODO: remplacer le numéro par la ligne WhatsApp réelle des Établissements -->
+  <a href="https://wa.me/22670249765" class="whatsapp-fab whatsapp-pulse-anim" target="_blank" rel="noopener"
+    aria-label="Écrire aux Établissements Raoul Follereau sur WhatsApp">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+  </a>
+
+  <!-- Données puis helpers puis script de page ; premium-animations.js et hero-intro.js APRÈS
+       pages/institution.js (compteurs et listes alimentés par formations.js). -->
+  <script src="./assets/data/formations.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/formation-card.js"></script>
+  <script src="./assets/js/pages/institution.js"></script>
+  <script src="./assets/js/premium-animations.js"></script>
+  <script src="./assets/js/hero-intro.js"></script>
+  <script src="./assets/js/header-nav.js"></script>
+  <script src="./assets/js/script.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

@@ -50,23 +50,28 @@
       '.instructor-grid',
       '.stats-grid',
       '.blog-grid',
-      '.about-stats'
+      '.about-stats',
+      '.inst-values-grid',
+      '.etab-details',
+      '.inst-infra-grid',
+      '.inst-partners-grid'
     ];
 
     document.documentElement.classList.add('premium-anim');
 
     const items = [];
 
+    // toutes les grilles correspondantes (la page Institution en compte plusieurs
+    // du même type : .about-stats, .etab-details), pas seulement la première
     GRID_SELECTORS.forEach(function (selector) {
-      const grid = document.querySelector(selector);
-      if (!grid) return;
-
-      Array.from(grid.children).forEach(function (child, index) {
-        // on retire le reveal générique de l'étape 1 pour éviter un double traitement
-        child.classList.remove('reveal-up', 'reveal-fade', 'reveal-left', 'reveal-right');
-        child.classList.add('reveal-rise');
-        child.style.setProperty('--reveal-delay', (Math.min(index, 8) * 70) + 'ms');
-        items.push(child);
+      document.querySelectorAll(selector).forEach(function (grid) {
+        Array.from(grid.children).forEach(function (child, index) {
+          // on retire le reveal générique de l'étape 1 pour éviter un double traitement
+          child.classList.remove('reveal-up', 'reveal-fade', 'reveal-left', 'reveal-right');
+          child.classList.add('reveal-rise');
+          child.style.setProperty('--reveal-delay', (Math.min(index, 8) * 70) + 'ms');
+          items.push(child);
+        });
       });
     });
 
@@ -275,8 +280,11 @@
     blocks.forEach(function (el) {
       el.classList.add('section-reveal');
       // hero / bannière de page (séquence d'entrée propre) / contact (carte flottante) /
-      // footer : opacité seule, pas de translate
-      if (el.matches('.home, .page-banner, .contact') || el.tagName === 'FOOTER') {
+      // footer : opacité seule, pas de translate. Idem pour les cibles de la sous-navigation
+      // de la page Institution (.inst-anchor) : le navigateur calcule le point d'arrivée d'une
+      // ancre sur la position décalée (translateY 32px) : le haut de la section finirait
+      // caché de 32px derrière la barre collante une fois l'animation terminée.
+      if (el.matches('.home, .page-banner, .contact, .inst-anchor') || el.tagName === 'FOOTER') {
         el.classList.add('section-reveal--fade');
       }
     });
