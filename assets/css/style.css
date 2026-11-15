@@ -3499,6 +3499,17 @@ select.form-input {
 
 .field-error[hidden] { display: none; }
 
+/* message d'erreur global du formulaire (rempli par le JS, au-dessus des boutons) */
+.form-error {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--red-orange-color-wheel);
+  margin-bottom: 20px;
+}
+
+.form-error[hidden] { display: none; }
+
 .has-error .form-input,
 .has-error .form-choice label,
 .has-error .form-file-btn { border-color: var(--red-orange-color-wheel); }
@@ -4045,4 +4056,216 @@ select.form-input {
   font-size: 13px;
   color: var(--sonic-silver);
   margin-top: 25px;
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #CONTACT PAGE  (contact.html — formulaire + coordonnées + plan d'accès)
+\*-----------------------------------*/
+
+/* padding-bottom élargi pour la carte flottante (.contact-card) qui suit */
+.contact-page { padding: var(--py) var(--px) 200px; }
+
+/* 1 colonne ; formulaire à gauche + colonne coordonnées à droite dès 992px (media_queries.css) */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.contact-box {
+  background: var(--white);
+  border: 1px solid hsl(0, 0%, 88%);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px hsla(0, 0%, 0%, 0.06);
+  padding: 30px 20px;
+}
+
+.contact-box-title {
+  font-size: var(--fs-4);
+  font-weight: var(--fw-8);
+  color: var(--oxford-blue);
+  margin-bottom: 10px;
+}
+
+.contact-box-intro { margin-bottom: 25px; }
+
+/* blocs conditionnels selon l'objet (formation concernée / numéro de candidature) */
+.contact-panel[hidden] { display: none; }
+
+/* aperçu de la formation sélectionnée (même présentation que .wizard-selection) */
+.contact-selection {
+  display:     flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--cultured);
+  border-left: 4px solid var(--ultramarine-blue);
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+}
+
+.contact-selection[hidden] { display: none; }
+
+.contact-selection > ion-icon {
+  font-size: 24px;
+  color: var(--ultramarine-blue);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-selection-title {
+  font-size: var(--fs-6);
+  font-weight: var(--fw-7);
+  color: var(--oxford-blue);
+  margin-bottom: 3px;
+}
+
+.contact-selection-meta,
+.contact-selection-status {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  color: var(--sonic-silver);
+  line-height: 1.5;
+}
+
+/* display:inline : le reset met span et a en display:block */
+.contact-selection-status span {
+  display: inline;
+  color: var(--ultramarine-blue);
+  font-weight: var(--fw-7);
+}
+
+.contact-selection-status a {
+  display: inline;
+  color: var(--oxford-blue);
+  text-decoration: underline;
+}
+
+.contact-form-actions {
+  display:     flex;
+  flex-wrap:   wrap;
+  align-items: center;
+  gap: 15px 25px;
+  margin-top: 10px;
+}
+
+.contact-form-actions .form-hint { margin: 0; }
+
+/* ---- succès (soumission simulée) ---- */
+.contact-success {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.contact-success[hidden] { display: none; }
+
+.contact-success > ion-icon {
+  font-size: 64px;
+  color: var(--ultramarine-blue);
+  margin: 0 auto 15px;
+}
+
+.contact-success-title {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-8);
+  color: var(--oxford-blue);
+  margin-bottom: 12px;
+  outline: none;
+}
+
+.contact-success .section-text {
+  max-width: 520px;
+  margin: 0 auto 15px;
+}
+
+.contact-success .section-text span { display: inline; }
+
+.contact-success-actions {
+  display:         flex;
+  flex-wrap:       wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.contact-success-actions .btn { display: inline-block; }
+
+/* ---- colonne coordonnées (carte .map-text + liste .map-contact + .map-social réutilisées) ---- */
+.contact-info { margin-bottom: 30px; }
+
+.contact-info-title {
+  font-size: var(--fs-4);
+  font-weight: var(--fw-8);
+  color: var(--oxford-blue);
+  margin-bottom: 10px;
+}
+
+.contact-info-text {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--sonic-silver);
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.contact-info .map-contact strong {
+  display: block;
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+  margin-bottom: 2px;
+}
+
+.contact-info .map-contact a {
+  display: inline;
+  word-break: break-word;
+}
+
+/* largeur naturelle : .map-text .btn est en inline-block, comme sur le reste du site */
+.contact-whatsapp { margin-bottom: 25px; }
+
+.contact-whatsapp ion-icon {
+  display: inline-block;
+  vertical-align: -4px;
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.contact-info .map-social { margin-bottom: 0; }
+
+.contact-map {
+  background: var(--cultured);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px hsla(0, 0%, 0%, 0.06);
+}
+
+.contact-map iframe {
+  display: block;
+  width:  100%;
+  height: 260px;
+  border: 0;
+}
+
+.contact-map-link {
+  display:     flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+  transition: var(--default-transition);
+}
+
+.contact-map-link:hover { color: var(--red-orange-color-wheel); }
+
+.contact-map-link ion-icon {
+  font-size: 18px;
+  color: var(--ultramarine-blue);
+  flex-shrink: 0;
 }

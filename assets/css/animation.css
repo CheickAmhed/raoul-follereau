@@ -870,3 +870,22 @@
   .wizard-step.is-active { animation: none; }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #CONTACT PAGE  (contact.html — apparition des blocs conditionnels et du succès ;
+  réutilise la keyframe wizard-step-in définie ci-dessus)
+\*-----------------------------------*/
+
+.contact-panel:not([hidden]),
+.contact-success:not([hidden]) { animation: wizard-step-in 0.35s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+
+  .contact-panel:not([hidden]),
+  .contact-success:not([hidden]) { animation: none; }
+
+}

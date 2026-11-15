@@ -3,9 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — Les Établissements Raoul Follereau</title>
-  <meta name="description" content="Contact — page en cours de préparation.">
+  <meta name="description"
+    content="Contactez les Établissements Raoul Follereau à Fada N'Gourma (IPS-RF, EPS-RF, CPFP-RF) : formulaire de contact, demande d'information sur une formation, téléphone, email, WhatsApp et plan d'accès.">
 
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/media_queries.css">
@@ -16,20 +18,533 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800;900&family=Roboto:wght@400;500&display=swap"
     rel="stylesheet">
+
 </head>
 
 <body>
-  <main class="placeholder-page">
-    <img class="placeholder-logo" src="./assets/images/logo.png" width="90" height="90"
-      alt="Les Établissements Raoul Follereau">
-    <h1 class="section-title">Contact</h1>
-    <p class="section-text">Contenu à venir.</p>
-    <!-- TODO: formulaires de contact et coordonnées (étape 5). -->
-    <a class="btn btn-primary" href="index.html">
-      <p class="btn-text">Retour à l'accueil</p>
-      <span class="square"></span>
-    </a>
-  </main>
+  <div class="container">
+    <!-- Header dupliqué depuis index.html : deviendra un @include Blade lors de la phase Laravel. -->
+    <header>
+      <nav class="navbar">
+
+        <a href="index.html" class="navbar-brand">
+          <img width="90" height="90" src="./assets/images/logo.png"
+            alt="Les Établissements Raoul Follereau — accueil">
+        </a>
+
+        <nav class="primary-nav" aria-label="Navigation principale">
+          <ul>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="index.html">
+                <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Accueil</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="formations.html">
+                <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Formations</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="institution.html">
+                <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Institution</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="actualites.html">
+                <ion-icon name="newspaper-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Actualités</span>
+              </a>
+            </li>
+            <li class="primary-nav-item is-active">
+              <a class="primary-nav-link" href="contact.html" aria-current="page">
+                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Contact</span>
+              </a>
+            </li>
+            <!-- Compte : présent uniquement dans la bottom bar mobile.
+                 Dans le header (desktop/tablette), le compte est l'icône .nav-account ci-dessous. -->
+            <li class="primary-nav-item primary-nav-item--bottombar-only">
+              <a class="primary-nav-link" href="compte.html">
+                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Compte</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="navbar-actions">
+
+          <button type="button" class="icon-btn nav-search-toggle" aria-label="Rechercher sur le site"
+            aria-expanded="false" aria-controls="site-search">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+          <a href="compte.html" class="icon-btn nav-account" aria-label="Mon compte">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          </a>
+
+          <a href="preinscription.html" class="btn btn-primary navbar-cta">
+            <p class="btn-text">S'inscrire</p>
+            <span class="square"></span>
+          </a>
+
+          <button type="button" class="nav-toggle-btn" aria-label="Ouvrir le menu secondaire"
+            aria-expanded="false" aria-controls="secondary-menu">
+            <span class="one"></span>
+            <span class="two"></span>
+            <span class="three"></span>
+          </button>
+
+        </div>
+
+        <div class="site-search" id="site-search" hidden>
+          <form class="site-search-form" role="search" action="#">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            <input type="search" name="q" class="site-search-input"
+              placeholder="Rechercher une formation, une actualité…" aria-label="Rechercher sur le site">
+            <button type="submit" class="site-search-submit">OK</button>
+          </form>
+        </div>
+
+        <ul class="navbar-nav" id="secondary-menu" hidden>
+          <li class="secondary-menu-head">
+            <span class="secondary-menu-title">Informations</span>
+            <button type="button" class="secondary-menu-close" aria-label="Fermer le menu secondaire">
+              <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </li>
+          <li class="nav-item"><a href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a href="confidentialite.html">Politique de confidentialité</a></li>
+          <li class="nav-item"><a href="termes.html">Termes &amp; Conditions</a></li>
+          <li class="nav-item"><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+
+      </nav>
+
+      <div class="secondary-menu-overlay" hidden></div>
+    </header>
+
+    <main>
+
+      <!-- Bannière de page (voir PROJECT_CONTEXT.md §3.3) -->
+      <section class="page-banner" aria-labelledby="contact-page-title">
+
+        <div class="deco-shape shape-1">
+          <img src="./assets/images/shape-1.png" alt="" width="70">
+        </div>
+        <div class="deco-shape shape-3">
+          <img src="./assets/images/shape-3.png" alt="" width="120">
+        </div>
+
+        <div class="page-banner-text">
+
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <ol>
+              <li><a href="index.html">Accueil</a></li>
+              <li aria-current="page">Contact</li>
+            </ol>
+          </nav>
+
+          <p class="section-subtitle">Nous écrire</p>
+
+          <h1 class="section-title" id="contact-page-title"><span class="heading-line">Contactez-nous</span></h1>
+
+          <p class="section-text">
+            Une question sur une formation, une préinscription ou la vie de nos établissements ?
+            Écrivez-nous : notre équipe vous répond sous 48 h ouvrées, par email, par téléphone ou sur WhatsApp.
+          </p>
+
+        </div>
+
+        <div class="page-banner-visual" aria-hidden="true">
+          <div class="img-box">
+            <img src="./assets/images/banner-img-bg.png" alt="" class="background-shape">
+            <img src="./assets/images/banner-img.png" width="550" height="452" alt="" class="banner-img">
+
+            <ul class="banner-badges">
+              <li class="banner-badge badge-1 smooth-zigzag-anim-1">
+                <ion-icon name="time-outline"></ion-icon>
+                <span>Réponse sous <strong>48 h</strong></span>
+              </li>
+              <li class="banner-badge badge-2 smooth-zigzag-anim-2">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+                <span><strong>WhatsApp</strong> direct</span>
+              </li>
+              <li class="banner-badge badge-3 smooth-zigzag-anim-3">
+                <ion-icon name="location-outline"></ion-icon>
+                <span><strong>Fada N'Gourma</strong>, Burkina Faso</span>
+              </li>
+            </ul>
+
+            <img src="./assets/images/banner-aliment-icon-4.png" alt="" class="icon-4 drop-anim" width="50">
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- Formulaire de contact (gauche) + coordonnées et plan d'accès (droite), piloté par
+           pages/contact.js. Sans backend : aucune donnée n'est envoyée (voir TODO dans le script). -->
+      <section class="contact-page" aria-labelledby="contact-form-title">
+        <div class="contact-layout">
+
+          <div class="contact-main">
+            <div class="contact-box">
+
+              <h2 class="contact-box-title" id="contact-form-title">Envoyez-nous un message</h2>
+              <p class="contact-box-intro section-text">
+                Précisez l'objet de votre demande : elle sera transmise directement au service concerné.
+                Les champs marqués d'un <span class="form-required">*</span> sont obligatoires.
+              </p>
+
+              <form class="contact-form" novalidate>
+
+                <div class="form-field">
+                  <label class="form-label" for="c-objet">Objet de la demande <span class="form-required" aria-hidden="true">*</span></label>
+                  <div class="form-control">
+                    <select id="c-objet" name="objet" class="form-input" required
+                      data-error-required="Indiquez l'objet de votre demande.">
+                      <option value="">Sélectionnez l'objet de votre demande</option>
+                      <option value="general">Contact général</option>
+                      <option value="formation">Demande d'information sur une formation</option>
+                      <option value="candidature">Suivi d'une préinscription</option>
+                      <option value="partenariat">Partenariat, stage ou recrutement</option>
+                    </select>
+                    <ion-icon name="chevron-down-outline" aria-hidden="true"></ion-icon>
+                  </div>
+                  <p class="field-error" id="err-objet" hidden></p>
+                </div>
+
+                <!-- Bloc affiché pour « Demande d'information sur une formation » (liste remplie depuis formations.js) -->
+                <div class="contact-panel" data-objet-panel="formation" hidden>
+                  <div class="form-field">
+                    <label class="form-label" for="c-formation">Formation concernée <span class="form-required" aria-hidden="true">*</span></label>
+                    <div class="form-control">
+                      <select id="c-formation" name="formation" class="form-input" required disabled
+                        data-error-required="Sélectionnez la formation concernée.">
+                        <option value="">Sélectionnez une formation</option>
+                      </select>
+                      <ion-icon name="chevron-down-outline" aria-hidden="true"></ion-icon>
+                    </div>
+                    <p class="field-error" id="err-formation" hidden></p>
+                  </div>
+
+                  <div class="contact-selection" hidden>
+                    <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                    <div>
+                      <p class="contact-selection-title" data-sel="titre"></p>
+                      <p class="contact-selection-meta" data-sel="meta"></p>
+                      <p class="contact-selection-status"><span data-sel="statut"></span> · <a href="formations.html" data-sel="lien">Voir la fiche</a></p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bloc affiché pour « Suivi d'une préinscription » -->
+                <div class="contact-panel" data-objet-panel="candidature" hidden>
+                  <div class="form-field">
+                    <label class="form-label" for="c-reference">Numéro de candidature <span class="form-optional">(facultatif)</span></label>
+                    <input type="text" id="c-reference" name="reference" class="form-input" disabled autocomplete="off"
+                      pattern="RF-[0-9]{4}-[0-9]{5}" data-error="Format attendu : RF-2026-12345." placeholder="Ex. : RF-2026-12345">
+                    <p class="form-hint">Il figure sur l'écran de confirmation de votre préinscription (et dans l'email reçu).</p>
+                    <p class="field-error" id="err-reference" hidden></p>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-field">
+                    <label class="form-label" for="c-nom">Nom <span class="form-required" aria-hidden="true">*</span></label>
+                    <input type="text" id="c-nom" name="nom" class="form-input" required minlength="2" autocomplete="family-name" placeholder="Ex. : OUEDRAOGO">
+                    <p class="field-error" id="err-nom" hidden></p>
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label" for="c-prenom">Prénom(s) <span class="form-required" aria-hidden="true">*</span></label>
+                    <input type="text" id="c-prenom" name="prenom" class="form-input" required minlength="2" autocomplete="given-name" placeholder="Ex. : Aminata">
+                    <p class="field-error" id="err-prenom" hidden></p>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-field">
+                    <label class="form-label" for="c-email">Adresse email <span class="form-required" aria-hidden="true">*</span></label>
+                    <input type="email" id="c-email" name="email" class="form-input" required autocomplete="email" placeholder="Ex. : aminata@exemple.com"
+                      pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}" data-error="Adresse email invalide (ex. : nom@exemple.com).">
+                    <p class="form-hint">Notre réponse vous sera envoyée à cette adresse.</p>
+                    <p class="field-error" id="err-email" hidden></p>
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label" for="c-telephone">Téléphone <span class="form-optional">(facultatif)</span></label>
+                    <input type="tel" id="c-telephone" name="telephone" class="form-input" autocomplete="tel"
+                      pattern="[+]?[0-9][0-9 ]{7,19}" data-error="Numéro invalide : 8 chiffres minimum (ex. : 70 12 34 56)." placeholder="Ex. : +226 70 12 34 56">
+                    <p class="form-hint">Pour être rappelé(e) si nécessaire.</p>
+                    <p class="field-error" id="err-telephone" hidden></p>
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label class="form-label" for="c-message">Votre message <span class="form-required" aria-hidden="true">*</span></label>
+                  <textarea id="c-message" name="message" class="form-input" required minlength="20" rows="6"
+                    placeholder="Décrivez votre demande (20 caractères minimum)."></textarea>
+                  <p class="field-error" id="err-message" hidden></p>
+                </div>
+
+                <div class="form-field form-check">
+                  <input type="checkbox" id="c-consent" name="consent" required
+                    data-error-required="Vous devez accepter la politique de confidentialité pour nous écrire.">
+                  <label for="c-consent">
+                    J'accepte que mes informations soient utilisées pour traiter ma demande, conformément à la
+                    <a href="confidentialite.html">politique de confidentialité</a>.
+                  </label>
+                  <p class="field-error" id="err-consent" hidden></p>
+                </div>
+
+                <p class="form-error" role="alert" hidden></p>
+
+                <div class="contact-form-actions">
+                  <button type="submit" class="btn btn-primary">
+                    <p class="btn-text">Envoyer le message</p>
+                    <span class="square"></span>
+                  </button>
+                  <p class="form-hint">Réponse sous 48 h ouvrées, du lundi au vendredi.</p>
+                </div>
+
+              </form>
+
+              <!-- Succès (soumission simulée) -->
+              <div class="contact-success" hidden>
+                <ion-icon name="checkmark-circle" aria-hidden="true"></ion-icon>
+                <h3 class="contact-success-title">Votre message a bien été envoyé !</h3>
+                <p class="section-text">
+                  Merci <strong data-done="prenom"></strong>, votre demande (<span data-done="objet"></span>) a été transmise
+                  à notre équipe. Nous vous répondons sous 48 h ouvrées à <strong data-done="email"></strong>.
+                </p>
+                <p class="section-text">
+                  Besoin d'une réponse immédiate ? Appelez-nous ou écrivez-nous sur WhatsApp : nos coordonnées sont ci-contre.
+                </p>
+                <div class="contact-success-actions">
+                  <button type="button" class="btn btn-secondary" data-contact-again>
+                    <p class="btn-text">Envoyer un autre message</p>
+                    <span class="square"></span>
+                  </button>
+                  <a href="formations.html" class="btn btn-primary">
+                    <p class="btn-text">Voir les formations</p>
+                    <span class="square"></span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <aside class="contact-aside" aria-labelledby="contact-info-title">
+
+            <!-- Carte coordonnées : réutilise .map-text / .map-contact / .map-social (section #MAP de style.css) -->
+            <!-- TODO: adresse, téléphone, email et horaires à valider par le client (valeurs provisoires) -->
+            <div class="map-text contact-info">
+              <h2 class="contact-info-title" id="contact-info-title">Nos coordonnées</h2>
+              <p class="contact-info-text">
+                Les trois établissements (IPS-RF, EPS-RF et CPFP-RF) vous accueillent sur un même site à Fada N'Gourma.
+              </p>
+
+              <ul class="map-contact">
+                <li>
+                  <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+                  <span><strong>Adresse</strong>Secteur 4, Fada N'Gourma<br>Région de l'Est, Burkina Faso</span>
+                </li>
+                <li>
+                  <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+                  <span><strong>Téléphone</strong><a href="tel:+22670249765">+226 70 24 97 65</a></span>
+                </li>
+                <li>
+                  <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                  <span><strong>Email</strong><a href="mailto:contact@etablissements-raoulfollereau.bf">contact@etablissements-raoulfollereau.bf</a></span>
+                </li>
+                <li>
+                  <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                  <span><strong>Horaires d'accueil</strong>Lundi – vendredi : 7 h 30 – 17 h 30<br>Samedi : 8 h – 12 h</span>
+                </li>
+              </ul>
+
+              <!-- TODO: remplacer le numéro par la ligne WhatsApp réelle des Établissements (idem bouton flottant) -->
+              <a href="https://wa.me/22670249765" class="btn btn-primary contact-whatsapp" target="_blank" rel="noopener" data-whatsapp
+                aria-label="Écrire aux Établissements Raoul Follereau sur WhatsApp">
+                <p class="btn-text"><ion-icon name="logo-whatsapp" aria-hidden="true"></ion-icon>WhatsApp</p>
+                <span class="square"></span>
+              </a>
+
+              <div class="map-social">
+                <a href="#" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="#" aria-label="Instagram"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="#" aria-label="Twitter"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a href="#" aria-label="YouTube"><ion-icon name="logo-youtube"></ion-icon></a>
+              </div>
+            </div>
+
+            <!-- Plan d'accès : même embed que la page d'accueil -->
+            <div class="contact-map">
+              <iframe
+                src="https://maps.google.com/maps?q=12.075926548348908,0.3381905088250529(Les+Établissements+Raoul+Follereau)&amp;t=k&amp;z=17&amp;output=embed"
+                width="600" height="260" style="border:0;" allowfullscreen loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Carte de localisation — Les Établissements Raoul Follereau, Fada N'Gourma"></iframe>
+              <a class="contact-map-link" href="https://www.google.com/maps?q=12.075926548348908,0.3381905088250529" target="_blank" rel="noopener">
+                <ion-icon name="navigate-outline" aria-hidden="true"></ion-icon>
+                Itinéraire vers les établissements
+              </a>
+            </div>
+
+          </aside>
+
+        </div>
+      </section>
+
+
+      <!-- Carte flottante : ici, incitation à la préinscription (le CTA « Contactez-nous » n'aurait pas de sens) -->
+      <section class="contact">
+
+        <div class="contact-card" id="candidater">
+          <img src="./assets/images/cta-bg-img.png" alt="" class="contact-card-bg">
+
+          <h2>Prêt(e) à rejoindre nos établissements ?</h2>
+
+          <a href="preinscription.html" class="btn btn-primary">
+            <p class="btn-text">Je me préinscris</p>
+            <span class="square"></span>
+          </a>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer dupliqué depuis index.html (liens pointés vers les vraies pages) : deviendra un @include Blade. -->
+    <footer>
+      <div class="footer-grid">
+
+        <div class="grid-item">
+
+          <div class="footer-logo">
+            <img src="./assets/images/logo.png" alt="Les Établissements Raoul Follereau">
+          </div>
+
+          <p class="footer-text">
+            Les Établissements Raoul Follereau, à Fada N'Gourma, regroupent l'Institut Privé Supérieur de formation
+            en Santé, l'École Privée de Santé et le Centre Professionnel de Formation Professionnelle : des formations
+            certifiantes en santé, gestion, numérique et métiers techniques, tournées vers l'insertion professionnelle.
+          </p>
+
+          <div class="social-link">
+            <a href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </div>
+
+        </div>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Liens</h4>
+
+          <li class="list-item">
+            <a href="index.html#home">Accueil</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#about">A propos</a>
+          </li>
+
+          <li class="list-item">
+            <a href="formations.html">Formations</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#blog">Blog</a>
+          </li>
+
+          <li class="list-item">
+            <a href="contact.html">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Autres liens</h4>
+
+          <li class="list-item">
+            <a href="#">Nos enseignants</a>
+          </li>
+
+          <li class="list-item">
+            <a href="faq.html">FAQ</a>
+          </li>
+
+          <li class="list-item">
+            <a href="actualites.html">Evènements</a>
+          </li>
+
+          <li class="list-item">
+            <a href="confidentialite.html">Politique de confidentialité</a>
+          </li>
+
+          <li class="list-item">
+            <a href="termes.html">Termes & Conditions</a>
+          </li>
+
+        </ul>
+
+        <div class="grid-item">
+
+          <h4 class="item-heading">Newsletter</h4>
+
+          <div class="wrapper">
+            <input type="text" name="subscribe" placeholder="Adresse Email">
+            
+            <button class="send-btn">
+              <ion-icon name="paper-plane"></ion-icon>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <p class="copyright">
+        Copyright © 2026 <a href="#">Les Etablissements Raoul Follereau</a>. Tout droit reservé.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Bouton flottant WhatsApp — dupliqué sur chaque page en attendant l'@include Blade -->
+  <!-- TODO: remplacer le numéro par la ligne WhatsApp réelle des Établissements -->
+  <a href="https://wa.me/22670249765" class="whatsapp-fab whatsapp-pulse-anim" target="_blank" rel="noopener"
+    aria-label="Écrire aux Établissements Raoul Follereau sur WhatsApp">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+  </a>
+
+  <!-- Données puis helpers puis script de page ; premium-animations.js et hero-intro.js APRÈS
+       pages/contact.js. formations.js + formation-card.js servent à l'objet « formation ». -->
+  <script src="./assets/data/formations.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/formation-card.js"></script>
+  <script src="./assets/js/pages/contact.js"></script>
+  <script src="./assets/js/premium-animations.js"></script>
+  <script src="./assets/js/hero-intro.js"></script>
+  <script src="./assets/js/header-nav.js"></script>
+  <script src="./assets/js/script.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

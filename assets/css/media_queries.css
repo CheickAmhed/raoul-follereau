@@ -1034,3 +1034,44 @@
   .wizard-box { padding: 40px; }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #CONTACT PAGE  (contact.html)
+\*-----------------------------------*/
+
+@media (min-width: 767px) {
+
+  .contact-box { padding: 40px; }
+
+  .contact-map iframe { height: 300px; }
+
+}
+
+
+
+
+
+@media (min-width: 992px) {
+
+  /* formulaire à gauche, coordonnées + plan à droite (largeurs calquées sur .detail-layout) */
+  .contact-layout {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    align-items: start;
+    gap: 40px;
+  }
+
+}
+
+
+
+
+
+@media (min-width: 1200px) {
+
+  .contact-layout { grid-template-columns: minmax(0, 1fr) 400px; }
+
+}
