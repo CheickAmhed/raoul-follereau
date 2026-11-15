@@ -3,9 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ — Les Établissements Raoul Follereau</title>
-  <meta name="description" content="FAQ — page en cours de préparation.">
+  <title>Questions fréquentes (FAQ) — Les Établissements Raoul Follereau</title>
+  <meta name="description"
+    content="Questions fréquentes sur les Établissements Raoul Follereau : préinscription, conditions d'admission, concours, diplômes, frais de formation, stages et contact.">
 
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/media_queries.css">
@@ -16,20 +18,379 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800;900&family=Roboto:wght@400;500&display=swap"
     rel="stylesheet">
+
 </head>
 
 <body>
-  <main class="placeholder-page">
-    <img class="placeholder-logo" src="./assets/images/logo.png" width="90" height="90"
-      alt="Les Établissements Raoul Follereau">
-    <h1 class="section-title">FAQ</h1>
-    <p class="section-text">Contenu à venir.</p>
-    <!-- TODO: foire aux questions — contenu réel à fournir par le client. -->
-    <a class="btn btn-primary" href="index.html">
-      <p class="btn-text">Retour à l'accueil</p>
-      <span class="square"></span>
-    </a>
-  </main>
+  <div class="container">
+    <!-- Header dupliqué depuis index.html : deviendra un @include Blade lors de la phase Laravel. -->
+    <header>
+      <nav class="navbar">
+
+        <a href="index.html" class="navbar-brand">
+          <img width="90" height="90" src="./assets/images/logo.png"
+            alt="Les Établissements Raoul Follereau — accueil">
+        </a>
+
+        <nav class="primary-nav" aria-label="Navigation principale">
+          <ul>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="index.html">
+                <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Accueil</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="formations.html">
+                <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Formations</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="institution.html">
+                <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Institution</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="galerie.html">
+                <ion-icon name="images-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Galerie</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="actualites.html">
+                <ion-icon name="newspaper-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Actualités</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="contact.html">
+                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Contact</span>
+              </a>
+            </li>
+            <!-- Compte : présent uniquement dans la bottom bar mobile.
+                 Dans le header (desktop/tablette), le compte est l'icône .nav-account ci-dessous. -->
+            <li class="primary-nav-item primary-nav-item--bottombar-only">
+              <a class="primary-nav-link" href="compte.html">
+                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Compte</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="navbar-actions">
+
+          <button type="button" class="icon-btn nav-search-toggle" aria-label="Rechercher sur le site"
+            aria-expanded="false" aria-controls="site-search">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+          <a href="compte.html" class="icon-btn nav-account" aria-label="Mon compte">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          </a>
+
+          <a href="preinscription.html" class="btn btn-primary navbar-cta">
+            <p class="btn-text">S'inscrire</p>
+            <span class="square"></span>
+          </a>
+
+          <button type="button" class="nav-toggle-btn" aria-label="Ouvrir le menu secondaire"
+            aria-expanded="false" aria-controls="secondary-menu">
+            <span class="one"></span>
+            <span class="two"></span>
+            <span class="three"></span>
+          </button>
+
+        </div>
+
+        <div class="site-search" id="site-search" hidden>
+          <form class="site-search-form" role="search" action="#">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            <input type="search" name="q" class="site-search-input"
+              placeholder="Rechercher une formation, une actualité…" aria-label="Rechercher sur le site">
+            <button type="submit" class="site-search-submit">OK</button>
+          </form>
+        </div>
+
+        <ul class="navbar-nav" id="secondary-menu" hidden>
+          <li class="secondary-menu-head">
+            <span class="secondary-menu-title">Informations</span>
+            <button type="button" class="secondary-menu-close" aria-label="Fermer le menu secondaire">
+              <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </li>
+          <li class="nav-item"><a href="faq.html" aria-current="page">FAQ</a></li>
+          <li class="nav-item"><a href="documents.html">Documents à télécharger</a></li>
+          <li class="nav-item"><a href="confidentialite.html">Politique de confidentialité</a></li>
+          <li class="nav-item"><a href="termes.html">Termes &amp; Conditions</a></li>
+          <li class="nav-item"><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+
+      </nav>
+
+      <div class="secondary-menu-overlay" hidden></div>
+    </header>
+
+    <main>
+
+      <!-- Bannière de page (voir PROJECT_CONTEXT.md §3.3), variante photo -->
+      <section class="page-banner page-banner--detail" aria-labelledby="faq-page-title">
+
+        <div class="deco-shape shape-1">
+          <img src="./assets/images/shape-1.png" alt="" width="70">
+        </div>
+        <div class="deco-shape shape-3">
+          <img src="./assets/images/shape-3.png" alt="" width="120">
+        </div>
+
+        <div class="page-banner-text">
+
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <ol>
+              <li><a href="index.html">Accueil</a></li>
+              <li aria-current="page">FAQ</li>
+            </ol>
+          </nav>
+
+          <p class="section-subtitle">Besoin d'aide ?</p>
+
+          <h1 class="section-title" id="faq-page-title"><span class="heading-line">Questions fréquentes</span></h1>
+
+          <p class="section-text">
+            Préinscription, conditions d'admission, diplômes, frais ou stages : retrouvez les réponses aux questions
+            que l'on nous pose le plus souvent.
+          </p>
+
+        </div>
+
+        <div class="page-banner-visual" aria-hidden="true">
+          <div class="img-box">
+            <!-- TODO: visuel provisoire -->
+            <img src="./assets/images/event-img.jpg" width="480" height="360" alt="" class="banner-img banner-photo">
+
+            <ul class="banner-badges">
+              <li class="banner-badge badge-1 smooth-zigzag-anim-1">
+                <ion-icon name="help-circle-outline"></ion-icon>
+                <span data-faq-badge="questions"><strong>17</strong> questions</span>
+              </li>
+              <li class="banner-badge badge-2 smooth-zigzag-anim-2">
+                <ion-icon name="albums-outline"></ion-icon>
+                <span data-faq-badge="themes"><strong>4</strong> thèmes</span>
+              </li>
+              <li class="banner-badge badge-3 smooth-zigzag-anim-3">
+                <ion-icon name="chatbubbles-outline"></ion-icon>
+                <span>Réponse sous <strong>48 h</strong></span>
+              </li>
+            </ul>
+
+            <img src="./assets/images/banner-aliment-icon-4.png" alt="" class="icon-4 drop-anim" width="50">
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- Questions : recherche, thèmes et accordéon (<details>) générés par pages/faq.js depuis
+           assets/data/faq.js. .anchor-target : un lien faq.html#question arrive au bon endroit. -->
+      <section class="faq anchor-target" id="questions" aria-labelledby="faq-title">
+        <div class="faq-inner">
+
+          <h2 class="visually-hidden" id="faq-title">Toutes les questions</h2>
+
+          <form class="faq-search" role="search" action="#">
+            <label class="visually-hidden" for="faq-search">Rechercher une question</label>
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            <input type="search" id="faq-search" class="form-input faq-search-input" autocomplete="off"
+              placeholder="Rechercher une question (ex. : concours, frais, stage)">
+          </form>
+
+          <div class="gallery-toolbar">
+            <div class="news-filters faq-filters" role="group" aria-label="Filtrer les questions par thème"></div>
+            <div class="faq-tools">
+              <p class="catalog-count faq-count" aria-live="polite"></p>
+              <button type="button" class="filters-reset faq-expand" aria-pressed="false">
+                <ion-icon name="add-circle-outline" aria-hidden="true"></ion-icon>
+                <span>Tout déplier</span>
+              </button>
+            </div>
+          </div>
+
+          <noscript>
+            <p class="section-text catalog-noscript">
+              Activez JavaScript pour afficher les questions fréquentes, ou <a href="contact.html">contactez-nous</a>.
+            </p>
+          </noscript>
+
+          <div class="faq-groups"></div>
+
+          <div class="catalog-empty faq-empty" hidden>
+            <ion-icon name="help-circle-outline" aria-hidden="true"></ion-icon>
+            <h3 class="catalog-empty-title">Aucune question ne correspond</h3>
+            <p class="section-text">
+              Essayez un autre mot-clé, ou posez-nous directement votre question : nous répondons sous 48 heures ouvrées.
+            </p>
+            <div class="faq-empty-actions">
+              <a href="contact.html?objet=general" class="btn btn-primary">
+                <p class="btn-text">Poser ma question</p>
+                <span class="square"></span>
+              </a>
+              <button type="button" class="filters-reset" data-faq-reset>
+                <ion-icon name="refresh-outline" aria-hidden="true"></ion-icon>
+                <span>Afficher toutes les questions</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Carte flottante : chevauche le bas de la FAQ et le haut du footer -->
+      <section class="contact">
+
+        <div class="contact-card" id="contact">
+          <img src="./assets/images/cta-bg-img.png" alt="" class="contact-card-bg">
+
+          <h2>Vous n'avez pas trouvé votre réponse ?</h2>
+
+          <a href="contact.html?objet=general" class="btn btn-primary">
+            <p class="btn-text">Poser ma question</p>
+            <span class="square"></span>
+          </a>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer dupliqué depuis index.html (liens pointés vers les vraies pages) : deviendra un @include Blade. -->
+    <footer>
+      <div class="footer-grid">
+
+        <div class="grid-item">
+
+          <div class="footer-logo">
+            <img src="./assets/images/logo.png" alt="Les Établissements Raoul Follereau">
+          </div>
+
+          <p class="footer-text">
+            Les Établissements Raoul Follereau, à Fada N'Gourma, regroupent l'Institut Privé Supérieur de formation
+            en Santé, l'École Privée de Santé et le Centre Professionnel de Formation Professionnelle : des formations
+            certifiantes en santé, gestion, numérique et métiers techniques, tournées vers l'insertion professionnelle.
+          </p>
+
+          <div class="social-link">
+            <a href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </div>
+
+        </div>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Liens</h4>
+
+          <li class="list-item">
+            <a href="index.html#home">Accueil</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#about">A propos</a>
+          </li>
+
+          <li class="list-item">
+            <a href="formations.html">Formations</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#blog">Blog</a>
+          </li>
+
+          <li class="list-item">
+            <a href="contact.html">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Autres liens</h4>
+
+          <li class="list-item">
+            <a href="formateurs.html">Nos enseignants</a>
+          </li>
+
+          <li class="list-item">
+            <a href="faq.html">FAQ</a>
+          </li>
+
+          <li class="list-item">
+            <a href="actualites.html">Evènements</a>
+          </li>
+
+          <li class="list-item">
+            <a href="confidentialite.html">Politique de confidentialité</a>
+          </li>
+
+          <li class="list-item">
+            <a href="termes.html">Termes & Conditions</a>
+          </li>
+
+        </ul>
+
+        <div class="grid-item">
+
+          <h4 class="item-heading">Newsletter</h4>
+
+          <div class="wrapper">
+            <input type="text" name="subscribe" placeholder="Adresse Email">
+            
+            <button class="send-btn">
+              <ion-icon name="paper-plane"></ion-icon>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <p class="copyright">
+        Copyright © 2026 <a href="#">Les Etablissements Raoul Follereau</a>. Tout droit reservé.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Bouton flottant WhatsApp — dupliqué sur chaque page en attendant l'@include Blade -->
+  <!-- TODO: remplacer le numéro par la ligne WhatsApp réelle des Établissements -->
+  <a href="https://wa.me/22670249765" class="whatsapp-fab whatsapp-pulse-anim" target="_blank" rel="noopener"
+    aria-label="Écrire aux Établissements Raoul Follereau sur WhatsApp">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+  </a>
+
+  <!-- Données puis helpers puis script de page ; premium-animations.js et hero-intro.js APRÈS
+       pages/faq.js (questions générées). -->
+  <script src="./assets/data/faq.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/pages/faq.js"></script>
+  <script src="./assets/js/premium-animations.js"></script>
+  <script src="./assets/js/hero-intro.js"></script>
+  <script src="./assets/js/header-nav.js"></script>
+  <script src="./assets/js/script.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

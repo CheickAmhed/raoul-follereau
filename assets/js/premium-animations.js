@@ -57,7 +57,8 @@
       '.inst-partners-grid',
       '.agenda-grid',
       '.gallery-grid',
-      '.testimonial-grid'
+      '.testimonial-grid',
+      '.faq-list'
     ];
 
     document.documentElement.classList.add('premium-anim');

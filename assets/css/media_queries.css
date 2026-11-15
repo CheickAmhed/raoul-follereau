@@ -1374,3 +1374,59 @@
   .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #DOCUMENTS  (documents.html)
+\*-----------------------------------*/
+
+@media (min-width: 575px) {
+
+  .doc-filters,
+  .faq-filters { flex-wrap: wrap; }
+
+}
+
+
+
+
+
+@media (min-width: 767px) {
+
+  .doc-item {
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+    align-items: center;
+    padding: 22px 25px;
+  }
+
+  /* bouton à droite ; le message « disponible après mise en production » reste sous le bouton */
+  .doc-action {
+    grid-column: auto;
+    max-width: 240px;
+    text-align: right;
+  }
+
+  .doc-status { text-align: right; }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #FAQ  (faq.html)
+\*-----------------------------------*/
+
+@media (min-width: 767px) {
+
+  .faq-question { padding: 22px 25px; }
+
+  .faq-q-text { font-size: 18px; }
+
+  .faq-answer { padding: 0 25px 24px; }
+
+}

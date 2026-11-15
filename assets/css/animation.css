@@ -948,3 +948,33 @@
   .trainer-dialog[open]::backdrop { animation: none; }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #FAQ  (réponse qui apparaît à l'ouverture d'une question)
+\*-----------------------------------*/
+
+.faq-item[open] .faq-answer { animation: faq-answer-in 0.25s ease both; }
+
+@keyframes faq-answer-in {
+
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .faq-item[open] .faq-answer { animation: none; }
+
+}
