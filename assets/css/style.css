@@ -5731,3 +5731,93 @@ html.lightbox-open { overflow: hidden; }   /* page figée pendant l'ouverture */
   font-weight: var(--fw-5);
   color: var(--red-orange-color-wheel);
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #TEMOIGNAGES  (temoignages.html — cartes .testimonials-card de l'accueil en
+  grille, texte complet ; filtres .news-filter)
+\*-----------------------------------*/
+
+.testimonials-page { padding-bottom: 200px; }   /* place pour la carte flottante .contact-card */
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+/* colonne flex : l'auteur reste calé en bas, quelle que soit la longueur du texte */
+.testimonial-item {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 25px;
+}
+
+.testimonial-item[hidden] { display: none; }
+
+/* texte complet : la troncature à 5 lignes de l'accueil (défilement) ne s'applique pas ici */
+.testimonial-grid .testimonials-text {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: none;
+  overflow: visible;
+  min-height: 0;
+  margin-bottom: 25px;
+}
+
+.testimonial-grid .testimonials-client { margin-top: auto; }
+
+.testimonial-item .quote-img {
+  bottom: 25px;
+  right:  25px;
+}
+
+.testimonial-formation {
+  display:     flex;
+  flex-wrap:   wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-bottom: 18px;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
+
+/* pastille d'établissement des cartes formateurs, ici dans le flux */
+.testimonial-etab {
+  position: static;
+  background: var(--cultured);
+  box-shadow: none;
+}
+
+.testimonial-formation a {
+  display: inline;
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+  transition: color var(--default-transition);
+}
+
+.testimonial-formation a:hover {
+  color: var(--red-orange-color-wheel);
+  text-decoration: underline;
+}
+
+.testimonial-promo { color: var(--sonic-silver); }
+
+/* sans photo : initiales (TODO : portraits à fournir) */
+.client-initials {
+  width:  50px;
+  height: 50px;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--oxford-blue), hsl(229, 60%, 32%));
+  font-size: 18px;
+  font-weight: var(--fw-8);
+  color: var(--white);
+}
+
+.testimonial-grid .client-name { font-size: var(--fs-5); }

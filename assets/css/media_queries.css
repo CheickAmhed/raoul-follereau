@@ -1340,3 +1340,37 @@
   .trainer-grid { grid-template-columns: repeat(4, 1fr); }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #TEMOIGNAGES  (temoignages.html)
+\*-----------------------------------*/
+
+@media (min-width: 767px) {
+
+  .testimonial-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .testimonial-item { padding: 40px; }
+
+  .testimonial-item .quote-img {
+    bottom: 40px;
+    right:  40px;
+  }
+
+}
+
+
+
+
+
+@media (min-width: 1200px) {
+
+  .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+
+}
