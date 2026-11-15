@@ -929,3 +929,22 @@
   .lightbox-img { animation: none; }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #FORMATEURS  (ouverture de la fiche : même apparition que les photos de la galerie)
+\*-----------------------------------*/
+
+.trainer-dialog[open] { animation: lightbox-photo-in 0.3s ease both; }
+
+.trainer-dialog[open]::backdrop { animation: lightbox-in 0.25s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+
+  .trainer-dialog[open],
+  .trainer-dialog[open]::backdrop { animation: none; }
+
+}

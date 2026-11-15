@@ -1277,3 +1277,66 @@
   .gallery-grid { grid-template-columns: repeat(4, 1fr); }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #FORMATEURS  (formateurs.html)
+\*-----------------------------------*/
+
+@media (min-width: 575px) {
+
+  .trainer-dialog-photo {
+    width:  84px;
+    height: 84px;
+  }
+
+  .trainer-dialog-name { font-size: var(--fs-4); }
+
+}
+
+
+
+
+
+@media (min-width: 767px) {
+
+  .trainer-grid { gap: 30px; }
+
+  .trainer-card { padding: 20px 20px 25px; }
+
+  .trainer-card .instructor-name { font-size: var(--fs-4); }
+
+  .trainer-initials { font-size: 56px; }
+
+  /* filtres au ras des bords, alignés sur la grille en plein cadre (#SECTIONS PLEINE LARGEUR) */
+  .trainer-toolbar {
+    margin-left:  calc(-1 * var(--px));
+    margin-right: calc(-1 * var(--px));
+  }
+
+  .trainer-dialog-inner { padding: 40px; }
+
+}
+
+
+
+
+
+@media (min-width: 992px) {
+
+  .trainer-grid { grid-template-columns: repeat(3, 1fr); }
+
+}
+
+
+
+
+
+@media (min-width: 1200px) {
+
+  .trainer-grid { grid-template-columns: repeat(4, 1fr); }
+
+}

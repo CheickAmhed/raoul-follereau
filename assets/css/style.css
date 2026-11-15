@@ -5499,3 +5499,235 @@ html.lightbox-open { overflow: hidden; }   /* page figée pendant l'ouverture */
 .lightbox-prev { left:  10px; }
 
 .lightbox-next { right: 10px; }
+
+
+
+
+
+/*-----------------------------------*\
+  #FORMATEURS  (formateurs.html — cartes .instructor-card de l'accueil, filtres
+  .news-filter, fiche détaillée dans un <dialog>)
+\*-----------------------------------*/
+
+.trainers { padding-bottom: 200px; }   /* place pour la carte flottante .contact-card */
+
+/* mobile : 2 cartes par ligne (la grille de l'accueil en met une seule) */
+.trainer-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.trainer-card[hidden] { display: none; }
+
+.trainer-card {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px 18px;
+}
+
+.trainer-card .instructor-img-box { margin-bottom: 18px; }
+
+/* sans photo : initiales sur fond dégradé (TODO : portraits à fournir) */
+.trainer-initials {
+  position: absolute;
+  inset: 0;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--oxford-blue), hsl(229, 60%, 32%));
+  font-size: 40px;
+  font-weight: var(--fw-8);
+  letter-spacing: 0.04em;
+  color: var(--white);
+}
+
+.trainer-etab {
+  position: absolute;
+  top:  10px;
+  left: 10px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--white);
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: var(--fw-7);
+  color: var(--oxford-blue);
+  box-shadow: 0 6px 16px hsla(0, 0%, 0%, 0.12);
+}
+
+.trainer-card .instructor-name {
+  font-size: 17px;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.trainer-card .instructor-title { font-weight: var(--fw-5); }
+
+.trainer-meta {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  color: var(--sonic-silver);
+  line-height: 1.5;
+  margin: 8px 0 14px;
+}
+
+.trainer-more {
+  display:     inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: auto;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+  transition: color var(--default-transition);
+}
+
+.trainer-more ion-icon {
+  font-size: 16px;
+  transition: transform var(--default-transition);
+}
+
+.trainer-more:hover { color: var(--red-orange-color-wheel); }
+
+.trainer-more:hover ion-icon { transform: translateX(4px); }
+
+.trainer-more:focus-visible {
+  outline: 2px solid var(--red-orange-color-wheel);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- fiche détaillée ---- */
+.trainer-dialog {
+  width: min(560px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  margin: auto;
+  padding: 0;                       /* le voile reçoit les clics hors de .trainer-dialog-inner */
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 30px 60px hsla(229, 84%, 6%, 0.35);
+}
+
+.trainer-dialog::backdrop { background: hsla(229, 84%, 6%, 0.7); }
+
+.trainer-dialog-inner {
+  position: relative;
+  padding: 30px 25px;
+}
+
+.trainer-dialog-close {
+  position: absolute;
+  top:   12px;
+  right: 12px;
+  width:  40px;
+  height: 40px;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--cultured);
+  color: var(--oxford-blue);
+  transition: var(--default-transition);
+}
+
+.trainer-dialog-close ion-icon { font-size: 22px; }
+
+.trainer-dialog-close:hover {
+  background: var(--red-orange-color-wheel);
+  color: var(--white);
+}
+
+.trainer-dialog-head {
+  display:     flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 40px;              /* ne passe pas sous le bouton de fermeture */
+}
+
+.trainer-dialog-photo {
+  position: relative;
+  flex-shrink: 0;
+  width:  64px;                     /* 84px à partir de 575px (media_queries.css) */
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.trainer-dialog-photo img {
+  width:  100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trainer-initials--small { font-size: 26px; }
+
+.trainer-dialog-name {
+  font-size: var(--fs-5);
+  font-weight: var(--fw-8);
+  color: var(--oxford-blue);
+  line-height: 1.2;
+}
+
+.trainer-dialog-role {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+  margin-top: 4px;
+}
+
+.trainer-dialog-meta {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  color: var(--ultramarine-blue);
+  margin-top: 4px;
+}
+
+.trainer-dialog-bio {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--sonic-silver);
+  line-height: 1.7;
+  margin: 20px 0;
+}
+
+.trainer-dialog-subtitle {
+  font-size: var(--fs-5);
+  font-weight: var(--fw-7);
+  color: var(--oxford-blue);
+  margin-bottom: 6px;
+}
+
+.trainer-dialog-list a {
+  display:     flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--light-gray);
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--oxford-blue);
+  transition: color var(--default-transition);
+}
+
+.trainer-dialog-list a:hover { color: var(--red-orange-color-wheel); }
+
+.trainer-dialog-list ion-icon {
+  flex-shrink: 0;
+  font-size: 20px;
+  color: var(--ultramarine-blue);
+}
+
+.trainer-dialog-etab {
+  display:     inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--red-orange-color-wheel);
+}

@@ -21,7 +21,7 @@
 
 </head>
 
-<body data-page="institution.html">
+<body>
   <div class="container">
     <!-- Header dupliqué depuis index.html : deviendra un @include Blade lors de la phase Laravel. -->
     <header>
@@ -46,10 +46,16 @@
                 <span class="primary-nav-label">Formations</span>
               </a>
             </li>
-            <li class="primary-nav-item primary-nav-item--header-only is-active">
+            <li class="primary-nav-item primary-nav-item--header-only">
               <a class="primary-nav-link" href="institution.html">
                 <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
                 <span class="primary-nav-label">Institution</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only is-active">
+              <a class="primary-nav-link" href="galerie.html" aria-current="page">
+                <ion-icon name="images-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Galerie</span>
               </a>
             </li>
             <li class="primary-nav-item">
@@ -294,7 +300,7 @@
           <h4 class="item-heading">Autres liens</h4>
 
           <li class="list-item">
-            <a href="#">Nos enseignants</a>
+            <a href="formateurs.html">Nos enseignants</a>
           </li>
 
           <li class="list-item">
