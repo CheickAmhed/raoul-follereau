@@ -55,7 +55,8 @@
       '.etab-details',
       '.inst-infra-grid',
       '.inst-partners-grid',
-      '.agenda-grid'
+      '.agenda-grid',
+      '.gallery-grid'
     ];
 
     document.documentElement.classList.add('premium-anim');

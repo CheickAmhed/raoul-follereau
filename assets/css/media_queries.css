@@ -1228,3 +1228,52 @@
   .agenda > .section-head { margin-bottom: 60px; }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #GALERIE  (galerie.html)
+\*-----------------------------------*/
+
+@media (hover: hover) {
+
+  /* souris : bandeau des vignettes révélé au survol ou au focus clavier */
+  .gallery-thumb-overlay { opacity: 0; }
+
+  .gallery-thumb:hover .gallery-thumb-overlay,
+  .gallery-thumb:focus-visible .gallery-thumb-overlay { opacity: 1; }
+
+}
+
+
+
+
+
+@media (min-width: 767px) {
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .gallery-thumb-album { font-size: 13px; }
+
+  .lightbox-stage { padding: 70px 80px 30px; }
+
+  .lightbox-prev { left:  20px; }
+
+  .lightbox-next { right: 20px; }
+
+}
+
+
+
+
+
+@media (min-width: 1200px) {
+
+  .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+
+}
