@@ -348,7 +348,8 @@
                 </div>
                 <div class="form-field">
                   <label class="form-label" for="f-email">Adresse email <span class="form-required" aria-hidden="true">*</span></label>
-                  <input type="email" id="f-email" name="email" class="form-input" required autocomplete="email" placeholder="Ex. : aminata@exemple.com">
+                  <input type="email" id="f-email" name="email" class="form-input" required autocomplete="email" placeholder="Ex. : aminata@exemple.com"
+                    pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}" data-error="Adresse email invalide (ex. : nom@exemple.com).">
                   <p class="form-hint">La confirmation de votre candidature vous sera envoyée à cette adresse.</p>
                   <p class="field-error" id="err-email" hidden></p>
                 </div>

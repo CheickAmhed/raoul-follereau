@@ -255,8 +255,13 @@
     return true;
   }
 
-  form.addEventListener('input', function (e) { clearError(e.target); });
-  form.addEventListener('change', function (e) { clearError(e.target); });
+  /* l'erreur d'un champ s'efface dès qu'on le corrige (les champs fichier gèrent
+     eux-mêmes leur message dans onFileChange : on ne les efface pas ici) */
+  function clearOnEdit(e) {
+    if (e.target && e.target.type !== 'file') clearError(e.target);
+  }
+  form.addEventListener('input', clearOnEdit);
+  form.addEventListener('change', clearOnEdit);
 
 
   /* --- Collecte des saisies dans formState -------------------------------- */

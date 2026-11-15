@@ -3404,9 +3404,14 @@ body { padding-bottom: 88px; }     /* place pour la bottom bar fixe */
   margin-bottom: 8px;
 }
 
-.form-required { color: var(--red-orange-color-wheel); }
+/* display:inline : le reset met span et a en display:block */
+.form-required {
+  display: inline;
+  color: var(--red-orange-color-wheel);
+}
 
 .form-optional {
+  display: inline;
   font-weight: 400;
   color: var(--sonic-silver);
 }
@@ -3474,6 +3479,7 @@ select.form-input {
 }
 
 .form-hint a {
+  display: inline;
   color: var(--red-orange-color-wheel);
   text-decoration: underline;
 }
@@ -3571,6 +3577,7 @@ select.form-input {
 }
 
 .form-check label a {
+  display: inline;
   color: var(--red-orange-color-wheel);
   text-decoration: underline;
 }
@@ -3784,6 +3791,9 @@ select.form-input {
   line-height: 1.5;
 }
 
+/* tout sur une seule ligne (retour à la ligne naturel) : spans en inline */
+.wizard-context p span { display: inline; }
+
 .wizard-context-label { color: var(--sonic-silver); }
 
 .wizard-context strong { font-weight: var(--fw-7); }
@@ -3865,6 +3875,7 @@ select.form-input {
 .wizard-selection-price span { display: inline; color: var(--red-orange-color-wheel); font-weight: var(--fw-7); }
 
 .wizard-selection-price a {
+  display: inline;
   color: var(--oxford-blue);
   text-decoration: underline;
 }
