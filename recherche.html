@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recherche — Les Établissements Raoul Follereau</title>
+  <meta name="description"
+    content="Recherchez une formation, une actualité, un document, un enseignant ou une réponse sur le site des Établissements Raoul Follereau.">
+  <!-- page de résultats de recherche : non indexée par les moteurs de recherche -->
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/media_queries.css">
+  <link rel="stylesheet" href="./assets/css/animation.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800;900&family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header dupliqué depuis index.html : deviendra un @include Blade lors de la phase Laravel. -->
+    <header>
+      <nav class="navbar">
+
+        <a href="index.html" class="navbar-brand">
+          <img width="90" height="90" src="./assets/images/logo.png"
+            alt="Les Établissements Raoul Follereau — accueil">
+        </a>
+
+        <nav class="primary-nav" aria-label="Navigation principale">
+          <ul>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="index.html">
+                <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Accueil</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="formations.html">
+                <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Formations</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="institution.html">
+                <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Institution</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="galerie.html">
+                <ion-icon name="images-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Galerie</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="actualites.html">
+                <ion-icon name="newspaper-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Actualités</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="contact.html">
+                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Contact</span>
+              </a>
+            </li>
+            <!-- Compte : présent uniquement dans la bottom bar mobile.
+                 Dans le header (desktop/tablette), le compte est l'icône .nav-account ci-dessous. -->
+            <li class="primary-nav-item primary-nav-item--bottombar-only">
+              <a class="primary-nav-link" href="compte.html">
+                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Compte</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="navbar-actions">
+
+          <button type="button" class="icon-btn nav-search-toggle" aria-label="Rechercher sur le site"
+            aria-expanded="false" aria-controls="site-search">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+          <a href="compte.html" class="icon-btn nav-account" aria-label="Mon compte">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          </a>
+
+          <a href="preinscription.html" class="btn btn-primary navbar-cta">
+            <p class="btn-text">S'inscrire</p>
+            <span class="square"></span>
+          </a>
+
+          <button type="button" class="nav-toggle-btn" aria-label="Ouvrir le menu secondaire"
+            aria-expanded="false" aria-controls="secondary-menu">
+            <span class="one"></span>
+            <span class="two"></span>
+            <span class="three"></span>
+          </button>
+
+        </div>
+
+        <div class="site-search" id="site-search" hidden>
+          <form class="site-search-form" role="search" action="recherche.html">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            <input type="search" name="q" class="site-search-input"
+              placeholder="Rechercher une formation, une actualité…" aria-label="Rechercher sur le site">
+            <button type="submit" class="site-search-submit">OK</button>
+          </form>
+        </div>
+
+        <ul class="navbar-nav" id="secondary-menu" hidden>
+          <li class="secondary-menu-head">
+            <span class="secondary-menu-title">Informations</span>
+            <button type="button" class="secondary-menu-close" aria-label="Fermer le menu secondaire">
+              <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </li>
+          <li class="nav-item"><a href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a href="documents.html">Documents à télécharger</a></li>
+          <li class="nav-item"><a href="confidentialite.html">Politique de confidentialité</a></li>
+          <li class="nav-item"><a href="termes.html">Termes &amp; Conditions</a></li>
+          <li class="nav-item"><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+
+      </nav>
+
+      <div class="secondary-menu-overlay" hidden></div>
+    </header>
+
+    <main>
+
+      <!-- Bannière de page (voir PROJECT_CONTEXT.md §3.3), variante « recherche » : une colonne centrée,
+           champ de recherche sous le titre. Formulaire GET : il fonctionne aussi sans JavaScript. -->
+      <section class="page-banner page-banner--search" aria-labelledby="search-page-title">
+
+        <div class="deco-shape shape-1">
+          <img src="./assets/images/shape-1.png" alt="" width="70">
+        </div>
+        <div class="deco-shape shape-3">
+          <img src="./assets/images/shape-3.png" alt="" width="120">
+        </div>
+
+        <div class="page-banner-text">
+
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <ol>
+              <li><a href="index.html">Accueil</a></li>
+              <li aria-current="page">Recherche</li>
+            </ol>
+          </nav>
+
+          <p class="section-subtitle">Recherche</p>
+
+          <h1 class="section-title" id="search-page-title"><span class="heading-line">Que cherchez-vous&nbsp;?</span></h1>
+
+          <p class="section-text">
+            Formations, concours, frais, documents, actualités ou questions fréquentes : tout le site en une seule recherche.
+          </p>
+
+          <form class="search-page-form" role="search" action="recherche.html">
+            <label class="visually-hidden" for="search-q">Rechercher sur le site</label>
+            <div class="search-page-field">
+              <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+              <input type="search" id="search-q" name="q" class="form-input search-page-input" autocomplete="off"
+                enterkeyhint="search" placeholder="Ex. : infirmier, concours, frais">
+            </div>
+            <button type="submit" class="btn btn-primary search-page-submit">
+              <p class="btn-text">Rechercher</p>
+              <span class="square"></span>
+            </button>
+          </form>
+
+        </div>
+
+      </section>
+
+
+      <!-- Résultats générés par pages/recherche.js depuis assets/data/*.js (formations, actualités, FAQ,
+           documents, enseignants, albums, pages du site). TODO (phase Laravel) : recherche côté serveur. -->
+      <section class="search" aria-labelledby="search-results-title">
+
+        <div class="search-inner">
+
+          <h2 class="visually-hidden" id="search-results-title">Résultats de la recherche</h2>
+
+          <div class="gallery-toolbar search-toolbar" hidden>
+            <div class="news-filters search-filters" role="group" aria-label="Filtrer les résultats par type"></div>
+            <p class="catalog-count search-count" aria-live="polite" tabindex="-1"></p>
+          </div>
+
+          <p class="search-notice" hidden></p>
+
+          <noscript>
+            <p class="section-text catalog-noscript">Activez JavaScript pour afficher les résultats de la recherche.</p>
+          </noscript>
+
+          <div class="search-groups"></div>
+
+          <!-- Champ vide : recherches fréquentes et accès rapides -->
+          <div class="search-start">
+            <h2 class="search-start-title">Recherches fréquentes</h2>
+            <ul class="search-suggestions">
+              <li><a href="recherche.html?q=infirmier" data-suggest="infirmier"><ion-icon name="search-outline" aria-hidden="true"></ion-icon>infirmier</a></li>
+              <li><a href="recherche.html?q=sage-femme" data-suggest="sage-femme"><ion-icon name="search-outline" aria-hidden="true"></ion-icon>sage-femme</a></li>
+              <li><a href="recherche.html?q=concours" data-suggest="concours"><ion-icon name="search-outline" aria-hidden="true"></ion-icon>concours</a></li>
+              <li><a href="recherche.html?q=frais" data-suggest="frais"><ion-icon name="search-outline" aria-hidden="true"></ion-icon>frais de formation</a></li>
+              <li><a href="recherche.html?q=informatique" data-suggest="informatique"><ion-icon name="search-outline" aria-hidden="true"></ion-icon>informatique</a></li>
+              <li><a href="recherche.html?q=stage" data-suggest="stage"><ion-icon name="search-outline" aria-hidden="true"></ion-icon>stage</a></li>
+              <li><a href="recherche.html?q=calendrier" data-suggest="calendrier"><ion-icon name="search-outline" aria-hidden="true"></ion-icon>calendrier</a></li>
+            </ul>
+
+            <h2 class="search-start-title">Accès rapides</h2>
+            <ul class="search-shortcuts">
+              <li><a href="formations.html"><ion-icon name="school-outline" aria-hidden="true"></ion-icon><span>Toutes les formations</span><ion-icon name="arrow-forward-outline" aria-hidden="true" class="search-shortcut-arrow"></ion-icon></a></li>
+              <li><a href="preinscription.html"><ion-icon name="create-outline" aria-hidden="true"></ion-icon><span>Se préinscrire en ligne</span><ion-icon name="arrow-forward-outline" aria-hidden="true" class="search-shortcut-arrow"></ion-icon></a></li>
+              <li><a href="actualites.html"><ion-icon name="calendar-outline" aria-hidden="true"></ion-icon><span>Agenda et actualités</span><ion-icon name="arrow-forward-outline" aria-hidden="true" class="search-shortcut-arrow"></ion-icon></a></li>
+              <li><a href="documents.html"><ion-icon name="document-text-outline" aria-hidden="true"></ion-icon><span>Documents à télécharger</span><ion-icon name="arrow-forward-outline" aria-hidden="true" class="search-shortcut-arrow"></ion-icon></a></li>
+              <li><a href="faq.html"><ion-icon name="help-circle-outline" aria-hidden="true"></ion-icon><span>Questions fréquentes</span><ion-icon name="arrow-forward-outline" aria-hidden="true" class="search-shortcut-arrow"></ion-icon></a></li>
+              <li><a href="contact.html"><ion-icon name="call-outline" aria-hidden="true"></ion-icon><span>Nous contacter</span><ion-icon name="arrow-forward-outline" aria-hidden="true" class="search-shortcut-arrow"></ion-icon></a></li>
+            </ul>
+          </div>
+
+          <!-- Aucun résultat : mêmes recherches fréquentes (copiées par le script), FAQ et contact -->
+          <div class="catalog-empty search-empty" hidden>
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            <h2 class="catalog-empty-title" data-search-empty-title>Aucun résultat</h2>
+            <p class="section-text">Vérifiez l'orthographe, ou essayez un mot plus court ou plus général. Par exemple :</p>
+            <ul class="search-suggestions" data-suggestions-copy></ul>
+            <div class="search-empty-actions">
+              <a href="faq.html" class="btn btn-secondary">
+                <p class="btn-text">Voir la FAQ</p>
+                <span class="square"></span>
+              </a>
+              <a href="contact.html?objet=general" class="btn btn-primary">
+                <p class="btn-text">Poser une question</p>
+                <span class="square"></span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Carte flottante : chevauche le bas des résultats et le haut du footer -->
+      <section class="contact">
+
+        <div class="contact-card" id="contact">
+          <img src="./assets/images/cta-bg-img.png" alt="" class="contact-card-bg">
+
+          <h2>Vous ne trouvez pas l'information&nbsp;?</h2>
+
+          <a href="contact.html?objet=general" class="btn btn-primary">
+            <p class="btn-text">Contactez-nous</p>
+            <span class="square"></span>
+          </a>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer dupliqué depuis index.html (liens pointés vers les vraies pages) : deviendra un @include Blade. -->
+    <footer>
+      <div class="footer-grid">
+
+        <div class="grid-item">
+
+          <div class="footer-logo">
+            <img src="./assets/images/logo.png" alt="Les Établissements Raoul Follereau">
+          </div>
+
+          <p class="footer-text">
+            Les Établissements Raoul Follereau, à Fada N'Gourma, regroupent l'Institut Privé Supérieur de formation
+            en Santé, l'École Privée de Santé et le Centre Professionnel de Formation Professionnelle : des formations
+            certifiantes en santé, gestion, numérique et métiers techniques, tournées vers l'insertion professionnelle.
+          </p>
+
+          <div class="social-link">
+            <a href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </div>
+
+        </div>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Liens</h4>
+
+          <li class="list-item">
+            <a href="index.html#home">Accueil</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#about">A propos</a>
+          </li>
+
+          <li class="list-item">
+            <a href="formations.html">Formations</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#blog">Blog</a>
+          </li>
+
+          <li class="list-item">
+            <a href="contact.html">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Autres liens</h4>
+
+          <li class="list-item">
+            <a href="formateurs.html">Nos enseignants</a>
+          </li>
+
+          <li class="list-item">
+            <a href="faq.html">FAQ</a>
+          </li>
+
+          <li class="list-item">
+            <a href="actualites.html">Evènements</a>
+          </li>
+
+          <li class="list-item">
+            <a href="confidentialite.html">Politique de confidentialité</a>
+          </li>
+
+          <li class="list-item">
+            <a href="termes.html">Termes & Conditions</a>
+          </li>
+
+        </ul>
+
+        <div class="grid-item">
+
+          <h4 class="item-heading">Newsletter</h4>
+
+          <div class="wrapper">
+            <input type="text" name="subscribe" placeholder="Adresse Email">
+            
+            <button class="send-btn">
+              <ion-icon name="paper-plane"></ion-icon>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <p class="copyright">
+        Copyright © 2026 <a href="#">Les Etablissements Raoul Follereau</a>. Tout droit reservé.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Bouton flottant WhatsApp — dupliqué sur chaque page en attendant l'@include Blade -->
+  <!-- TODO: remplacer le numéro par la ligne WhatsApp réelle des Établissements -->
+  <a href="https://wa.me/22670249765" class="whatsapp-fab whatsapp-pulse-anim" target="_blank" rel="noopener"
+    aria-label="Écrire aux Établissements Raoul Follereau sur WhatsApp">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+  </a>
+
+  <!-- Données parcourues par la recherche, helpers partagés, script de page,
+       puis premium-animations.js et hero-intro.js. -->
+  <script src="./assets/data/formations.js"></script>
+  <script src="./assets/data/actualites.js"></script>
+  <script src="./assets/data/faq.js"></script>
+  <script src="./assets/data/documents.js"></script>
+  <script src="./assets/data/formateurs.js"></script>
+  <script src="./assets/data/galerie.js"></script>
+  <script src="./assets/data/pages.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/formation-card.js"></script>
+  <script src="./assets/js/actu-card.js"></script>
+  <script src="./assets/js/pages/recherche.js"></script>
+  <script src="./assets/js/premium-animations.js"></script>
+  <script src="./assets/js/hero-intro.js"></script>
+  <script src="./assets/js/header-nav.js"></script>
+  <script src="./assets/js/script.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

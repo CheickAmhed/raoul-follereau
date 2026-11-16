@@ -7439,3 +7439,374 @@ html.lightbox-open { overflow: hidden; }   /* page figée pendant l'ouverture */
 /* ---- colonne « mes informations » ---- */
 
 .account-break { overflow-wrap: anywhere; }
+
+
+
+
+
+/*-----------------------------------*\
+  #RECHERCHE  (recherche.html — bannière avec champ de recherche, résultats groupés
+  par type ; réutilise .news-filter, .gallery-toolbar, .catalog-count et .catalog-empty)
+\*-----------------------------------*/
+
+/* bannière sans visuel, une colonne centrée à toutes les largeurs (media_queries.css) */
+.page-banner--search { padding-bottom: 50px; }
+
+/* header (toutes les pages) : le panneau de recherche devient visible dès l'ouverture,
+   sinon le champ ne peut pas recevoir le focus posé par header-nav.js (visibility était
+   encore « hidden » au début de la transition) ; la fermeture garde le fondu de la règle de base */
+.site-search.is-open {
+  transition: opacity var(--default-transition),
+              transform var(--default-transition),
+              visibility 0s;
+}
+
+/* mobile : bouton pleine largeur sous le champ ; sur la même ligne dès 575px */
+.search-page-form {
+  display:   flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 680px;
+  margin: 30px auto 0;
+  text-align: left;
+}
+
+.search-page-field {
+  position: relative;
+  display: flex;
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+.search-page-field ion-icon {
+  position: absolute;
+  top:  50%;
+  left: 16px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--sonic-silver);
+  pointer-events: none;
+}
+
+.search-page-input {
+  flex: 1;
+  min-width: 0;
+  padding: 17px 15px 17px 48px;
+  box-shadow: 0 10px 30px hsla(229, 84%, 12%, 0.08);   /* --oxford-blue ~8 % */
+}
+
+.search-page-input:focus {
+  box-shadow: 0 0 0 3px hsla(0, 90%, 45%, 0.12), 0 10px 30px hsla(229, 84%, 12%, 0.08);
+}
+
+.search-page-input::-webkit-search-cancel-button { cursor: pointer; }
+
+.search-page-submit {
+  flex: 1 1 100%;
+  padding-top:    18px;
+  padding-bottom: 18px;
+  text-align: center;
+}
+
+
+/* ---- résultats ---- */
+
+.search { padding: var(--py) var(--px) 200px; }   /* place pour la carte flottante .contact-card */
+
+.search-inner {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.search-toolbar[hidden],
+.search-notice[hidden],
+.search-start[hidden] { display: none; }
+
+/* filtres : une ligne qui défile sur mobile (comme .doc-filters) */
+.search-filters {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  max-width: 100%;
+  padding-bottom: 2px;
+}
+
+.search-filters::-webkit-scrollbar { display: none; }
+
+.search-filters .news-filter { flex-shrink: 0; }
+
+.search-count:focus { outline: none; }          /* focus posé par le script (suggestions) */
+
+/* « résultats approchants » : aucun contenu ne contient tous les mots */
+.search-notice {
+  display:     flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 25px;
+  padding: 12px 16px;
+  border-left: 4px solid var(--blue-crayola);
+  border-radius: 8px;
+  background: var(--cultured);
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--oxford-blue);
+  line-height: 1.6;
+}
+
+.search-notice ion-icon {
+  font-size: 22px;
+  color: var(--blue-crayola);
+  flex-shrink: 0;
+}
+
+.search-group { margin-bottom: 45px; }
+
+.search-group:last-child { margin-bottom: 0; }
+
+.search-group-title {
+  display:     flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--light-gray);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-7);
+  color: var(--oxford-blue);
+  scroll-margin-top: 90px;            /* « Voir les N résultats » : titre sous le header fixe */
+}
+
+.search-group-title:focus { outline: none; }
+
+.search-group-title > ion-icon {
+  font-size: 24px;
+  color: var(--red-orange-color-wheel);
+  flex-shrink: 0;
+}
+
+.search-group-name { min-width: 0; }
+
+.search-group-count {
+  margin-left: auto;
+  min-width: 28px;
+  padding: 2px 9px;
+  border-radius: 12px;
+  background: var(--cultured);
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: var(--fw-7);
+  text-align: center;
+  color: var(--oxford-blue);
+}
+
+.search-list {
+  display: grid;
+  gap: 12px;
+}
+
+/* carte de résultat : le lien du titre est étiré à toute la carte */
+.search-result {
+  position: relative;
+  padding: 18px 20px;
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  transition: border-color var(--default-transition), box-shadow var(--default-transition);
+}
+
+.search-result:hover {
+  border-color: var(--red-orange-color-wheel);
+  box-shadow: 0 10px 30px hsla(0, 0%, 0%, 0.06);
+}
+
+/* clavier : l'anneau de focus entoure la carte entière */
+.search-result:focus-within {
+  outline: 2px solid var(--red-orange-color-wheel);
+  outline-offset: 2px;
+}
+
+.search-result-title {
+  font-size: 18px;
+  font-weight: var(--fw-7);
+  color: var(--oxford-blue);
+  line-height: 1.4;
+}
+
+.search-result-title a {
+  display: inline;
+  color: inherit;
+  transition: color var(--default-transition);
+}
+
+.search-result-title a:focus { outline: none; }
+
+.search-result-title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+}
+
+.search-result:hover .search-result-title a { color: var(--red-orange-color-wheel); }
+
+.search-result-meta {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: var(--fw-5);
+  color: var(--sonic-silver);
+  margin-top: 4px;
+}
+
+.search-result-excerpt {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--sonic-silver);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* mots trouvés (mêmes teintes que la FAQ) */
+.search mark {
+  background: hsla(45, 100%, 60%, 0.45);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 1px;
+}
+
+.search-more {
+  display:     inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-5);
+  color: var(--red-orange-color-wheel);
+}
+
+.search-more ion-icon {
+  font-size: 16px;
+  transition: transform var(--default-transition);
+}
+
+.search-more:hover { text-decoration: underline; }
+
+.search-more:hover ion-icon { transform: translateX(3px); }
+
+
+/* ---- champ vide : recherches fréquentes et accès rapides ---- */
+
+.search-start-title {
+  font-size: var(--fs-5);
+  font-weight: var(--fw-7);
+  color: var(--oxford-blue);
+  margin-bottom: 15px;
+}
+
+.search-suggestions {
+  display:   flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.search-suggestions a {
+  display:     inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid var(--light-gray);
+  border-radius: 50px;
+  background: var(--white);
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--oxford-blue);
+  transition: border-color var(--default-transition), color var(--default-transition);
+}
+
+/* (la règle .catalog-empty ion-icon de l'état vide ne doit pas grossir ces icônes) */
+.search-suggestions a ion-icon,
+.search-empty .search-suggestions a ion-icon {
+  font-size: 16px;
+  margin: 0;
+  color: var(--sonic-silver);
+  transition: color var(--default-transition);
+}
+
+.search-suggestions a:hover {
+  border-color: var(--red-orange-color-wheel);
+  color: var(--red-orange-color-wheel);
+}
+
+.search-suggestions a:hover ion-icon,
+.search-empty .search-suggestions a:hover ion-icon { color: inherit; }
+
+/* 1 colonne ; 2 dès 575px, 3 dès 992px (media_queries.css) */
+.search-shortcuts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.search-shortcuts a {
+  display:     flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 8px;
+  background: var(--cultured);
+  font-size: 16px;
+  font-weight: var(--fw-6);
+  color: var(--oxford-blue);
+  transition: background var(--default-transition), color var(--default-transition);
+}
+
+.search-shortcuts a > ion-icon:first-child {
+  font-size: 22px;
+  color: var(--red-orange-color-wheel);
+  flex-shrink: 0;
+}
+
+.search-shortcuts span {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-shortcut-arrow {
+  font-size: 16px;
+  color: var(--sonic-silver);
+  flex-shrink: 0;
+  transition: transform var(--default-transition), color var(--default-transition);
+}
+
+.search-shortcuts a:hover {
+  background: hsla(0, 90%, 45%, 0.08);           /* --red-orange-color-wheel ~8 % */
+  color: var(--red-orange-color-wheel);
+}
+
+.search-shortcuts a:hover .search-shortcut-arrow {
+  color: var(--red-orange-color-wheel);
+  transform: translateX(3px);
+}
+
+
+/* ---- aucun résultat ---- */
+
+.search-empty {
+  margin-left:  0;
+  margin-right: 0;
+}
+
+.search-empty .search-suggestions {
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.search-empty-actions {
+  display:         flex;
+  flex-wrap:       wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.search-empty-actions .btn { display: inline-block; }

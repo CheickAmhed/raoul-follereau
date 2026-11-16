@@ -10,7 +10,9 @@
  *    initiales, nom, spécialité, établissement, expérience ;
  *  - « Voir le profil » : fiche dans un <dialog> natif (focus piégé, Échap,
  *    retour du focus gérés par le navigateur) avec parcours et formations
- *    enseignées (liens vers les fiches formation).
+ *    enseignées (liens vers les fiches formation) ;
+ *  - lien direct vers un profil (formateurs.html#id, résultats de la recherche
+ *    du site) : la fiche s'ouvre à l'arrivée.
  *
  * À charger APRÈS formateurs.js, formations.js et utils.js, et AVANT
  * premium-animations.js (cascade d'apparition et inclinaison des cartes).
@@ -186,5 +188,25 @@
   dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
 
   dialog.addEventListener('close', function () { document.documentElement.classList.remove('lightbox-open'); });
+
+
+  /* --- Lien direct vers un profil (formateurs.html#id) ---------------------- */
+
+  function openFromHash() {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    const index = people.findIndex(function (p) { return p.id === id; });
+    if (index === -1 || dialog.open) return;
+    if (cards[index].hidden) { current = ''; apply(); }          // masqué par le filtre : on l'affiche
+    cards[index].scrollIntoView({ block: 'center' });
+    open(people[index]);
+    // à la fermeture, le focus revient sur le bouton « Voir le profil » de la carte
+    dialog.addEventListener('close', function () {
+      const button = cards[index].querySelector('.trainer-more');
+      if (button) button.focus({ preventScroll: true });
+    }, { once: true });
+  }
+
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
 
 })();

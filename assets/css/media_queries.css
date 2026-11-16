@@ -1570,3 +1570,46 @@
   }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #RECHERCHE  (recherche.html)
+\*-----------------------------------*/
+
+@media (min-width: 575px) {
+
+  /* champ et bouton sur la même ligne, de même hauteur */
+  .search-page-field  { flex: 1 1 0; }
+
+  /* filtres sur plusieurs lignes (comme .doc-filters) */
+  .search-filters { flex-wrap: wrap; }
+
+  .search-page-submit { flex: 0 0 auto; }
+
+  .search-shortcuts { grid-template-columns: 1fr 1fr; }
+
+}
+
+
+
+
+
+@media (min-width: 992px) {
+
+  /* la bannière passe en grille à 2 colonnes dès 992px : ici, une colonne centrée */
+  .page-banner--search {
+    display: block;
+    text-align: center;
+    padding-bottom: var(--py);
+  }
+
+  .page-banner--search .breadcrumb ol { justify-content: center; }
+
+  .page-banner--search .section-text { margin: 0 auto; }
+
+  .search-shortcuts { grid-template-columns: repeat(3, 1fr); }
+
+}

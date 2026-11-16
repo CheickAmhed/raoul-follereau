@@ -11,7 +11,8 @@
  *  - .nav-toggle-btn ouvre désormais le MENU SECONDAIRE (.navbar-nav repurposé),
  *    avec effet sandwich -> X (transitions CSS, cf. animation.css) ;
  *  - dropdown sur desktop/tablette, drawer + voile sur mobile ;
- *  - bouton recherche : ouverture animée d'un panneau (UI seule, pas de moteur) ;
+ *  - bouton recherche : ouverture animée d'un panneau ; le formulaire envoie
+ *    vers recherche.html?q=… (moteur : assets/js/pages/recherche.js) ;
  *  - état actif de la nav principale (header + bottom bar) via aria-current ;
  *  - pastille « connecté » sur l'accès au compte quand une session (simulée)
  *    de l'espace candidat est ouverte.
@@ -124,8 +125,13 @@
   }
 
   if (searchForm) {
-    // TODO: brancher la recherche réelle (assets/data/*.js ou API Laravel plus tard)
-    searchForm.addEventListener('submit', function (e) { e.preventDefault(); });
+    // envoi normal (GET) vers recherche.html?q=… : action du formulaire, marche aussi sans JS ;
+    // champ vide : on reste sur la page, le focus revient au champ
+    searchForm.addEventListener('submit', function (e) {
+      if (!searchInput || searchInput.value.trim()) return;
+      e.preventDefault();
+      searchInput.focus();
+    });
   }
 
 

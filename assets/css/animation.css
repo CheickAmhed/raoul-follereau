@@ -999,3 +999,25 @@
   .hero-intro .page-banner .account-id { animation: none; }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #RECHERCHE  (recherche.html : le champ de recherche de la bannière entre avec le
+  chapeau, mêmes keyframes que #PAGE BANNER INTRO)
+\*-----------------------------------*/
+
+.hero-intro .page-banner .search-page-form {
+  animation: hero-fade-up 0.55s ease 600ms backwards;
+  animation-play-state: paused;
+}
+
+.hero-intro.hero-intro-go .page-banner .search-page-form { animation-play-state: running; }
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-intro .page-banner .search-page-form { animation: none; }
+
+}
