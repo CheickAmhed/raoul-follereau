@@ -7948,3 +7948,24 @@ html.lightbox-open { overflow: hidden; }   /* page figée pendant l'ouverture */
 
 /* page Contact : même message, sur la carte claire des coordonnées */
 .map-social + .social-status { color: var(--oxford-blue); }
+
+
+
+
+
+/*-----------------------------------*\
+  #MAP (suite)  (index.html — la carte de l'accueil reprend l'habillage de celle
+  de contact.html : coins arrondis, ombre, lien « Itinéraire vers les établissements »)
+\*-----------------------------------*/
+
+/* même habillage que .contact-map (#CONTACT PAGE) ; dimensions inchangées : celles de
+   .map-embed et de son iframe (320px de haut, 480px dès 992px, media_queries.css) */
+.map-embed {
+  background: var(--cultured);
+  border-radius: 12px;
+  box-shadow: 0 15px 40px hsla(0, 0%, 0%, 0.06);
+}
+
+/* lien d'itinéraire : composant .contact-map-link ; .map-embed met line-height à 0
+   (pas d'espace sous l'iframe), le lien retrouve une hauteur de ligne normale */
+.map-embed .contact-map-link { line-height: normal; }

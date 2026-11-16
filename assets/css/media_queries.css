@@ -1613,3 +1613,220 @@
   .search-shortcuts { grid-template-columns: repeat(3, 1fr); }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #SECTIONS PLEINE LARGEUR — MOBILE  (< 767px : téléphones, portrait et paysage)
+
+  Demande client : tant que la barre de navigation du bas est affichée (< 767px),
+  le contenu s'aligne sur elle (.primary-nav, fixée à 12px des bords, padding 4px :
+  ses icônes commencent à 16px). Cette barre n'est pas modifiée.
+   - gouttière --px : 16px (au lieu de 15px sous 375px, 30px de 375 à 574px et
+     40px de 575 à 766px) ; header, sections et footer la suivent déjà ;
+   - carte de contact flottante : alignée sur la gouttière (sa règle de base,
+     100% - --px, ne laisserait que 8px de marge de chaque côté) ;
+   - bandeaux défilants (.marquee : partenaires, témoignages) : visibles jusqu'aux
+     bords de l'écran au lieu d'être coupés net au ras de la gouttière ; le padding
+     garde la première carte alignée sur le texte au repos ;
+   - menu secondaire en tiroir : rangé hors écran par translateX(100%), il gardait
+     son ombre portée, qui débordait d'environ 50px sur le bord droit de toutes les
+     pages (bande grise) ;
+   - < 575px seulement : rangées de filtres qui défilent sur une ligne (documents,
+     FAQ, recherche), même traitement que les bandeaux ; dès 575px elles passent
+     à la ligne et restent dans la gouttière.
+  Bornes max-width : seule façon de viser ces largeurs sans modifier les règles
+  existantes ni le desktop (#SECTIONS PLEINE LARGEUR, >=767px ; menu en liste
+  déroulante), déclarés plus haut dans ce fichier.
+\*-----------------------------------*/
+
+@media (max-width: 766.98px) {
+
+  :root { --px: 16px; }
+
+  .contact-card { width: calc(100% - 2 * var(--px)); }
+
+  .marquee {
+    margin-left:   calc(-1 * var(--px));
+    margin-right:  calc(-1 * var(--px));
+    padding-left:  var(--px);
+    padding-right: var(--px);
+  }
+
+  /* ombre du tiroir : seulement ouvert, en fondu avec le glissement */
+  .navbar .navbar-nav { transition: transform var(--default-transition), box-shadow var(--default-transition); }
+
+  .navbar .navbar-nav:not(.is-open) { box-shadow: none; }
+
+}
+
+
+
+
+
+@media (max-width: 574.98px) {
+
+  .doc-filters,
+  .faq-filters,
+  .search-filters {
+    max-width: none;
+    margin-left:   calc(-1 * var(--px));
+    margin-right:  calc(-1 * var(--px));
+    padding-left:  var(--px);
+    padding-right: var(--px);
+  }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #TABLETTE — CONTENU DANS LA GOUTTIÈRE  (767–1199px)
+
+  Demande client : sur tablette, en portrait comme en paysage, rien ne doit toucher
+  les bords de l'écran. La « pleine largeur » demandée pour le desktop colle le
+  header et plusieurs grilles au bord du conteneur (#SECTIONS PLEINE LARGEUR et
+  blocs >=767px plus haut) ; jusqu'à 1800px, ce conteneur occupe tout l'écran.
+  Sur tablette, ces éléments reviennent sur la gouttière --px du texte des autres
+  sections (clamp(16px, 2.6vw, 40px) : ~20px à 768px, ~31px à 1199px).
+  Desktop (>=1200px) : inchangé, pleine largeur conservée.
+  Bornes max-width : les règles neutralisées valent pour tout >=767px ; une règle
+  min-width ajoutée ici aurait aussi modifié le desktop.
+\*-----------------------------------*/
+
+@media (min-width: 767px) and (max-width: 1199.98px) {
+
+  /* header : logo et boutons sur la gouttière */
+  .navbar {
+    padding-left:  var(--px);
+    padding-right: var(--px);
+  }
+
+  /* hero : la colonne de droite (visuel) ne colle plus au bord */
+  .home { padding-right: var(--px); }
+
+  /* grilles de cartes, en-têtes de section, barres de filtres et carte : dans la
+     gouttière (des marges négatives les en faisaient sortir) */
+  .category .course-item-group,
+  .composantes-grid,
+  .course-grid,
+  .instructor-grid,
+  .stats-grid,
+  .blog-grid,
+  .instructor .section-head,
+  .blog .section-head,
+  .map-embed,
+  .news-toolbar,
+  .trainer-toolbar {
+    margin-left:  0;
+    margin-right: 0;
+  }
+
+  /* section .course sans padding latéral : en-tête et filtres du catalogue reprennent
+     la gouttière, que la grille porte déjà en padding */
+  .course .section-head {
+    padding-left:  var(--px);
+    padding-right: var(--px);
+  }
+
+  .catalog .filters,
+  .catalog-empty {
+    margin-left:  var(--px);
+    margin-right: var(--px);
+  }
+
+}
+
+
+
+
+
+@media (min-width: 767px) and (max-width: 991.98px) {
+
+  /* évènement : sur une colonne, l'image occupe toute la largeur et le bouton
+     « Watch », décalé de 100px vers la droite, sortait de l'écran */
+  .event .play { right: 0; }
+
+}
+
+
+
+
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+  /* « Pourquoi nous choisir ? » : l'image n'est plus tirée de 70px hors de sa colonne */
+  .about-left { margin-left: 0; }
+
+  .about-left img { max-width: 100%; }
+
+  /* « Notre mission » : la photo de droite s'arrête sur la gouttière */
+  .features { padding-right: var(--px); }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #PAGE BANNER — VISUEL SUR LA MARGE  (>=992px, pages intérieures)
+
+  Demande client : le visuel des bannières se cale à droite sur la gouttière --px,
+  comme le texte à gauche et le contenu sous la bannière (l'accueil a son propre
+  hero, non concerné). Il était centré dans sa colonne (480px maxi) : l'écart à
+  droite grandissait avec l'écran, jusqu'à 220px à 1920px.
+  Le badge de droite flotte toujours hors de la photo, de la moitié de la
+  gouttière : son débord d'origine (10 % de la photo, 48px) dépassait la marge
+  et le faisait rogner par le bord de la bannière dès 992px.
+\*-----------------------------------*/
+
+@media (min-width: 992px) {
+
+  .page-banner .img-box {
+    margin-left:  auto;
+    margin-right: 0;
+  }
+
+  .page-banner .banner-badge.badge-2 { right: calc(var(--px) / -2); }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #DETAIL RELATED — CONTENU DANS LA GOUTTIÈRE  (>=1200px)
+
+  Demande client : sur desktop, les blocs liés en bas des fiches (« Formations
+  similaires » de formation-detail.html, « À lire aussi » de actualite-detail.html)
+  ne doivent plus coller aux bords de leur bandeau : titre, bouton « Voir tous » et
+  cartes reviennent sur la gouttière --px, comme le texte des autres sections.
+  Les autres sections en pleine largeur (header, accueil, formations, institution,
+  actualités, enseignants) restent inchangées sur desktop, par choix du client.
+  De 767 à 1199px, #TABLETTE — CONTENU DANS LA GOUTTIÈRE couvre déjà ces blocs.
+\*-----------------------------------*/
+
+@media (min-width: 1200px) {
+
+  /* fiche formation : la section .course n'a pas de padding latéral, l'en-tête
+     reprend la gouttière, que la grille porte déjà en padding */
+  .course.detail-related .section-head {
+    padding-left:  var(--px);
+    padding-right: var(--px);
+  }
+
+  /* grilles et en-têtes : plus de marges négatives (#SECTIONS PLEINE LARGEUR) */
+  .course.detail-related .course-grid,
+  .blog.detail-related .section-head,
+  .blog.detail-related .blog-grid {
+    margin-left:  0;
+    margin-right: 0;
+  }
+
+}
