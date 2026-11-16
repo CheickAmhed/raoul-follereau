@@ -165,6 +165,7 @@ Crée un dossier `assets/data/` avec un fichier par entité :
 - `assets/data/formateurs.js`, `assets/data/temoignages.js`, `assets/data/galerie.js`, `assets/data/documents.js`
 - `assets/data/compte.js` (ajouté le 16/11/2026) → compte de démonstration de l'espace candidat (`RF_COMPTE_DEMO`), **à supprimer avant la mise en ligne** (voir §7.7, `connexion.html` / `compte.html`).
 - `assets/data/pages.js` (ajouté le 16/11/2026) → pages du site proposées par la recherche (`RF_PAGES_SITE` : `{ url, titre, description, motsCles }`), à compléter quand une page est ajoutée (voir §7.7, `recherche.html`).
+- `assets/data/reseaux.js` (ajouté le 16/11/2026) → comptes officiels sur les réseaux sociaux (`RF_RESEAUX` : `{ cle: { nom, url|null } }`), lus par `assets/js/footer.js` pour les liens `[data-reseau]` du footer et de la page Contact. **TODO client** : adresses des comptes et liste des réseaux à confirmer.
 
 Chaque page consommatrice (`formations.html`, `actualites.html`, etc.) charge son fichier de data en `<script src="assets/data/xxx.js">` puis un script de rendu (`assets/js/pages/formations.js` par exemple) génère dynamiquement les cartes HTML dans le conteneur (`.course-grid`, etc.) via `innerHTML`/`createElement`, en réutilisant EXACTEMENT les classes CSS déjà stylées.
 
@@ -297,6 +298,12 @@ Peuvent être des pages séparées ou regroupées intelligemment — recommandat
   - Destinations : fiche formation, fiche actualité, `faq.html#id` (question ouverte), `documents.html?q=titre` (document filtré), `formateurs.html#id` (fiche ouverte à l'arrivée, ajout dans `formateurs.js`), `galerie.html?album=id`, pages du site.
   - Données : le modèle de certificat médical de `documents.js` s'intitule désormais « Modèle de certificat médical d'aptitude », comme la pièce demandée dans `RF_DOCUMENTS_BASE`.
   - CSS : sections `#RECHERCHE` (style.css, media_queries.css, animation.css). TODO (phase Laravel) : recherche côté serveur (Laravel Scout ou plein texte PostgreSQL) rendue dans la même page.
+- Footer commun (toutes les pages, futur partial Blade) — **Implémenté (16/11/2026)** :
+  - Balisage identique sur les 19 pages, accueil compris (son footer pointait encore vers des ancres de l'accueil et vers « # »). Titres de colonnes en `<h2 class="item-heading">` suivis d'un `<ul>` (les `<h4>` étaient placés directement dans les `<ul>`, balisage invalide) ; même rendu, styles par classe.
+  - Liens : « À propos » → `institution.html`, « Actualités » (ancien « Blog ») → `actualites.html`, « Événements » → `actualites.html#agenda`, ajout de « Mentions légales ». Copyright : « Les Établissements Raoul Follereau. Tous droits réservés. », lien vers l'accueil ; police Roboto rétablie (virgule manquante dans la règle d'origine).
+  - Newsletter (`assets/js/footer.js`) : vrai `<form>` avec libellé, `type="email"` et motif à domaine pointé comme le formulaire de contact, messages sous le champ, anneau de focus, confirmation « plus qu'une étape » à la place du formulaire (double confirmation par email prévue), « Inscrire une autre adresse ». Inscription SIMULÉE : rien n'est envoyé ni stocké. TODO (phase Laravel) : POST /newsletter, CSRF, double confirmation, lien de désinscription, protection contre les robots, service d'emailing à citer dans la politique de confidentialité.
+  - Réseaux sociaux : liens `[data-reseau]` avec nom accessible ; sans adresse dans `assets/data/reseaux.js`, un clic affiche « bientôt disponible » sous les icônes au lieu de remonter en haut de page ; avec une adresse, lien réel dans un nouvel onglet. Même traitement pour le bloc des coordonnées de `contact.html`.
+  - Textes légaux : la politique de confidentialité décrit la newsletter (données, finalité, base, durée « jusqu'à votre désinscription ») ; les conditions d'utilisation (§6) indiquent la désinscription possible à tout moment. CSS : section `#FOOTER (SUITE)` de style.css.
 
 ---
 

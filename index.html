@@ -1457,85 +1457,113 @@
             certifiantes en santé, gestion, numérique et métiers techniques, tournées vers l'insertion professionnelle.
           </p>
 
+          <!-- Réseaux sociaux : adresses dans assets/data/reseaux.js, appliquées par assets/js/footer.js.
+               TODO: comptes officiels à fournir par le client. -->
           <div class="social-link">
-            <a href="#">
-              <ion-icon name="logo-facebook"></ion-icon>
+            <a href="#" data-reseau="facebook" aria-label="Facebook">
+              <ion-icon name="logo-facebook" aria-hidden="true"></ion-icon>
             </a>
-            <a href="#">
-              <ion-icon name="logo-instagram"></ion-icon>
+            <a href="#" data-reseau="instagram" aria-label="Instagram">
+              <ion-icon name="logo-instagram" aria-hidden="true"></ion-icon>
             </a>
-            <a href="#">
-              <ion-icon name="logo-twitter"></ion-icon>
+            <a href="#" data-reseau="twitter" aria-label="X (Twitter)">
+              <ion-icon name="logo-twitter" aria-hidden="true"></ion-icon>
             </a>
-            <a href="#">
-              <ion-icon name="logo-youtube"></ion-icon>
+            <a href="#" data-reseau="youtube" aria-label="YouTube">
+              <ion-icon name="logo-youtube" aria-hidden="true"></ion-icon>
             </a>
           </div>
 
         </div>
 
-        <ul class="grid-item">
+        <div class="grid-item">
 
-          <h4 class="item-heading">Liens</h4>
+          <h2 class="item-heading">Liens</h2>
 
-          <li class="list-item">
-            <a href="#home">Accueil</a>
-          </li>
+          <ul>
+            <li class="list-item">
+              <a href="index.html">Accueil</a>
+            </li>
+            <li class="list-item">
+              <a href="institution.html">À propos</a>
+            </li>
+            <li class="list-item">
+              <a href="formations.html">Formations</a>
+            </li>
+            <li class="list-item">
+              <a href="actualites.html">Actualités</a>
+            </li>
+            <li class="list-item">
+              <a href="contact.html">Contact</a>
+            </li>
+          </ul>
 
-          <li class="list-item">
-            <a href="#about">A propos</a>
-          </li>
-
-          <li class="list-item">
-            <a href="#course">Cours</a>
-          </li>
-
-          <li class="list-item">
-            <a href="#blog">Blog</a>
-          </li>
-
-          <li class="list-item">
-            <a href="#contact">Contact</a>
-          </li>
-
-        </ul>
-
-        <ul class="grid-item">
-
-          <h4 class="item-heading">Autres liens</h4>
-
-          <li class="list-item">
-            <a href="formateurs.html">Nos enseignants</a>
-          </li>
-
-          <li class="list-item">
-            <a href="#">FAQ</a>
-          </li>
-
-          <li class="list-item">
-            <a href="#">Evènements</a>
-          </li>
-
-          <li class="list-item">
-            <a href="#">Politique de confidentialité</a>
-          </li>
-
-          <li class="list-item">
-            <a href="#">Termes & Conditions</a>
-          </li>
-
-        </ul>
+        </div>
 
         <div class="grid-item">
 
-          <h4 class="item-heading">Newsletter</h4>
+          <h2 class="item-heading">Autres liens</h2>
 
-          <div class="wrapper">
-            <input type="text" name="subscribe" placeholder="Adresse Email">
-            
-            <button class="send-btn">
-              <ion-icon name="paper-plane"></ion-icon>
-            </button>
+          <ul>
+            <li class="list-item">
+              <a href="formateurs.html">Nos enseignants</a>
+            </li>
+            <li class="list-item">
+              <a href="faq.html">FAQ</a>
+            </li>
+            <li class="list-item">
+              <a href="actualites.html#agenda">Événements</a>
+            </li>
+            <li class="list-item">
+              <a href="confidentialite.html">Politique de confidentialité</a>
+            </li>
+            <li class="list-item">
+              <a href="termes.html">Termes &amp; Conditions</a>
+            </li>
+            <li class="list-item">
+              <a href="mentions-legales.html">Mentions légales</a>
+            </li>
+          </ul>
+
+        </div>
+
+        <div class="grid-item">
+
+          <h2 class="item-heading" id="newsletter-title">Newsletter</h2>
+
+          <p class="newsletter-intro">
+            Rentrées, concours, journées portes ouvertes : recevez nos annonces par email.
+          </p>
+
+          <!-- Inscription SIMULÉE par assets/js/footer.js : rien n'est envoyé. TODO (phase Laravel) : POST /newsletter,
+               jeton CSRF, double confirmation par email, lien de désinscription dans chaque envoi. -->
+          <form class="newsletter-form" action="#" novalidate aria-labelledby="newsletter-title">
+            <label class="visually-hidden" for="newsletter-email">Votre adresse email</label>
+            <div class="wrapper">
+              <input type="email" id="newsletter-email" name="email" placeholder="Adresse email" required
+                autocomplete="email" inputmode="email" spellcheck="false" pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}"
+                aria-describedby="newsletter-note" data-error-required="Saisissez votre adresse email."
+                data-error="Adresse email invalide (ex. : nom@exemple.com).">
+              <button type="submit" class="send-btn" aria-label="S'inscrire à la newsletter">
+                <ion-icon name="paper-plane" aria-hidden="true"></ion-icon>
+              </button>
+            </div>
+            <p class="newsletter-error" id="newsletter-error" hidden></p>
+            <p class="newsletter-note" id="newsletter-note">
+              Désinscription possible à tout moment. Vos données sont traitées selon notre
+              <a href="confidentialite.html">politique de confidentialité</a>.
+            </p>
+          </form>
+
+          <div class="newsletter-done" hidden>
+            <ion-icon name="mail-open-outline" aria-hidden="true"></ion-icon>
+            <div>
+              <p class="newsletter-done-title" tabindex="-1">Merci, plus qu'une étape&nbsp;!</p>
+              <p class="newsletter-done-text">
+                Confirmez votre inscription grâce au lien envoyé à <strong data-newsletter-email></strong>.
+              </p>
+              <button type="button" class="newsletter-again">Inscrire une autre adresse</button>
+            </div>
           </div>
 
         </div>
@@ -1543,7 +1571,7 @@
       </div>
 
       <p class="copyright">
-        Copyright © 2026 <a href="#">Les Etablissements Raoul Follereau</a>. Tout droit reservé.
+        Copyright © 2026 <a href="index.html">Les Établissements Raoul Follereau</a>. Tous droits réservés.
       </p>
     </footer>
   </div>
@@ -1558,6 +1586,8 @@
   <script src="./assets/js/premium-animations.js"></script>
   <script src="./assets/js/hero-intro.js"></script>
   <script src="./assets/js/header-nav.js"></script>
+  <script src="./assets/data/reseaux.js"></script>
+  <script src="./assets/js/footer.js"></script>
   <script src="./assets/js/script.js"></script>
 
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

@@ -7810,3 +7810,141 @@ html.lightbox-open { overflow: hidden; }   /* page figée pendant l'ouverture */
 }
 
 .search-empty-actions .btn { display: inline-block; }
+
+
+
+
+
+/*-----------------------------------*\
+  #FOOTER (SUITE)  (toutes les pages — newsletter, réseaux sociaux en attente
+  d'adresse, copyright ; logique dans assets/js/footer.js)
+\*-----------------------------------*/
+
+/* copyright : police Roboto prévue par la règle d'origine, où la virgule manquante
+   (« "Roboto" sans-serif ») rendait la déclaration invalide */
+.copyright { font-family: "Roboto", sans-serif; }
+
+
+/* ---- newsletter ---- */
+
+.newsletter-intro {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--lavender-blue);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.newsletter-form[hidden],
+.newsletter-done[hidden],
+.newsletter-error[hidden] { display: none; }
+
+/* anneau de focus sur le cadre (la règle d'origine retire l'outline du champ) */
+.newsletter-form .wrapper { transition: box-shadow var(--default-transition); }
+
+.newsletter-form .wrapper:focus-within { box-shadow: 0 0 0 3px hsla(0, 90%, 45%, 0.6); }
+
+.newsletter-form.has-error .wrapper { box-shadow: 0 0 0 2px var(--red-orange-color-wheel); }
+
+.newsletter-form.has-error .wrapper:focus-within { box-shadow: 0 0 0 3px var(--red-orange-color-wheel); }
+
+/* bouton : focus clavier tracé à l'intérieur (le cadre arrondi rogne l'extérieur) */
+.newsletter-form .send-btn:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: -6px;
+}
+
+.newsletter-error {
+  margin-top: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: var(--fw-5);
+  color: hsl(0, 100%, 80%);       /* --red-orange-color-wheel éclairci : lisible sur --oxford-blue */
+}
+
+.newsletter-note {
+  margin-top: 12px;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  color: var(--lavender-blue);
+  line-height: 1.6;
+}
+
+/* display:inline : le reset met a en display:block */
+.newsletter-note a {
+  display: inline;
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--default-transition);
+}
+
+.newsletter-note a:hover { color: var(--red-orange-color-wheel); }
+
+/* confirmation affichée à la place du formulaire */
+.newsletter-done {
+  display:     flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 8px;
+  background: hsla(0, 0%, 100%, 0.08);
+}
+
+.newsletter-done > ion-icon {
+  font-size: 28px;
+  color: var(--ultramarine-blue);
+  flex-shrink: 0;
+}
+
+.newsletter-done > div { min-width: 0; }
+
+.newsletter-done-title {
+  font-size: var(--fs-5);
+  font-weight: var(--fw-7);
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.newsletter-done-title:focus { outline: none; }    /* focus posé par le script pour l'annonce */
+
+.newsletter-done-text {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-6);
+  color: var(--lavender-blue);
+  line-height: 1.6;
+}
+
+.newsletter-done-text strong {
+  color: var(--white);
+  overflow-wrap: break-word;      /* coupures prévues après « @ » et « . » (footer.js) */
+}
+
+.newsletter-again {
+  margin-top: 12px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: var(--fw-5);
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--default-transition);
+}
+
+.newsletter-again:hover { color: var(--red-orange-color-wheel); }
+
+
+/* ---- réseaux sociaux sans adresse : message sous les icônes ---- */
+
+.social-status {
+  margin-top: 12px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  color: var(--lavender-blue);
+  line-height: 1.6;
+}
+
+.social-status:empty { margin-top: 0; }
+
+/* page Contact : même message, sur la carte claire des coordonnées */
+.map-social + .social-status { color: var(--oxford-blue); }

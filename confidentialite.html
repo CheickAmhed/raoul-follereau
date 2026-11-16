@@ -242,7 +242,7 @@
             <div class="legal-essentiel" id="essentiel">
               <h2 class="legal-essentiel-title">L'essentiel en bref</h2>
               <ul>
-                <li>Nous ne recueillons que les informations nécessaires pour traiter votre candidature ou répondre à vos demandes.</li>
+                <li>Nous ne recueillons que les informations nécessaires pour traiter votre candidature, répondre à vos demandes ou vous envoyer la newsletter si vous vous y inscrivez.</li>
                 <li>Vos données ne sont jamais vendues, ni utilisées à des fins publicitaires.</li>
                 <li>Le site ne dépose aucun cookie de mesure d'audience ou de publicité. Il n'enregistre qu'un témoin de connexion, strictement nécessaire, quand vous vous connectez à votre espace candidat. Quelques services intégrés, comme la carte, peuvent recevoir votre adresse IP.</li>
                 <li>Vous pouvez à tout moment consulter vos données, les faire corriger ou supprimer en nous écrivant.</li>
@@ -296,6 +296,12 @@
                 messages du service des admissions rejoignent votre dossier de candidature.
               </p>
 
+              <h3 class="legal-subtitle">Newsletter</h3>
+              <p>
+                Si vous vous inscrivez à la newsletter en bas de page : votre adresse email, la date de votre inscription
+                et celle de sa confirmation.
+              </p>
+
               <h3 class="legal-subtitle">Navigation sur le site</h3>
               <p>
                 Le site n'utilise ni outil de mesure d'audience ni publicité. Comme pour tout site web, l'hébergeur
@@ -319,6 +325,7 @@
                     <tr><td data-label="Pourquoi">Répondre aux messages envoyés par le formulaire de contact</td><td data-label="Sur quelle base">Votre consentement, donné en cochant la case prévue</td></tr>
                     <tr><td data-label="Pourquoi">Gérer votre inscription et votre scolarité si vous êtes admis(e)</td><td data-label="Sur quelle base">Votre contrat de formation et nos obligations légales, notamment pour les examens et les diplômes</td></tr>
                     <tr><td data-label="Pourquoi">Vous prévenir de l'ouverture des inscriptions à une formation, si vous le demandez</td><td data-label="Sur quelle base">Votre consentement, que vous pouvez retirer à tout moment</td></tr>
+                    <tr><td data-label="Pourquoi">Vous envoyer la newsletter : rentrées, concours et événements</td><td data-label="Sur quelle base">Votre consentement, donné en vous inscrivant puis confirmé par email. Vous pouvez le retirer à tout moment grâce au lien de désinscription présent dans chaque envoi</td></tr>
                     <tr><td data-label="Pourquoi">Assurer la sécurité et le bon fonctionnement du site</td><td data-label="Sur quelle base">Notre intérêt légitime à protéger le service</td></tr>
                   </tbody>
                 </table>
@@ -337,6 +344,7 @@
                 Pendant votre formation, vos coordonnées ne sont communiquées à une structure de stage que dans le cadre de
                 votre convention de stage.
               </p>
+              <!-- TODO: si la newsletter est envoyée par un service d'emailing externe, le nommer ici comme prestataire -->
             </section>
 
             <section class="legal-section" id="conservation" aria-labelledby="h-conservation">
@@ -354,6 +362,7 @@
                     <tr><td data-label="Données">Accès à l'espace candidat : adresse email et mot de passe protégé</td><td data-label="Durée de conservation">Aussi longtemps que votre dossier de candidature, puis supprimés avec lui</td></tr>
                     <tr><td data-label="Données">Message envoyé par le formulaire de contact</td><td data-label="Durée de conservation">1 an à compter du dernier échange</td></tr>
                     <tr><td data-label="Données">Demande d'information sur l'ouverture d'une formation</td><td data-label="Durée de conservation">Jusqu'à l'ouverture des inscriptions, et au plus 2 ans</td></tr>
+                    <tr><td data-label="Données">Inscription à la newsletter</td><td data-label="Durée de conservation">Jusqu'à votre désinscription</td></tr>
                     <tr><td data-label="Données">Journaux techniques de connexion</td><td data-label="Durée de conservation">12 mois au plus</td></tr>
                   </tbody>
                 </table>
@@ -436,8 +445,7 @@
             <section class="legal-section" id="modifications" aria-labelledby="h-modifications">
               <h2 class="detail-block-title" id="h-modifications">10. Mises à jour de cette politique</h2>
               <p>
-                Cette politique évoluera avec le site, notamment à l'ouverture de nouveaux services en ligne comme la
-                lettre d'information. La date de la dernière mise à jour figure en haut de la page. En cas de
+                Cette politique évoluera avec le site, notamment à l'ouverture de nouveaux services en ligne. La date de la dernière mise à jour figure en haut de la page. En cas de
                 changement important, nous vous en informerons sur le site.
               </p>
             </section>
@@ -482,85 +490,113 @@
             certifiantes en santé, gestion, numérique et métiers techniques, tournées vers l'insertion professionnelle.
           </p>
 
+          <!-- Réseaux sociaux : adresses dans assets/data/reseaux.js, appliquées par assets/js/footer.js.
+               TODO: comptes officiels à fournir par le client. -->
           <div class="social-link">
-            <a href="#">
-              <ion-icon name="logo-facebook"></ion-icon>
+            <a href="#" data-reseau="facebook" aria-label="Facebook">
+              <ion-icon name="logo-facebook" aria-hidden="true"></ion-icon>
             </a>
-            <a href="#">
-              <ion-icon name="logo-instagram"></ion-icon>
+            <a href="#" data-reseau="instagram" aria-label="Instagram">
+              <ion-icon name="logo-instagram" aria-hidden="true"></ion-icon>
             </a>
-            <a href="#">
-              <ion-icon name="logo-twitter"></ion-icon>
+            <a href="#" data-reseau="twitter" aria-label="X (Twitter)">
+              <ion-icon name="logo-twitter" aria-hidden="true"></ion-icon>
             </a>
-            <a href="#">
-              <ion-icon name="logo-youtube"></ion-icon>
+            <a href="#" data-reseau="youtube" aria-label="YouTube">
+              <ion-icon name="logo-youtube" aria-hidden="true"></ion-icon>
             </a>
           </div>
 
         </div>
 
-        <ul class="grid-item">
+        <div class="grid-item">
 
-          <h4 class="item-heading">Liens</h4>
+          <h2 class="item-heading">Liens</h2>
 
-          <li class="list-item">
-            <a href="index.html#home">Accueil</a>
-          </li>
+          <ul>
+            <li class="list-item">
+              <a href="index.html">Accueil</a>
+            </li>
+            <li class="list-item">
+              <a href="institution.html">À propos</a>
+            </li>
+            <li class="list-item">
+              <a href="formations.html">Formations</a>
+            </li>
+            <li class="list-item">
+              <a href="actualites.html">Actualités</a>
+            </li>
+            <li class="list-item">
+              <a href="contact.html">Contact</a>
+            </li>
+          </ul>
 
-          <li class="list-item">
-            <a href="index.html#about">A propos</a>
-          </li>
-
-          <li class="list-item">
-            <a href="formations.html">Formations</a>
-          </li>
-
-          <li class="list-item">
-            <a href="index.html#blog">Blog</a>
-          </li>
-
-          <li class="list-item">
-            <a href="contact.html">Contact</a>
-          </li>
-
-        </ul>
-
-        <ul class="grid-item">
-
-          <h4 class="item-heading">Autres liens</h4>
-
-          <li class="list-item">
-            <a href="formateurs.html">Nos enseignants</a>
-          </li>
-
-          <li class="list-item">
-            <a href="faq.html">FAQ</a>
-          </li>
-
-          <li class="list-item">
-            <a href="actualites.html">Evènements</a>
-          </li>
-
-          <li class="list-item">
-            <a href="confidentialite.html">Politique de confidentialité</a>
-          </li>
-
-          <li class="list-item">
-            <a href="termes.html">Termes & Conditions</a>
-          </li>
-
-        </ul>
+        </div>
 
         <div class="grid-item">
 
-          <h4 class="item-heading">Newsletter</h4>
+          <h2 class="item-heading">Autres liens</h2>
 
-          <div class="wrapper">
-            <input type="text" name="subscribe" placeholder="Adresse Email">
-            
-            <button class="send-btn">
-              <ion-icon name="paper-plane"></ion-icon>
-            </button>
+          <ul>
+            <li class="list-item">
+              <a href="formateurs.html">Nos enseignants</a>
+            </li>
+            <li class="list-item">
+              <a href="faq.html">FAQ</a>
+            </li>
+            <li class="list-item">
+              <a href="actualites.html#agenda">Événements</a>
+            </li>
+            <li class="list-item">
+              <a href="confidentialite.html">Politique de confidentialité</a>
+            </li>
+            <li class="list-item">
+              <a href="termes.html">Termes &amp; Conditions</a>
+            </li>
+            <li class="list-item">
+              <a href="mentions-legales.html">Mentions légales</a>
+            </li>
+          </ul>
+
+        </div>
+
+        <div class="grid-item">
+
+          <h2 class="item-heading" id="newsletter-title">Newsletter</h2>
+
+          <p class="newsletter-intro">
+            Rentrées, concours, journées portes ouvertes : recevez nos annonces par email.
+          </p>
+
+          <!-- Inscription SIMULÉE par assets/js/footer.js : rien n'est envoyé. TODO (phase Laravel) : POST /newsletter,
+               jeton CSRF, double confirmation par email, lien de désinscription dans chaque envoi. -->
+          <form class="newsletter-form" action="#" novalidate aria-labelledby="newsletter-title">
+            <label class="visually-hidden" for="newsletter-email">Votre adresse email</label>
+            <div class="wrapper">
+              <input type="email" id="newsletter-email" name="email" placeholder="Adresse email" required
+                autocomplete="email" inputmode="email" spellcheck="false" pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}"
+                aria-describedby="newsletter-note" data-error-required="Saisissez votre adresse email."
+                data-error="Adresse email invalide (ex. : nom@exemple.com).">
+              <button type="submit" class="send-btn" aria-label="S'inscrire à la newsletter">
+                <ion-icon name="paper-plane" aria-hidden="true"></ion-icon>
+              </button>
+            </div>
+            <p class="newsletter-error" id="newsletter-error" hidden></p>
+            <p class="newsletter-note" id="newsletter-note">
+              Désinscription possible à tout moment. Vos données sont traitées selon notre
+              <a href="confidentialite.html">politique de confidentialité</a>.
+            </p>
+          </form>
+
+          <div class="newsletter-done" hidden>
+            <ion-icon name="mail-open-outline" aria-hidden="true"></ion-icon>
+            <div>
+              <p class="newsletter-done-title" tabindex="-1">Merci, plus qu'une étape&nbsp;!</p>
+              <p class="newsletter-done-text">
+                Confirmez votre inscription grâce au lien envoyé à <strong data-newsletter-email></strong>.
+              </p>
+              <button type="button" class="newsletter-again">Inscrire une autre adresse</button>
+            </div>
           </div>
 
         </div>
@@ -568,7 +604,7 @@
       </div>
 
       <p class="copyright">
-        Copyright © 2026 <a href="#">Les Etablissements Raoul Follereau</a>. Tout droit reservé.
+        Copyright © 2026 <a href="index.html">Les Établissements Raoul Follereau</a>. Tous droits réservés.
       </p>
     </footer>
   </div>
@@ -585,6 +621,8 @@
   <script src="./assets/js/premium-animations.js"></script>
   <script src="./assets/js/hero-intro.js"></script>
   <script src="./assets/js/header-nav.js"></script>
+  <script src="./assets/data/reseaux.js"></script>
+  <script src="./assets/js/footer.js"></script>
   <script src="./assets/js/script.js"></script>
 
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
