@@ -3,9 +3,13 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon compte — Les Établissements Raoul Follereau</title>
-  <meta name="description" content="Mon compte — page en cours de préparation.">
+  <title>Mon espace candidat — Les Établissements Raoul Follereau</title>
+  <meta name="description"
+    content="Espace candidat des Établissements Raoul Follereau : suivi de candidature, pièces du dossier et messages du service des admissions.">
+  <!-- page privée : non indexée par les moteurs de recherche -->
+  <meta name="robots" content="noindex">
 
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/media_queries.css">
@@ -16,20 +20,420 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800;900&family=Roboto:wght@400;500&display=swap"
     rel="stylesheet">
+
 </head>
 
 <body>
-  <main class="placeholder-page">
-    <img class="placeholder-logo" src="./assets/images/logo.png" width="90" height="90"
-      alt="Les Établissements Raoul Follereau">
-    <h1 class="section-title">Mon compte</h1>
-    <p class="section-text">Contenu à venir.</p>
-    <!-- TODO: authentification réelle + espace candidat (phase Laravel). Ce lien est un placeholder. -->
-    <a class="btn btn-primary" href="index.html">
-      <p class="btn-text">Retour à l'accueil</p>
-      <span class="square"></span>
-    </a>
-  </main>
+  <div class="container">
+    <!-- Header dupliqué depuis index.html : deviendra un @include Blade lors de la phase Laravel. -->
+    <header>
+      <nav class="navbar">
+
+        <a href="index.html" class="navbar-brand">
+          <img width="90" height="90" src="./assets/images/logo.png"
+            alt="Les Établissements Raoul Follereau — accueil">
+        </a>
+
+        <nav class="primary-nav" aria-label="Navigation principale">
+          <ul>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="index.html">
+                <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Accueil</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="formations.html">
+                <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Formations</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="institution.html">
+                <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Institution</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="galerie.html">
+                <ion-icon name="images-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Galerie</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="actualites.html">
+                <ion-icon name="newspaper-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Actualités</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="contact.html">
+                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Contact</span>
+              </a>
+            </li>
+            <!-- Compte : présent uniquement dans la bottom bar mobile.
+                 Dans le header (desktop/tablette), le compte est l'icône .nav-account ci-dessous. -->
+            <li class="primary-nav-item primary-nav-item--bottombar-only">
+              <a class="primary-nav-link" href="compte.html">
+                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Compte</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="navbar-actions">
+
+          <button type="button" class="icon-btn nav-search-toggle" aria-label="Rechercher sur le site"
+            aria-expanded="false" aria-controls="site-search">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+          <a href="compte.html" class="icon-btn nav-account" aria-label="Mon compte">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          </a>
+
+          <a href="preinscription.html" class="btn btn-primary navbar-cta">
+            <p class="btn-text">S'inscrire</p>
+            <span class="square"></span>
+          </a>
+
+          <button type="button" class="nav-toggle-btn" aria-label="Ouvrir le menu secondaire"
+            aria-expanded="false" aria-controls="secondary-menu">
+            <span class="one"></span>
+            <span class="two"></span>
+            <span class="three"></span>
+          </button>
+
+        </div>
+
+        <div class="site-search" id="site-search" hidden>
+          <form class="site-search-form" role="search" action="#">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            <input type="search" name="q" class="site-search-input"
+              placeholder="Rechercher une formation, une actualité…" aria-label="Rechercher sur le site">
+            <button type="submit" class="site-search-submit">OK</button>
+          </form>
+        </div>
+
+        <ul class="navbar-nav" id="secondary-menu" hidden>
+          <li class="secondary-menu-head">
+            <span class="secondary-menu-title">Informations</span>
+            <button type="button" class="secondary-menu-close" aria-label="Fermer le menu secondaire">
+              <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </li>
+          <li class="nav-item"><a href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a href="documents.html">Documents à télécharger</a></li>
+          <li class="nav-item"><a href="confidentialite.html">Politique de confidentialité</a></li>
+          <li class="nav-item"><a href="termes.html">Termes &amp; Conditions</a></li>
+          <li class="nav-item"><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+
+      </nav>
+
+      <div class="secondary-menu-overlay" hidden></div>
+    </header>
+
+    <main>
+
+      <!-- Bannière « application » (voir PROJECT_CONTEXT.md §3.3) : pas de visuel, carte d'identité à droite.
+           Contenu rempli par assets/js/pages/compte.js après vérification de la session (simulée). -->
+      <section class="page-banner page-banner--app" aria-labelledby="account-title">
+
+        <div class="deco-shape shape-1">
+          <img src="./assets/images/shape-1.png" alt="" width="70">
+        </div>
+        <div class="deco-shape shape-3">
+          <img src="./assets/images/shape-3.png" alt="" width="120">
+        </div>
+
+        <div class="page-banner-text">
+
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <ol>
+              <li><a href="index.html">Accueil</a></li>
+              <li aria-current="page">Mon espace candidat</li>
+            </ol>
+          </nav>
+
+          <p class="section-subtitle">Espace candidat</p>
+
+          <h1 class="section-title" id="account-title"><span class="heading-line" data-account="greeting">Mon espace candidat</span></h1>
+
+          <p class="section-text" data-account="intro">
+            Suivez votre candidature, déposez vos pièces et lisez les messages du service des admissions.
+          </p>
+
+        </div>
+
+        <div class="account-id" data-account-ready hidden>
+          <span class="account-avatar" aria-hidden="true" data-account="initiales"></span>
+          <div class="account-id-text">
+            <p class="account-id-name" data-account="nom"></p>
+            <p class="account-id-ref">Candidature <span data-account="reference"></span></p>
+          </div>
+          <button type="button" class="account-logout" data-logout>
+            <ion-icon name="log-out-outline" aria-hidden="true"></ion-icon>
+            Se déconnecter
+          </button>
+        </div>
+
+      </section>
+
+
+      <!-- Tableau de bord : conteneurs vides, remplis par compte.js (données : assets/data/compte.js
+           et formations.js). TODO (phase Laravel) : vue Blade protégée par le middleware auth. -->
+      <section class="detail detail--last account" aria-labelledby="account-title">
+
+        <noscript>
+          <p class="account-noscript">
+            L'espace candidat a besoin de JavaScript. Activez-le dans votre navigateur, ou
+            <a href="contact.html?objet=candidature">contactez le service des admissions</a>.
+          </p>
+        </noscript>
+
+        <div class="detail-layout" data-account-ready hidden>
+
+          <div class="detail-content">
+
+            <div class="account-overview">
+              <article class="account-card" data-account="candidature"></article>
+              <div class="account-next" data-account="prochaine-etape"></div>
+            </div>
+
+            <div class="detail-block">
+              <h2 class="detail-block-title">Suivi de ma candidature</h2>
+              <ol class="track" data-account="etapes"></ol>
+            </div>
+
+            <div class="detail-block account-block" id="pieces">
+              <div class="account-block-head">
+                <h2 class="detail-block-title">Pièces du dossier</h2>
+                <p class="account-count" data-account="pieces-count"></p>
+              </div>
+              <p class="account-hint">
+                Formats acceptés&nbsp;: PDF, JPG ou PNG, 5&nbsp;Mo maximum par fichier.
+                Vous pouvez aussi déposer vos pièces à l'accueil de l'établissement.
+              </p>
+              <ul class="account-pieces" data-account="pieces"></ul>
+              <p class="account-pieces-status" role="status" data-account="pieces-status"></p>
+            </div>
+
+            <div class="detail-block account-block" id="messages">
+              <div class="account-block-head">
+                <h2 class="detail-block-title">Messages</h2>
+                <p class="account-count" data-account="messages-count"></p>
+              </div>
+              <div class="account-messages" data-account="messages"></div>
+            </div>
+
+          </div>
+
+          <aside class="detail-aside">
+            <div class="facts-card account-profile">
+
+              <h2 class="facts-title">Mes informations</h2>
+
+              <div class="facts-item">
+                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                <div>
+                  <p class="facts-label">Nom</p>
+                  <p class="facts-value" data-account="nom"></p>
+                </div>
+              </div>
+
+              <div class="facts-item">
+                <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
+                <div>
+                  <p class="facts-label">Date de naissance</p>
+                  <p class="facts-value" data-account="naissance"></p>
+                </div>
+              </div>
+
+              <div class="facts-item">
+                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                <div>
+                  <p class="facts-label">Email</p>
+                  <p class="facts-value account-break" data-account="email"></p>
+                </div>
+              </div>
+
+              <div class="facts-item">
+                <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+                <div>
+                  <p class="facts-label">Téléphone</p>
+                  <p class="facts-value" data-account="telephone"></p>
+                </div>
+              </div>
+
+              <div class="facts-item">
+                <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+                <div>
+                  <p class="facts-label">Adresse</p>
+                  <p class="facts-value" data-account="adresse"></p>
+                </div>
+              </div>
+
+              <a href="contact.html?objet=candidature" class="facts-secondary" data-account-link="contact">
+                <ion-icon name="create-outline" aria-hidden="true"></ion-icon>
+                Signaler une correction
+              </a>
+
+            </div>
+          </aside>
+
+        </div>
+
+      </section>
+
+
+      <!-- Carte flottante : chevauche le bas du contenu et le haut du footer -->
+      <section class="contact">
+
+        <div class="contact-card" id="contact">
+          <img src="./assets/images/cta-bg-img.png" alt="" class="contact-card-bg">
+
+          <h2>Une question sur votre dossier&nbsp;?</h2>
+
+          <a href="contact.html?objet=candidature" class="btn btn-primary" data-account-link="contact">
+            <p class="btn-text">Contacter les admissions</p>
+            <span class="square"></span>
+          </a>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer dupliqué depuis index.html (liens pointés vers les vraies pages) : deviendra un @include Blade. -->
+    <footer>
+      <div class="footer-grid">
+
+        <div class="grid-item">
+
+          <div class="footer-logo">
+            <img src="./assets/images/logo.png" alt="Les Établissements Raoul Follereau">
+          </div>
+
+          <p class="footer-text">
+            Les Établissements Raoul Follereau, à Fada N'Gourma, regroupent l'Institut Privé Supérieur de formation
+            en Santé, l'École Privée de Santé et le Centre Professionnel de Formation Professionnelle : des formations
+            certifiantes en santé, gestion, numérique et métiers techniques, tournées vers l'insertion professionnelle.
+          </p>
+
+          <div class="social-link">
+            <a href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </div>
+
+        </div>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Liens</h4>
+
+          <li class="list-item">
+            <a href="index.html#home">Accueil</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#about">A propos</a>
+          </li>
+
+          <li class="list-item">
+            <a href="formations.html">Formations</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#blog">Blog</a>
+          </li>
+
+          <li class="list-item">
+            <a href="contact.html">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Autres liens</h4>
+
+          <li class="list-item">
+            <a href="formateurs.html">Nos enseignants</a>
+          </li>
+
+          <li class="list-item">
+            <a href="faq.html">FAQ</a>
+          </li>
+
+          <li class="list-item">
+            <a href="actualites.html">Evènements</a>
+          </li>
+
+          <li class="list-item">
+            <a href="confidentialite.html">Politique de confidentialité</a>
+          </li>
+
+          <li class="list-item">
+            <a href="termes.html">Termes & Conditions</a>
+          </li>
+
+        </ul>
+
+        <div class="grid-item">
+
+          <h4 class="item-heading">Newsletter</h4>
+
+          <div class="wrapper">
+            <input type="text" name="subscribe" placeholder="Adresse Email">
+            
+            <button class="send-btn">
+              <ion-icon name="paper-plane"></ion-icon>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <p class="copyright">
+        Copyright © 2026 <a href="#">Les Etablissements Raoul Follereau</a>. Tout droit reservé.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Bouton flottant WhatsApp — dupliqué sur chaque page en attendant l'@include Blade -->
+  <!-- TODO: remplacer le numéro par la ligne WhatsApp réelle des Établissements -->
+  <a href="https://wa.me/22670249765" class="whatsapp-fab whatsapp-pulse-anim" target="_blank" rel="noopener"
+    aria-label="Écrire aux Établissements Raoul Follereau sur WhatsApp">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+  </a>
+
+  <!-- Catalogue, compte de démonstration et session simulée (TODO phase Laravel : vue protégée),
+       script de page, puis premium-animations.js et hero-intro.js. -->
+  <script src="./assets/data/formations.js"></script>
+  <script src="./assets/data/compte.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/auth-demo.js"></script>
+  <script src="./assets/js/pages/compte.js"></script>
+  <script src="./assets/js/premium-animations.js"></script>
+  <script src="./assets/js/hero-intro.js"></script>
+  <script src="./assets/js/header-nav.js"></script>
+  <script src="./assets/js/script.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

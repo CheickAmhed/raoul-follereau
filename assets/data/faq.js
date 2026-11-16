@@ -59,8 +59,24 @@ const RF_FAQ = [
     question: "Que se passe-t-il après l'envoi de ma préinscription ?",
     reponse: [
       "Notre équipe vous contacte sous 72 heures ouvrées pour vérifier votre dossier et vous indiquer la suite : test de niveau, concours d'entrée ou entretien, selon la formation.",
-      "Vous recevez ensuite la date de la rentrée ou des épreuves. Les pièces manquantes peuvent être déposées à l'accueil ou envoyées par email."
+      "Vous recevez ensuite la date de la rentrée ou des épreuves. Les pièces manquantes peuvent être déposées depuis votre espace candidat, à l'accueil ou envoyées par email."
     ]
+  },
+
+  {
+    id: 'suivre-mon-dossier',
+    categorie: 'admission',
+    question: 'Comment suivre mon dossier de candidature en ligne ?',
+    reponse: [
+      "Votre espace candidat est créé avec votre préinscription. Vous recevez par email un lien pour choisir votre mot de passe, puis vous vous connectez avec l'adresse email de votre préinscription. Depuis cet espace, vous pouvez :",
+      { liste: [
+        'suivre chaque étape de votre candidature, du dépôt du dossier à l\'inscription définitive ;',
+        'déposer les pièces qui manquent à votre dossier ;',
+        'lire les messages du service des admissions.'
+      ] },
+      "Mot de passe oublié ? Utilisez le lien prévu sur la page de connexion pour en recevoir un nouveau par email."
+    ],
+    liens: [{ texte: 'Se connecter à mon espace candidat', href: 'connexion.html' }]
   },
 
   {

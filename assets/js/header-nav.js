@@ -12,7 +12,9 @@
  *    avec effet sandwich -> X (transitions CSS, cf. animation.css) ;
  *  - dropdown sur desktop/tablette, drawer + voile sur mobile ;
  *  - bouton recherche : ouverture animée d'un panneau (UI seule, pas de moteur) ;
- *  - état actif de la nav principale (header + bottom bar) via aria-current.
+ *  - état actif de la nav principale (header + bottom bar) via aria-current ;
+ *  - pastille « connecté » sur l'accès au compte quand une session (simulée)
+ *    de l'espace candidat est ouverte.
  *
  * Vanilla JS, IIFE 'use strict', aucune dépendance, aucune variable globale.
  * ============================================================================
@@ -161,5 +163,36 @@
       }
     });
   }
+
+
+  /* --- Espace candidat : pastille « connecté » ------------------------ */
+  // Lit le témoin de session SIMULÉ posé par auth-demo.js (même clé ; ce fichier n'est
+  // chargé que sur connexion.html et compte.html, d'où la lecture directe ici).
+  // TODO (phase Laravel) : état fourni par la vue Blade (@auth), lecture à supprimer.
+
+  (function markAccount() {
+    let connected = false;
+    ['sessionStorage', 'localStorage'].forEach(function (name) {
+      try {
+        const data = JSON.parse(window[name].getItem('rf-espace-candidat') || 'null');
+        if (data && data.email && data.expires > Date.now()) connected = true;
+      } catch (e) { /* stockage indisponible : on reste « déconnecté » */ }
+    });
+    if (!connected) return;
+
+    const account = navbar.querySelector('.nav-account');
+    if (account) {
+      account.classList.add('is-connected');
+      account.setAttribute('aria-label', 'Mon espace candidat (connecté)');
+    }
+    // bottom bar : le libellé « Compte » reste visible, l'état est ajouté pour les lecteurs d'écran
+    navbar.querySelectorAll('.primary-nav a[href="compte.html"]').forEach(function (a) {
+      a.classList.add('is-connected');
+      const label = a.querySelector('.primary-nav-label');
+      if (label && !label.querySelector('.visually-hidden')) {
+        label.insertAdjacentHTML('beforeend', '<span class="visually-hidden"> (connecté)</span>');
+      }
+    });
+  })();
 
 })();

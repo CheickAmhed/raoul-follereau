@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion à l'espace candidat — Les Établissements Raoul Follereau</title>
+  <meta name="description"
+    content="Connectez-vous à votre espace candidat des Établissements Raoul Follereau pour suivre votre candidature, déposer vos pièces et lire nos messages.">
+  <!-- page privée : non indexée par les moteurs de recherche -->
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/media_queries.css">
+  <link rel="stylesheet" href="./assets/css/animation.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800;900&family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body data-page="compte.html">
+  <div class="container">
+    <!-- Header dupliqué depuis index.html : deviendra un @include Blade lors de la phase Laravel. -->
+    <header>
+      <nav class="navbar">
+
+        <a href="index.html" class="navbar-brand">
+          <img width="90" height="90" src="./assets/images/logo.png"
+            alt="Les Établissements Raoul Follereau — accueil">
+        </a>
+
+        <nav class="primary-nav" aria-label="Navigation principale">
+          <ul>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="index.html">
+                <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Accueil</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="formations.html">
+                <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Formations</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="institution.html">
+                <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Institution</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="galerie.html">
+                <ion-icon name="images-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Galerie</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="actualites.html">
+                <ion-icon name="newspaper-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Actualités</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="contact.html">
+                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Contact</span>
+              </a>
+            </li>
+            <!-- Compte : présent uniquement dans la bottom bar mobile.
+                 Dans le header (desktop/tablette), le compte est l'icône .nav-account ci-dessous. -->
+            <li class="primary-nav-item primary-nav-item--bottombar-only">
+              <a class="primary-nav-link" href="compte.html">
+                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Compte</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="navbar-actions">
+
+          <button type="button" class="icon-btn nav-search-toggle" aria-label="Rechercher sur le site"
+            aria-expanded="false" aria-controls="site-search">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+          <a href="compte.html" class="icon-btn nav-account" aria-label="Mon compte">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          </a>
+
+          <a href="preinscription.html" class="btn btn-primary navbar-cta">
+            <p class="btn-text">S'inscrire</p>
+            <span class="square"></span>
+          </a>
+
+          <button type="button" class="nav-toggle-btn" aria-label="Ouvrir le menu secondaire"
+            aria-expanded="false" aria-controls="secondary-menu">
+            <span class="one"></span>
+            <span class="two"></span>
+            <span class="three"></span>
+          </button>
+
+        </div>
+
+        <div class="site-search" id="site-search" hidden>
+          <form class="site-search-form" role="search" action="#">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            <input type="search" name="q" class="site-search-input"
+              placeholder="Rechercher une formation, une actualité…" aria-label="Rechercher sur le site">
+            <button type="submit" class="site-search-submit">OK</button>
+          </form>
+        </div>
+
+        <ul class="navbar-nav" id="secondary-menu" hidden>
+          <li class="secondary-menu-head">
+            <span class="secondary-menu-title">Informations</span>
+            <button type="button" class="secondary-menu-close" aria-label="Fermer le menu secondaire">
+              <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </li>
+          <li class="nav-item"><a href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a href="documents.html">Documents à télécharger</a></li>
+          <li class="nav-item"><a href="confidentialite.html">Politique de confidentialité</a></li>
+          <li class="nav-item"><a href="termes.html">Termes &amp; Conditions</a></li>
+          <li class="nav-item"><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+
+      </nav>
+
+      <div class="secondary-menu-overlay" hidden></div>
+    </header>
+
+    <main>
+
+      <!-- Connexion à l'espace candidat : SIMULÉE (assets/js/auth-demo.js, compte de démonstration
+           assets/data/compte.js), pilotée par assets/js/pages/connexion.js.
+           TODO (phase Laravel) : formulaires POST /login et /forgot-password (Fortify / Breeze), jeton CSRF,
+           limitation des tentatives côté serveur. -->
+      <section class="auth" aria-labelledby="auth-title">
+
+        <div class="auth-layout">
+
+          <div class="auth-box">
+
+            <nav class="breadcrumb" aria-label="Fil d'Ariane">
+              <ol>
+                <li><a href="index.html">Accueil</a></li>
+                <li aria-current="page">Connexion</li>
+              </ol>
+            </nav>
+
+            <p class="section-subtitle">Espace candidat</p>
+
+            <h1 class="auth-title" id="auth-title">Connexion</h1>
+
+            <p class="auth-intro">
+              Suivez votre candidature, déposez vos pièces et lisez les messages du service des admissions.
+            </p>
+
+            <p class="auth-status" role="status" hidden></p>
+
+            <!-- Panneau 1 : connexion -->
+            <form class="auth-form" data-panel="login" action="#" novalidate>
+
+              <div class="form-field">
+                <label class="form-label" for="auth-email">Adresse email</label>
+                <input type="email" id="auth-email" name="email" class="form-input" autocomplete="username"
+                  inputmode="email" spellcheck="false" required placeholder="nom@exemple.com"
+                  data-error-required="Saisissez l'adresse email de votre préinscription."
+                  data-error="Adresse email invalide (ex. : nom@exemple.com).">
+                <p class="field-error" id="err-auth-email" hidden></p>
+              </div>
+
+              <div class="form-field">
+                <div class="auth-label-row">
+                  <label class="form-label" for="auth-password">Mot de passe</label>
+                  <button type="button" class="auth-link" data-show="forgot">Mot de passe oublié&nbsp;?</button>
+                </div>
+                <div class="auth-password">
+                  <input type="password" id="auth-password" name="password" class="form-input"
+                    autocomplete="current-password" required data-error-required="Saisissez votre mot de passe.">
+                  <button type="button" class="auth-toggle" aria-label="Afficher le mot de passe" aria-pressed="false"
+                    aria-controls="auth-password">
+                    <ion-icon name="eye-outline" aria-hidden="true"></ion-icon>
+                  </button>
+                </div>
+                <p class="form-hint form-hint--warning auth-caps" hidden>
+                  La touche Verr. Maj est activée.
+                </p>
+                <p class="field-error" id="err-auth-password" hidden></p>
+              </div>
+
+              <div class="form-field form-check auth-remember">
+                <input type="checkbox" id="auth-remember" name="remember" aria-describedby="auth-remember-hint">
+                <label for="auth-remember">Rester connecté(e) sur cet appareil</label>
+                <p class="form-hint" id="auth-remember-hint">À éviter sur un ordinateur partagé, par exemple dans un cybercafé.</p>
+              </div>
+
+              <p class="form-error" role="alert" hidden></p>
+
+              <button type="submit" class="btn btn-primary auth-submit">
+                <p class="btn-text">Se connecter</p>
+                <span class="square"></span>
+              </button>
+
+            </form>
+
+            <!-- Panneau 2 : mot de passe oublié (demande simulée) -->
+            <form class="auth-form" data-panel="forgot" action="#" novalidate hidden>
+
+              <h2 class="auth-panel-title">Mot de passe oublié</h2>
+              <p class="auth-panel-text">
+                Saisissez l'adresse email de votre préinscription. Nous vous envoyons un lien pour choisir un nouveau mot de passe.
+              </p>
+
+              <div class="form-field">
+                <label class="form-label" for="forgot-email">Adresse email</label>
+                <input type="email" id="forgot-email" name="email" class="form-input" autocomplete="email"
+                  inputmode="email" spellcheck="false" required placeholder="nom@exemple.com"
+                  data-error-required="Saisissez l'adresse email de votre préinscription."
+                  data-error="Adresse email invalide (ex. : nom@exemple.com).">
+                <p class="field-error" id="err-forgot-email" hidden></p>
+              </div>
+
+              <p class="form-error" role="alert" hidden></p>
+
+              <button type="submit" class="btn btn-primary auth-submit">
+                <p class="btn-text">Recevoir le lien</p>
+                <span class="square"></span>
+              </button>
+
+              <button type="button" class="auth-back" data-show="login">
+                <ion-icon name="arrow-back-outline" aria-hidden="true"></ion-icon>
+                Retour à la connexion
+              </button>
+
+            </form>
+
+            <!-- Panneau 3 : confirmation (même réponse que l'adresse soit connue ou non) -->
+            <div class="auth-sent" data-panel="sent" hidden>
+              <ion-icon name="mail-open-outline" aria-hidden="true"></ion-icon>
+              <h2 class="auth-sent-title">Vérifiez votre boîte de réception</h2>
+              <p class="auth-panel-text">
+                Si un espace candidat est associé à <strong data-sent-email></strong>, vous allez recevoir un lien
+                pour choisir un nouveau mot de passe. Pensez à regarder dans les courriers indésirables.
+              </p>
+              <button type="button" class="auth-back" data-show="login">
+                <ion-icon name="arrow-back-outline" aria-hidden="true"></ion-icon>
+                Retour à la connexion
+              </button>
+            </div>
+
+            <!-- TODO: encadré de démonstration À SUPPRIMER avant la mise en ligne (avec assets/data/compte.js) -->
+            <div class="auth-demo">
+              <ion-icon name="flask-outline" aria-hidden="true"></ion-icon>
+              <div>
+                <p class="auth-demo-title">Compte de démonstration</p>
+                <p class="auth-demo-text">
+                  Email&nbsp;: <strong data-demo="identifiant">candidat@exemple.com</strong><br>
+                  Mot de passe&nbsp;: <strong data-demo="motDePasse">Demo-2026</strong>
+                </p>
+                <button type="button" class="auth-link" data-demo-fill>Remplir automatiquement</button>
+              </div>
+            </div>
+
+          </div>
+
+          <aside class="auth-aside" aria-labelledby="auth-aside-title">
+
+            <h2 class="auth-aside-title" id="auth-aside-title">Votre espace candidat</h2>
+
+            <ul class="auth-benefits">
+              <li>
+                <ion-icon name="git-commit-outline" aria-hidden="true"></ion-icon>
+                <div>
+                  <p class="auth-benefit-title">Suivre votre candidature</p>
+                  <p class="auth-benefit-text">Chaque étape, de la préinscription à l'inscription définitive.</p>
+                </div>
+              </li>
+              <li>
+                <ion-icon name="cloud-upload-outline" aria-hidden="true"></ion-icon>
+                <div>
+                  <p class="auth-benefit-title">Déposer vos pièces</p>
+                  <p class="auth-benefit-text">Envoyez en ligne les documents qui manquent à votre dossier.</p>
+                </div>
+              </li>
+              <li>
+                <ion-icon name="mail-unread-outline" aria-hidden="true"></ion-icon>
+                <div>
+                  <p class="auth-benefit-title">Lire nos messages</p>
+                  <p class="auth-benefit-text">Pièces à fournir, convocations et informations de rentrée.</p>
+                </div>
+              </li>
+              <li>
+                <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+                <div>
+                  <p class="auth-benefit-title">Connaître les dates clés</p>
+                  <p class="auth-benefit-text">Date limite de dépôt, concours, résultats et rentrée.</p>
+                </div>
+              </li>
+            </ul>
+
+            <div class="auth-new">
+              <p class="auth-new-title">Pas encore d'espace candidat&nbsp;?</p>
+              <p class="auth-new-text">
+                Il est créé avec votre préinscription : vous recevez par email un lien pour choisir votre mot de passe.
+              </p>
+              <a href="preinscription.html" class="btn btn-primary">
+                <p class="btn-text">Je me préinscris</p>
+                <span class="square"></span>
+              </a>
+            </div>
+
+          </aside>
+
+        </div>
+
+      </section>
+
+
+      <!-- Carte flottante : chevauche le bas du contenu et le haut du footer -->
+      <section class="contact">
+
+        <div class="contact-card" id="contact">
+          <img src="./assets/images/cta-bg-img.png" alt="" class="contact-card-bg">
+
+          <h2>Un problème de connexion&nbsp;?</h2>
+
+          <a href="contact.html?objet=candidature" class="btn btn-primary">
+            <p class="btn-text">Contactez-nous</p>
+            <span class="square"></span>
+          </a>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer dupliqué depuis index.html (liens pointés vers les vraies pages) : deviendra un @include Blade. -->
+    <footer>
+      <div class="footer-grid">
+
+        <div class="grid-item">
+
+          <div class="footer-logo">
+            <img src="./assets/images/logo.png" alt="Les Établissements Raoul Follereau">
+          </div>
+
+          <p class="footer-text">
+            Les Établissements Raoul Follereau, à Fada N'Gourma, regroupent l'Institut Privé Supérieur de formation
+            en Santé, l'École Privée de Santé et le Centre Professionnel de Formation Professionnelle : des formations
+            certifiantes en santé, gestion, numérique et métiers techniques, tournées vers l'insertion professionnelle.
+          </p>
+
+          <div class="social-link">
+            <a href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </div>
+
+        </div>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Liens</h4>
+
+          <li class="list-item">
+            <a href="index.html#home">Accueil</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#about">A propos</a>
+          </li>
+
+          <li class="list-item">
+            <a href="formations.html">Formations</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#blog">Blog</a>
+          </li>
+
+          <li class="list-item">
+            <a href="contact.html">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Autres liens</h4>
+
+          <li class="list-item">
+            <a href="formateurs.html">Nos enseignants</a>
+          </li>
+
+          <li class="list-item">
+            <a href="faq.html">FAQ</a>
+          </li>
+
+          <li class="list-item">
+            <a href="actualites.html">Evènements</a>
+          </li>
+
+          <li class="list-item">
+            <a href="confidentialite.html">Politique de confidentialité</a>
+          </li>
+
+          <li class="list-item">
+            <a href="termes.html">Termes & Conditions</a>
+          </li>
+
+        </ul>
+
+        <div class="grid-item">
+
+          <h4 class="item-heading">Newsletter</h4>
+
+          <div class="wrapper">
+            <input type="text" name="subscribe" placeholder="Adresse Email">
+            
+            <button class="send-btn">
+              <ion-icon name="paper-plane"></ion-icon>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <p class="copyright">
+        Copyright © 2026 <a href="#">Les Etablissements Raoul Follereau</a>. Tout droit reservé.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Bouton flottant WhatsApp — dupliqué sur chaque page en attendant l'@include Blade -->
+  <!-- TODO: remplacer le numéro par la ligne WhatsApp réelle des Établissements -->
+  <a href="https://wa.me/22670249765" class="whatsapp-fab whatsapp-pulse-anim" target="_blank" rel="noopener"
+    aria-label="Écrire aux Établissements Raoul Follereau sur WhatsApp">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+  </a>
+
+  <!-- Compte de démonstration et session simulée (TODO phase Laravel : authentification serveur),
+       script de page, puis premium-animations.js et hero-intro.js. -->
+  <script src="./assets/data/compte.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/auth-demo.js"></script>
+  <script src="./assets/js/pages/connexion.js"></script>
+  <script src="./assets/js/premium-animations.js"></script>
+  <script src="./assets/js/hero-intro.js"></script>
+  <script src="./assets/js/header-nav.js"></script>
+  <script src="./assets/js/script.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

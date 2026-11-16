@@ -15,6 +15,7 @@
  *    proposé n'écrase jamais un texte saisi par l'utilisateur ;
  *  - pré-remplissage depuis l'URL : ?objet=…&formation={id} (liens « Être
  *    informé(e) de l'ouverture » de la fiche formation et du wizard) ;
+ *    ?objet=candidature&reference=RF-AAAA-NNNNN (liens de l'espace candidat) ;
  *  - validation HTML5 (required, type, pattern, minlength) + contrôle JS au
  *    submit : messages inline sous chaque champ, focus sur le premier champ
  *    invalide, jamais d'alert() — mêmes conventions que preinscription.js ;
@@ -209,6 +210,13 @@
     if (f && selForm) {
       selForm.value = f.id;
       updateSelection();
+    }
+
+    // numéro de candidature : seulement s'il respecte le format attendu par le champ
+    const reference = U.getParam('reference');
+    const refInput = form.elements.namedItem('reference');
+    if (selObjet.value === 'candidature' && refInput && /^RF-\d{4}-\d{5}$/.test(reference || '')) {
+      refInput.value = reference;
     }
   })();
 

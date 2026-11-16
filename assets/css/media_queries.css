@@ -1494,3 +1494,79 @@
   }
 
 }
+
+
+
+
+/*-----------------------------------*\
+  #AUTH / #COMPTE  (connexion.html, compte.html)
+\*-----------------------------------*/
+
+@media (min-width: 575px) {
+
+  /* carte d'identité : avatar, nom et déconnexion sur une seule ligne */
+  .account-logout { flex-basis: auto; }
+
+  .account-card { padding: 30px; }
+
+  /* pièces : bouton « Déposer » à droite du libellé */
+  .account-piece {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .account-piece-text { flex-basis: 0; }
+
+  .account-upload { margin-left: 0; }
+
+}
+
+
+
+
+
+@media (min-width: 767px) {
+
+  .auth { padding-top: 50px; }
+
+  .auth-box,
+  .auth-aside { padding: 40px; }
+
+}
+
+
+
+
+
+@media (min-width: 992px) {
+
+  /* margin-top = navbar fixe plus haute (comme .page-banner) */
+  .auth {
+    margin-top: 84px;
+    padding-top: 60px;
+  }
+
+  /* formulaire à gauche, avantages à droite (même hauteur) */
+  .auth-layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  /* bannière de l'espace candidat : texte à gauche, carte d'identité à droite */
+  .page-banner--app {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding-bottom: var(--py);
+  }
+
+  .account-id {
+    margin: 0;
+    justify-self: end;
+  }
+
+  .page-banner--app .shape-1 {
+    top:    auto;
+    bottom: 10%;
+    left:   50%;
+  }
+
+}

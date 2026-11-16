@@ -159,7 +159,7 @@
 
           <h1 class="section-title" id="privacy-page-title"><span class="heading-line">Politique de confidentialité</span></h1>
 
-          <p class="article-meta">Dernière mise à jour : <time datetime="2026-11-15">15 novembre 2026</time></p>
+          <p class="article-meta">Dernière mise à jour : <time datetime="2026-11-16">16 novembre 2026</time></p>
 
           <p class="section-text">
             Quelles informations nous recueillons lors de votre préinscription ou de vos demandes, pourquoi,
@@ -228,7 +228,7 @@
               </details>
               <p class="legal-updated">
                 <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-                <span>Mise à jour le <time datetime="2026-11-15">15 novembre 2026</time></span>
+                <span>Mise à jour le <time datetime="2026-11-16">16 novembre 2026</time></span>
               </p>
               <a href="contact.html?objet=general" class="facts-secondary legal-ask">
                 <ion-icon name="chatbubble-ellipses-outline" aria-hidden="true"></ion-icon>
@@ -244,7 +244,7 @@
               <ul>
                 <li>Nous ne recueillons que les informations nécessaires pour traiter votre candidature ou répondre à vos demandes.</li>
                 <li>Vos données ne sont jamais vendues, ni utilisées à des fins publicitaires.</li>
-                <li>Le site ne dépose aucun cookie de mesure d'audience ou de publicité. Seuls quelques services intégrés, comme la carte, peuvent recevoir votre adresse IP.</li>
+                <li>Le site ne dépose aucun cookie de mesure d'audience ou de publicité. Il n'enregistre qu'un témoin de connexion, strictement nécessaire, quand vous vous connectez à votre espace candidat. Quelques services intégrés, comme la carte, peuvent recevoir votre adresse IP.</li>
                 <li>Vous pouvez à tout moment consulter vos données, les faire corriger ou supprimer en nous écrivant.</li>
               </ul>
             </div>
@@ -288,6 +288,14 @@
                 téléphone, la formation concernée ou votre numéro de candidature.
               </p>
 
+              <h3 class="legal-subtitle">Espace candidat</h3>
+              <p>
+                Votre espace candidat est créé avec votre préinscription. Vous vous y connectez avec l'adresse email de
+                votre dossier et le mot de passe que vous choisissez. Ce mot de passe est enregistré sous une forme
+                protégée que personne, pas même nos services, ne peut relire. Les pièces que vous y déposez et les
+                messages du service des admissions rejoignent votre dossier de candidature.
+              </p>
+
               <h3 class="legal-subtitle">Navigation sur le site</h3>
               <p>
                 Le site n'utilise ni outil de mesure d'audience ni publicité. Comme pour tout site web, l'hébergeur
@@ -307,6 +315,7 @@
                   </thead>
                   <tbody>
                     <tr><td data-label="Pourquoi">Étudier votre candidature, vous recontacter et organiser les tests, concours ou entretiens d'admission</td><td data-label="Sur quelle base">Votre demande de préinscription : ces données sont nécessaires pour la traiter</td></tr>
+                    <tr><td data-label="Pourquoi">Vous permettre de suivre votre dossier, d'y déposer vos pièces et de lire nos messages dans votre espace candidat</td><td data-label="Sur quelle base">Votre demande de préinscription : l'espace candidat sert à la traiter</td></tr>
                     <tr><td data-label="Pourquoi">Répondre aux messages envoyés par le formulaire de contact</td><td data-label="Sur quelle base">Votre consentement, donné en cochant la case prévue</td></tr>
                     <tr><td data-label="Pourquoi">Gérer votre inscription et votre scolarité si vous êtes admis(e)</td><td data-label="Sur quelle base">Votre contrat de formation et nos obligations légales, notamment pour les examens et les diplômes</td></tr>
                     <tr><td data-label="Pourquoi">Vous prévenir de l'ouverture des inscriptions à une formation, si vous le demandez</td><td data-label="Sur quelle base">Votre consentement, que vous pouvez retirer à tout moment</td></tr>
@@ -342,6 +351,7 @@
                   <tbody>
                     <tr><td data-label="Données">Candidature non retenue ou restée sans suite</td><td data-label="Durée de conservation">2 ans à compter du dernier contact</td></tr>
                     <tr><td data-label="Données">Dossier d'un apprenant admis</td><td data-label="Durée de conservation">Pendant toute la formation, puis archivage pour la durée imposée par les règles applicables aux dossiers scolaires et aux diplômes</td></tr>
+                    <tr><td data-label="Données">Accès à l'espace candidat : adresse email et mot de passe protégé</td><td data-label="Durée de conservation">Aussi longtemps que votre dossier de candidature, puis supprimés avec lui</td></tr>
                     <tr><td data-label="Données">Message envoyé par le formulaire de contact</td><td data-label="Durée de conservation">1 an à compter du dernier échange</td></tr>
                     <tr><td data-label="Données">Demande d'information sur l'ouverture d'une formation</td><td data-label="Durée de conservation">Jusqu'à l'ouverture des inscriptions, et au plus 2 ans</td></tr>
                     <tr><td data-label="Données">Journaux techniques de connexion</td><td data-label="Durée de conservation">12 mois au plus</td></tr>
@@ -354,9 +364,16 @@
             <section class="legal-section" id="services-tiers" aria-labelledby="h-services-tiers">
               <h2 class="detail-block-title" id="h-services-tiers">6. Services tiers et cookies</h2>
               <p>
-                Le site lui-même ne dépose aucun cookie et n'enregistre rien dans votre navigateur. Il s'appuie toutefois
-                sur des services externes, qui reçoivent votre adresse IP lorsqu'ils sont chargés et peuvent déposer leurs
-                propres cookies :
+                Le site lui-même ne dépose aucun cookie de mesure d'audience ou de publicité. Quand vous vous connectez à
+                votre espace candidat, il enregistre seulement dans votre navigateur un témoin de connexion, strictement
+                nécessaire pour vous garder connecté(e). Ce témoin est effacé à la déconnexion ou à la fermeture du
+                navigateur, ou au bout de 30 jours si vous avez coché « Rester connecté(e) ».
+              </p>
+              <!-- TODO (phase Laravel) : durées à aligner sur la configuration réelle de la session et du cookie
+                   « se souvenir de moi » -->
+              <p>
+                Le site s'appuie aussi sur des services externes, qui reçoivent votre adresse IP lorsqu'ils sont chargés
+                et peuvent déposer leurs propres cookies :
               </p>
               <ul>
                 <li><strong>Google Fonts</strong>, de Google : les polices d'écriture, chargées sur chaque page ;</li>
@@ -419,8 +436,8 @@
             <section class="legal-section" id="modifications" aria-labelledby="h-modifications">
               <h2 class="detail-block-title" id="h-modifications">10. Mises à jour de cette politique</h2>
               <p>
-                Cette politique évoluera avec le site, notamment à l'ouverture de nouveaux services en ligne comme l'espace
-                candidat ou la lettre d'information. La date de la dernière mise à jour figure en haut de la page. En cas de
+                Cette politique évoluera avec le site, notamment à l'ouverture de nouveaux services en ligne comme la
+                lettre d'information. La date de la dernière mise à jour figure en haut de la page. En cas de
                 changement important, nous vous en informerons sur le site.
               </p>
             </section>
