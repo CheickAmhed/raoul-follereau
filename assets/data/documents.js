@@ -48,8 +48,8 @@ const RF_DOCUMENTS = [
     description: 'Pour les apprenants et anciens apprenants : attestation d\'inscription, de réussite ou relevé de notes.' },
   { id: 'convention-stage', titre: 'Modèle de convention de stage', categorie: 'formulaires', type: 'docx', taille: 120, date: '2026-05-20', etablissement: null, fichier: null,
     description: 'Convention tripartite entre l\'apprenant, la structure d\'accueil et l\'établissement.' },
-  { id: 'certificat-medical', titre: 'Modèle de certificat d\'aptitude physique', categorie: 'formulaires', type: 'pdf', taille: 140, date: '2026-08-01', etablissement: 'eps', fichier: null,
-    description: 'Pièce demandée pour les formations de santé, à faire remplir par un médecin.' },
+  { id: 'certificat-medical', titre: 'Modèle de certificat d\'aptitude physique', categorie: 'formulaires', type: 'pdf', taille: 140, date: '2026-08-01', etablissement: null, fichier: null,
+    description: 'Pièce demandée pour toutes les formations, à faire remplir par un médecin moins de 3 mois avant le dépôt.' },
 
   /* règlements */
   { id: 'reglement-interieur', titre: 'Règlement intérieur', categorie: 'reglements', type: 'pdf', taille: 560, date: '2026-09-01', etablissement: null, fichier: null,

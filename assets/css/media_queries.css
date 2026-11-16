@@ -1430,3 +1430,60 @@
   .faq-answer { padding: 0 25px 24px; }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #LEGAL  (pages légales)
+\*-----------------------------------*/
+
+@media (min-width: 575px) {
+
+  /* tableaux : vraie grille à 2 colonnes */
+  .legal-table thead { display: table-header-group; }
+
+  .legal-table tr { display: table-row; }
+
+  .legal-table td {
+    display: table-cell;
+    width: 50%;
+    padding: 12px 18px;
+    vertical-align: top;
+    border-top: 1px solid var(--light-gray);
+  }
+
+  .legal-table td::before { content: none; }
+
+  .legal-table th {
+    padding: 12px 18px;
+    background: var(--cultured);
+    text-align: left;
+    font-weight: var(--fw-5);
+    color: var(--oxford-blue);
+  }
+
+}
+
+
+
+
+
+@media (min-width: 992px) {
+
+  /* sommaire toujours déplié (legal.js) : le titre n'est plus un bouton */
+  .legal-toc-summary {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .legal-toc-summary ion-icon { display: none; }
+
+  /* colonne collante : défile elle-même si la fenêtre est basse */
+  .legal-toc-card {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+
+}

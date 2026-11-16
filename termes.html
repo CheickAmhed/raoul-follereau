@@ -3,9 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Termes &amp; Conditions — Les Établissements Raoul Follereau</title>
-  <meta name="description" content="Termes &amp; Conditions — page en cours de préparation.">
+  <title>Conditions d'utilisation — Les Établissements Raoul Follereau</title>
+  <meta name="description"
+    content="Conditions d'utilisation du site des Établissements Raoul Follereau : accès au site, informations publiées, préinscription en ligne, pièces justificatives, propriété intellectuelle et responsabilités.">
 
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/media_queries.css">
@@ -16,20 +18,529 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800;900&family=Roboto:wght@400;500&display=swap"
     rel="stylesheet">
+
 </head>
 
 <body>
-  <main class="placeholder-page">
-    <img class="placeholder-logo" src="./assets/images/logo.png" width="90" height="90"
-      alt="Les Établissements Raoul Follereau">
-    <h1 class="section-title">Termes &amp; Conditions</h1>
-    <p class="section-text">Contenu à venir.</p>
-    <!-- TODO: conditions générales d'utilisation à fournir par le client. -->
-    <a class="btn btn-primary" href="index.html">
-      <p class="btn-text">Retour à l'accueil</p>
-      <span class="square"></span>
-    </a>
-  </main>
+  <div class="container">
+    <!-- Header dupliqué depuis index.html : deviendra un @include Blade lors de la phase Laravel. -->
+    <header>
+      <nav class="navbar">
+
+        <a href="index.html" class="navbar-brand">
+          <img width="90" height="90" src="./assets/images/logo.png"
+            alt="Les Établissements Raoul Follereau — accueil">
+        </a>
+
+        <nav class="primary-nav" aria-label="Navigation principale">
+          <ul>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="index.html">
+                <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Accueil</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="formations.html">
+                <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Formations</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="institution.html">
+                <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Institution</span>
+              </a>
+            </li>
+            <li class="primary-nav-item primary-nav-item--header-only">
+              <a class="primary-nav-link" href="galerie.html">
+                <ion-icon name="images-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Galerie</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="actualites.html">
+                <ion-icon name="newspaper-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Actualités</span>
+              </a>
+            </li>
+            <li class="primary-nav-item">
+              <a class="primary-nav-link" href="contact.html">
+                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Contact</span>
+              </a>
+            </li>
+            <!-- Compte : présent uniquement dans la bottom bar mobile.
+                 Dans le header (desktop/tablette), le compte est l'icône .nav-account ci-dessous. -->
+            <li class="primary-nav-item primary-nav-item--bottombar-only">
+              <a class="primary-nav-link" href="compte.html">
+                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                <span class="primary-nav-label">Compte</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="navbar-actions">
+
+          <button type="button" class="icon-btn nav-search-toggle" aria-label="Rechercher sur le site"
+            aria-expanded="false" aria-controls="site-search">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+          <a href="compte.html" class="icon-btn nav-account" aria-label="Mon compte">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          </a>
+
+          <a href="preinscription.html" class="btn btn-primary navbar-cta">
+            <p class="btn-text">S'inscrire</p>
+            <span class="square"></span>
+          </a>
+
+          <button type="button" class="nav-toggle-btn" aria-label="Ouvrir le menu secondaire"
+            aria-expanded="false" aria-controls="secondary-menu">
+            <span class="one"></span>
+            <span class="two"></span>
+            <span class="three"></span>
+          </button>
+
+        </div>
+
+        <div class="site-search" id="site-search" hidden>
+          <form class="site-search-form" role="search" action="#">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+            <input type="search" name="q" class="site-search-input"
+              placeholder="Rechercher une formation, une actualité…" aria-label="Rechercher sur le site">
+            <button type="submit" class="site-search-submit">OK</button>
+          </form>
+        </div>
+
+        <ul class="navbar-nav" id="secondary-menu" hidden>
+          <li class="secondary-menu-head">
+            <span class="secondary-menu-title">Informations</span>
+            <button type="button" class="secondary-menu-close" aria-label="Fermer le menu secondaire">
+              <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </li>
+          <li class="nav-item"><a href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a href="documents.html">Documents à télécharger</a></li>
+          <li class="nav-item"><a href="confidentialite.html">Politique de confidentialité</a></li>
+          <li class="nav-item"><a href="termes.html" aria-current="page">Termes &amp; Conditions</a></li>
+          <li class="nav-item"><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+
+      </nav>
+
+      <div class="secondary-menu-overlay" hidden></div>
+    </header>
+
+    <main>
+
+      <!-- Bannière de page (voir PROJECT_CONTEXT.md §3.3) : variante « légale », logo des Établissements sur carte blanche -->
+      <section class="page-banner page-banner--detail page-banner--legal" aria-labelledby="terms-page-title">
+
+        <div class="deco-shape shape-1">
+          <img src="./assets/images/shape-1.png" alt="" width="70">
+        </div>
+        <div class="deco-shape shape-3">
+          <img src="./assets/images/shape-3.png" alt="" width="120">
+        </div>
+
+        <div class="page-banner-text">
+
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <ol>
+              <li><a href="index.html">Accueil</a></li>
+              <li aria-current="page">Termes &amp; Conditions</li>
+            </ol>
+          </nav>
+
+          <p class="section-subtitle">Termes &amp; Conditions</p>
+
+          <h1 class="section-title" id="terms-page-title"><span class="heading-line">Conditions d'utilisation</span></h1>
+
+          <p class="article-meta">Dernière mise à jour : <time datetime="2026-11-16">16 novembre 2026</time></p>
+
+          <p class="section-text">
+            Les règles d'utilisation du site et de ses services : consultation des formations, préinscription en ligne
+            et formulaire de contact.
+          </p>
+
+        </div>
+
+        <div class="page-banner-visual" aria-hidden="true">
+          <div class="img-box">
+            <img src="./assets/images/logo.png" width="480" height="360" alt="" class="banner-img banner-photo">
+
+            <ul class="banner-badges">
+              <li class="banner-badge badge-1 smooth-zigzag-anim-1">
+                <ion-icon name="globe-outline"></ion-icon>
+                <span>Accès <strong>gratuit</strong></span>
+              </li>
+              <li class="banner-badge badge-2 smooth-zigzag-anim-2">
+                <ion-icon name="document-text-outline"></ion-icon>
+                <span>Préinscription <strong>sans engagement</strong></span>
+              </li>
+              <li class="banner-badge badge-3 smooth-zigzag-anim-3">
+                <ion-icon name="scale-outline"></ion-icon>
+                <span>Droit <strong>burkinabè</strong></span>
+              </li>
+            </ul>
+
+            <img src="./assets/images/banner-aliment-icon-4.png" alt="" class="icon-4 drop-anim" width="50">
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- Texte des conditions (contenu statique, en attendant la vue Blade) ; sommaire piloté par pages/legal.js.
+           TODO: PROJET DE TEXTE rédigé d'après le fonctionnement actuel du site, à faire valider par un juriste
+           avant la mise en ligne (règles de préinscription, juridiction, droits sur les images). -->
+      <section class="detail legal anchor-target" id="conditions" aria-labelledby="terms-page-title">
+
+        <div class="detail-layout">
+
+          <aside class="detail-aside">
+            <div class="facts-card legal-toc-card">
+              <details class="legal-toc-details">
+                <summary class="legal-toc-summary">
+                  <span>Sommaire</span>
+                  <ion-icon name="chevron-down-outline" aria-hidden="true"></ion-icon>
+                </summary>
+                <nav aria-label="Sommaire des conditions d'utilisation">
+                  <ol class="legal-toc">
+                    <li><a href="#essentiel">L'essentiel en bref</a></li>
+                    <li><a href="#objet">Objet et acceptation</a></li>
+                    <li><a href="#acces">Accès au site</a></li>
+                    <li><a href="#informations">Informations publiées</a></li>
+                    <li><a href="#preinscription">Préinscription en ligne</a></li>
+                    <li><a href="#pieces">Pièces justificatives</a></li>
+                    <li><a href="#echanges">Formulaires et échanges</a></li>
+                    <li><a href="#propriete">Propriété intellectuelle</a></li>
+                    <li><a href="#liens">Liens et services externes</a></li>
+                    <li><a href="#responsabilite">Responsabilité</a></li>
+                    <li><a href="#donnees">Données personnelles</a></li>
+                    <li><a href="#modifications">Modifications</a></li>
+                    <li><a href="#droit">Droit applicable</a></li>
+                  </ol>
+                </nav>
+              </details>
+              <p class="legal-updated">
+                <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                <span>Mise à jour le <time datetime="2026-11-16">16 novembre 2026</time></span>
+              </p>
+              <a href="contact.html?objet=general" class="facts-secondary legal-ask">
+                <ion-icon name="chatbubble-ellipses-outline" aria-hidden="true"></ion-icon>
+                Une question sur ces conditions ?
+              </a>
+            </div>
+          </aside>
+
+          <div class="detail-content legal-body">
+
+            <div class="legal-essentiel" id="essentiel">
+              <h2 class="legal-essentiel-title">L'essentiel en bref</h2>
+              <ul>
+                <li>Le site et la préinscription en ligne sont gratuits et sans engagement.</li>
+                <li>Une préinscription ne vaut pas admission : votre dossier est étudié, puis complété par un test, un concours ou un entretien selon la formation.</li>
+                <li>Les informations publiées sont indicatives : seules celles confirmées lors de votre inscription vous engagent.</li>
+                <li>Les contenus du site, logos et photographies compris, ne peuvent pas être réutilisés sans notre accord.</li>
+              </ul>
+            </div>
+
+            <section class="legal-section" id="objet" aria-labelledby="h-objet">
+              <h2 class="detail-block-title" id="h-objet">1. Objet et acceptation des conditions</h2>
+              <p>
+                Les présentes conditions encadrent l'utilisation du site des Établissements Raoul Follereau, qui regroupent
+                l'IPS-RF, l'EPS-RF et le CPFP-RF à Fada N'Gourma, au Burkina Faso, ainsi que des services qu'il propose :
+                consultation des formations, préinscription en ligne et formulaire de contact.
+              </p>
+              <p>
+                En naviguant sur le site, vous acceptez ces conditions. En envoyant une préinscription, vous les acceptez
+                expressément en cochant la case prévue à la dernière étape du formulaire.
+              </p>
+            </section>
+
+            <section class="legal-section" id="acces" aria-labelledby="h-acces">
+              <h2 class="detail-block-title" id="h-acces">2. Accès au site</h2>
+              <p>
+                Le site est accessible gratuitement, à tout moment, sous réserve des interruptions nécessaires à sa
+                maintenance ou à sa mise à jour, et des incidents techniques indépendants de notre volonté. Les frais de
+                connexion à internet restent à votre charge.
+              </p>
+              <p>
+                Nous pouvons suspendre ou modifier tout ou partie du site, notamment pour en améliorer le fonctionnement,
+                sans que cela ouvre droit à une indemnité.
+              </p>
+            </section>
+
+            <section class="legal-section" id="informations" aria-labelledby="h-informations">
+              <h2 class="detail-block-title" id="h-informations">3. Informations publiées sur le site</h2>
+              <p>
+                Nous veillons à publier des informations exactes et à jour sur nos formations, nos sessions, nos frais et
+                nos événements. Elles sont toutefois données à titre indicatif et peuvent évoluer : nombre de places,
+                dates de rentrée ou de concours, programmes et montants.
+              </p>
+              <p>
+                Seules les informations confirmées par écrit lors de votre inscription définitive vous engagent, et nous
+                engagent. Les brochures et documents téléchargeables ne sont pas contractuels.
+              </p>
+            </section>
+
+            <section class="legal-section" id="preinscription" aria-labelledby="h-preinscription">
+              <h2 class="detail-block-title" id="h-preinscription">4. Préinscription en ligne</h2>
+              <p>La préinscription en ligne est gratuite et sans engagement. Elle obéit aux règles suivantes :</p>
+              <ul>
+                <li>vous devez fournir des informations exactes, complètes et à jour, qui vous concernent personnellement ;</li>
+                <li>une préinscription ne vaut pas admission : votre dossier est étudié puis, selon la formation, complété par un test de niveau, un concours d'entrée ou un entretien ;</li>
+                <li>un numéro de candidature vous est attribué à l'envoi ; conservez-le pour tout échange avec nos services ;</li>
+                <li>notre équipe vous recontacte pour finaliser votre dossier, en principe sous 72 heures ouvrées ;</li>
+                <li>l'inscription définitive n'intervient qu'après la confirmation de votre admission et le règlement des frais prévus pour la formation.</li>
+              </ul>
+              <p>
+                Toute fausse déclaration ou tout document falsifié entraîne l'annulation de la candidature et, le cas
+                échéant, de l'inscription.
+              </p>
+            </section>
+
+            <section class="legal-section" id="pieces" aria-labelledby="h-pieces">
+              <h2 class="detail-block-title" id="h-pieces">5. Pièces justificatives</h2>
+              <p>
+                Les pièces que vous joignez doivent être authentiques, lisibles et vous concerner. En ligne, elles sont
+                acceptées au format PDF, JPG ou PNG, jusqu'à 5 Mo chacune. Vous pouvez compléter votre dossier plus tard,
+                à l'accueil ou par email.
+              </p>
+              <p>Les originaux pourront vous être demandés lors de l'inscription définitive.</p>
+            </section>
+
+            <section class="legal-section" id="echanges" aria-labelledby="h-echanges">
+              <h2 class="detail-block-title" id="h-echanges">6. Formulaires et échanges</h2>
+              <p>
+                Le formulaire de contact et les échanges avec nos services doivent rester courtois et conformes à la loi.
+                Sont interdits notamment les contenus injurieux, diffamatoires ou discriminatoires, les envois publicitaires
+                non sollicités et toute tentative de perturber le fonctionnement du site.
+              </p>
+            </section>
+
+            <section class="legal-section" id="propriete" aria-labelledby="h-propriete">
+              <h2 class="detail-block-title" id="h-propriete">7. Propriété intellectuelle</h2>
+              <p>
+                Les textes, logos, photographies, illustrations et la présentation du site sont la propriété des
+                Établissements Raoul Follereau, ou sont utilisés avec l'autorisation de leurs auteurs. Toute reproduction,
+                représentation ou adaptation, totale ou partielle, sans notre accord écrit préalable est interdite.
+              </p>
+              <p>
+                Les documents téléchargeables peuvent être imprimés pour un usage personnel, notamment pour constituer
+                votre dossier.
+              </p>
+              <!-- TODO: vérifier les droits des photographies (images provisoires issues d'une banque d'images) -->
+            </section>
+
+            <section class="legal-section" id="liens" aria-labelledby="h-liens">
+              <h2 class="detail-block-title" id="h-liens">8. Liens et services externes</h2>
+              <p>
+                Le site contient des liens vers des services externes, comme WhatsApp, Google Maps ou les réseaux sociaux.
+                Nous n'exerçons aucun contrôle sur ces services, dont les propres conditions d'utilisation s'appliquent,
+                et ne pouvons être tenus responsables de leur contenu.
+              </p>
+            </section>
+
+            <section class="legal-section" id="responsabilite" aria-labelledby="h-responsabilite">
+              <h2 class="detail-block-title" id="h-responsabilite">9. Responsabilité</h2>
+              <p>
+                Nous faisons nos meilleurs efforts pour assurer le bon fonctionnement du site et la sécurité des échanges.
+                Nous ne pouvons toutefois être tenus responsables des dommages résultant d'une interruption du service,
+                d'un incident technique, d'une utilisation non conforme du site ou de la présence d'un virus sur votre
+                équipement.
+              </p>
+              <p>
+                Vous êtes responsable des informations et documents que vous transmettez, ainsi que de la confidentialité
+                de votre numéro de candidature.
+              </p>
+            </section>
+
+            <section class="legal-section" id="donnees" aria-labelledby="h-donnees">
+              <h2 class="detail-block-title" id="h-donnees">10. Données personnelles</h2>
+              <p>
+                Les informations que vous nous transmettez sont traitées conformément à notre
+                <a href="confidentialite.html">politique de confidentialité</a>, qui précise les données recueillies,
+                leur utilisation, leur durée de conservation et vos droits.
+              </p>
+            </section>
+
+            <section class="legal-section" id="modifications" aria-labelledby="h-modifications">
+              <h2 class="detail-block-title" id="h-modifications">11. Modification des conditions</h2>
+              <p>
+                Ces conditions peuvent être modifiées à tout moment, notamment à l'ouverture de nouveaux services comme
+                l'espace candidat. La version en vigueur est celle publiée sur cette page, avec sa date de mise à jour.
+                Les préinscriptions déjà envoyées restent régies par la version acceptée lors de leur envoi.
+              </p>
+            </section>
+
+            <section class="legal-section" id="droit" aria-labelledby="h-droit">
+              <h2 class="detail-block-title" id="h-droit">12. Droit applicable et litiges</h2>
+              <!-- TODO: juridiction compétente à faire confirmer par un juriste -->
+              <p>
+                Les présentes conditions sont soumises au droit burkinabè. En cas de difficulté, nous vous invitons à nous
+                contacter d'abord pour rechercher une solution amiable. À défaut d'accord, le litige sera porté devant les
+                juridictions compétentes du Burkina Faso.
+              </p>
+              <div class="legal-actions">
+                <a href="contact.html?objet=general" class="btn btn-primary">
+                  <p class="btn-text">Nous contacter</p>
+                  <span class="square"></span>
+                </a>
+              </div>
+            </section>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Carte flottante : chevauche le bas du texte et le haut du footer -->
+      <section class="contact">
+
+        <div class="contact-card" id="contact">
+          <img src="./assets/images/cta-bg-img.png" alt="" class="contact-card-bg">
+
+          <h2>Prêt(e) à rejoindre nos établissements ?</h2>
+
+          <a href="preinscription.html" class="btn btn-primary">
+            <p class="btn-text">Je me préinscris</p>
+            <span class="square"></span>
+          </a>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer dupliqué depuis index.html (liens pointés vers les vraies pages) : deviendra un @include Blade. -->
+    <footer>
+      <div class="footer-grid">
+
+        <div class="grid-item">
+
+          <div class="footer-logo">
+            <img src="./assets/images/logo.png" alt="Les Établissements Raoul Follereau">
+          </div>
+
+          <p class="footer-text">
+            Les Établissements Raoul Follereau, à Fada N'Gourma, regroupent l'Institut Privé Supérieur de formation
+            en Santé, l'École Privée de Santé et le Centre Professionnel de Formation Professionnelle : des formations
+            certifiantes en santé, gestion, numérique et métiers techniques, tournées vers l'insertion professionnelle.
+          </p>
+
+          <div class="social-link">
+            <a href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </div>
+
+        </div>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Liens</h4>
+
+          <li class="list-item">
+            <a href="index.html#home">Accueil</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#about">A propos</a>
+          </li>
+
+          <li class="list-item">
+            <a href="formations.html">Formations</a>
+          </li>
+
+          <li class="list-item">
+            <a href="index.html#blog">Blog</a>
+          </li>
+
+          <li class="list-item">
+            <a href="contact.html">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="grid-item">
+
+          <h4 class="item-heading">Autres liens</h4>
+
+          <li class="list-item">
+            <a href="formateurs.html">Nos enseignants</a>
+          </li>
+
+          <li class="list-item">
+            <a href="faq.html">FAQ</a>
+          </li>
+
+          <li class="list-item">
+            <a href="actualites.html">Evènements</a>
+          </li>
+
+          <li class="list-item">
+            <a href="confidentialite.html">Politique de confidentialité</a>
+          </li>
+
+          <li class="list-item">
+            <a href="termes.html">Termes & Conditions</a>
+          </li>
+
+        </ul>
+
+        <div class="grid-item">
+
+          <h4 class="item-heading">Newsletter</h4>
+
+          <div class="wrapper">
+            <input type="text" name="subscribe" placeholder="Adresse Email">
+            
+            <button class="send-btn">
+              <ion-icon name="paper-plane"></ion-icon>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <p class="copyright">
+        Copyright © 2026 <a href="#">Les Etablissements Raoul Follereau</a>. Tout droit reservé.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Bouton flottant WhatsApp — dupliqué sur chaque page en attendant l'@include Blade -->
+  <!-- TODO: remplacer le numéro par la ligne WhatsApp réelle des Établissements -->
+  <a href="https://wa.me/22670249765" class="whatsapp-fab whatsapp-pulse-anim" target="_blank" rel="noopener"
+    aria-label="Écrire aux Établissements Raoul Follereau sur WhatsApp">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+  </a>
+
+  <!-- Script des pages légales (sommaire), puis premium-animations.js et hero-intro.js. -->
+  <script src="./assets/js/pages/legal.js"></script>
+  <script src="./assets/js/premium-animations.js"></script>
+  <script src="./assets/js/hero-intro.js"></script>
+  <script src="./assets/js/header-nav.js"></script>
+  <script src="./assets/js/script.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
