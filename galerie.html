@@ -46,7 +46,7 @@
                 <span class="primary-nav-label">Formations</span>
               </a>
             </li>
-            <li class="primary-nav-item primary-nav-item--header-only">
+            <li class="primary-nav-item">
               <a class="primary-nav-link" href="institution.html">
                 <ion-icon name="business-outline" aria-hidden="true"></ion-icon>
                 <span class="primary-nav-label">Institution</span>
@@ -68,14 +68,6 @@
               <a class="primary-nav-link" href="contact.html">
                 <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
                 <span class="primary-nav-label">Contact</span>
-              </a>
-            </li>
-            <!-- Compte : présent uniquement dans la bottom bar mobile.
-                 Dans le header (desktop/tablette), le compte est l'icône .nav-account ci-dessous. -->
-            <li class="primary-nav-item primary-nav-item--bottombar-only">
-              <a class="primary-nav-link" href="compte.html">
-                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
-                <span class="primary-nav-label">Compte</span>
               </a>
             </li>
           </ul>
@@ -122,6 +114,7 @@
               <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
             </button>
           </li>
+          <li class="nav-item"><a href="galerie.html" aria-current="page">Galerie photo</a></li>
           <li class="nav-item"><a href="faq.html">FAQ</a></li>
           <li class="nav-item"><a href="documents.html">Documents à télécharger</a></li>
           <li class="nav-item"><a href="confidentialite.html">Politique de confidentialité</a></li>
@@ -287,6 +280,9 @@
               <a href="formations.html">Formations</a>
             </li>
             <li class="list-item">
+              <a href="galerie.html">Galerie</a>
+            </li>
+            <li class="list-item">
               <a href="actualites.html">Actualités</a>
             </li>
             <li class="list-item">
@@ -372,7 +368,7 @@
     </footer>
   </div>
 
-  <!-- Visionneuse (lightbox) : pilotée par pages/galerie.js ; hors du .container pour couvrir tout l'écran -->
+  <!-- Visionneuse (lightbox) : pilotée par assets/js/lightbox.js ; hors du .container pour couvrir tout l'écran -->
   <div class="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse de photos" hidden>
     <button type="button" class="lightbox-btn lightbox-close" aria-label="Fermer la visionneuse">
       <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
@@ -407,6 +403,7 @@
   <script src="./assets/data/galerie.js"></script>
   <script src="./assets/data/formations.js"></script>
   <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/lightbox.js"></script>
   <script src="./assets/js/pages/galerie.js"></script>
   <script src="./assets/js/premium-animations.js"></script>
   <script src="./assets/js/hero-intro.js"></script>

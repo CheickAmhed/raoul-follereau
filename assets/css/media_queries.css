@@ -1830,3 +1830,460 @@
   }
 
 }
+
+
+
+
+
+/*-----------------------------------*\
+  #INSTITUTION — AJUSTEMENTS TABLETTE ET DESKTOP  (>=767px, institution.html)
+
+  Demande client :
+  - Présentation (>=992px) : la photo prend la hauteur du bloc de texte voisin,
+    du sous-titre aux chiffres clés (elle était limitée à 460px et centrée). La
+    carte « devise » déborde toujours de 50px sous la photo ; la section garde
+    cette place.
+  - Histoire (>=992px) : la frise occupe toute la largeur de la section, comme
+    le contenu des autres sections. Elle était limitée à 760px par le réglage de
+    la frise de l'accueil (#CALENDAR >=992px). Sur deux colonnes, la ligne au
+    centre, les étapes alternent à gauche et à droite, décalées d'une
+    demi-carte. L'ordre chronologique et le HTML ne changent pas. Cartes de même
+    hauteur (rangées 1fr) : le décalage reste régulier quelle que soit la
+    longueur des textes.
+  - Composantes (IPS-RF, EPS-RF, CPFP-RF), photo (>=992px) : même traitement
+    que la présentation, la photo prend la hauteur du texte, du sous-titre au
+    bouton. Elle faisait jusqu'à 460px, centrée : plus haute ou plus courte que
+    le texte selon l'écran. Le logo déborde toujours de 45px dessous.
+  - Composantes, cadres (>=767px, dès qu'ils sont côte à côte) : « Spécialités »
+    et « Formations proposées » prennent la même hauteur.
+  - Partenaires (>=1200px, où les cinq cartes tiennent sur une ligne) : les
+    cartes se partagent toute la largeur, au lieu de 200px chacune au centre.
+  Seuils : 992px, où la présentation et les composantes passent sur deux
+  colonnes et où la frise était limitée à 760px ; 767px pour les cadres. Sous
+  767px, rien ne change.
+\*-----------------------------------*/
+
+@media (min-width: 767px) {
+
+  /* composantes : cadres « Spécialités » et « Formations proposées » de même
+     hauteur, dès qu'ils sont côte à côte */
+  .etab-details { align-items: stretch; }
+
+}
+
+
+
+
+
+@media (min-width: 992px) {
+
+  /* ---- présentation : photo à la hauteur du texte ---- */
+
+  /* colonnes étirées sur la hauteur de la rangée (au lieu du centrage) ; la place
+     prévue sous la photo pour la carte « devise » passe du bloc image à la section */
+  .inst-about {
+    align-items: stretch;
+    padding-bottom: calc(var(--py) + 50px);
+  }
+
+  /* le bloc de texte s'arrête aux chiffres clés : sans marge basse, sa hauteur
+     est celle du texte visible */
+  .inst-about .about-stats { margin-bottom: 0; }
+
+  .inst-about-media { padding-bottom: 0; }
+
+  /* photo hors du flux : la hauteur de la rangée vient du seul bloc de texte */
+  .inst-about-photo {
+    position: absolute;
+    top:  0;
+    left: 0;
+    height: 100%;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+
+  .inst-motto { bottom: -50px; }
+
+
+  /* ---- histoire : frise sur deux colonnes, ligne au centre ---- */
+
+  .inst-timeline {
+    --timeline-gap: 80px;           /* entre les deux colonnes ; la ligne passe au milieu */
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr;            /* demi-cartes égales : décalage régulier */
+    column-gap: var(--timeline-gap);
+    row-gap: 25px;                  /* entre deux cartes d'un même côté, comme la frise d'origine */
+    max-width: none;
+    margin-left:  0;
+    margin-right: 0;
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  /* ligne verticale (remplace la bordure gauche), peinte sous les pastilles */
+  .inst-timeline::before {
+    content: '';
+    position: absolute;
+    top:    0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    margin-left: -1px;
+    background: var(--light-gray);
+  }
+
+  /* case vide en haut de la colonne de droite : elle décale cette colonne d'une demi-carte */
+  .inst-timeline::after {
+    content: '';
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* chaque carte couvre deux demi-rangées ; étapes impaires à gauche, paires à droite */
+  .inst-timeline .calendar-item { grid-row: span 2; }
+
+  .inst-timeline .calendar-item:nth-child(odd)  { grid-column: 1; }
+
+  .inst-timeline .calendar-item:nth-child(even) { grid-column: 2; }
+
+  /* pastilles (14px) centrées sur la ligne */
+  .inst-timeline .calendar-item:nth-child(odd)::before {
+    left: auto;
+    right: calc(var(--timeline-gap) / -2 - 7px);
+  }
+
+  .inst-timeline .calendar-item:nth-child(even)::before {
+    left: calc(var(--timeline-gap) / -2 - 7px);
+  }
+
+
+  /* ---- composantes : photo à la hauteur du texte ---- */
+
+  /* même principe que la présentation ; 95px sous la rangée : les 45px du logo en
+     débord sous la photo, puis les 50px d'origine avant les cadres */
+  .etab-main {
+    align-items: stretch;
+    margin-bottom: 95px;
+  }
+
+  .etab-media { padding-bottom: 0; }
+
+  .etab-photo {
+    position: absolute;
+    top:  0;
+    left: 0;
+    height: 100%;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+
+  .etab-logo { bottom: -45px; }
+
+  /* .btn (overflow: hidden) se pose sur la ligne de base : l'interligne ajoutait
+     6px sous le bouton. Calé en haut, le bloc de texte s'arrête au bas du bouton */
+  .etab-body .btn { vertical-align: top; }
+
+}
+
+
+
+
+
+@media (min-width: 1200px) {
+
+  /* partenaires : grille sur toute la largeur ; auto-fit replie les colonnes vides,
+     les cartes présentes se partagent la ligne (200px au minimum chacune) */
+  .inst-partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #CONTACT PAGE — FORMULAIRE À LA HAUTEUR DE LA COLONNE  (>=992px, contact.html)
+
+  Demande client (desktop) : la carte du formulaire s'arrêtait plus haut que la
+  colonne « Nos coordonnées » et plan (171px plus tôt à 992px, 227px à 1440px,
+  251px à 1920px). Les deux colonnes finissent maintenant au même niveau :
+  - formulaire plus court : la carte descend jusqu'au bas de la colonne et le
+    champ « Votre message » s'agrandit pour occuper la place ;
+  - formulaire plus haut (champs propres à l'objet choisi, messages d'erreur) :
+    c'est le plan qui s'allonge ;
+  - après l'envoi : la confirmation est centrée verticalement dans la place
+    libre de la carte, sous le titre et le texte d'introduction (centrés
+    horizontalement à toutes les largeurs : #CONTACT PAGE (suite) de style.css).
+  Le formulaire passe en colonne flexible : le champ message perd les 6px
+  d'interligne qui le suivaient. Il est maintenant suivi de 20px, comme les
+  autres champs, et son message d'erreur de 6px, comme les leurs.
+  Dès 992px : les deux colonnes sont côte à côte à partir de cette largeur.
+\*-----------------------------------*/
+
+@media (min-width: 992px) {
+
+  /* colonnes étirées sur la hauteur de la rangée (au lieu du calage en haut) */
+  .contact-layout { align-items: stretch; }
+
+  /* gauche : la carte remplit la colonne, le champ message prend la place libre */
+  .contact-main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-box,
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+
+  /* sans cette règle, display: flex l'emporterait sur l'attribut hidden : le
+     formulaire resterait affiché sous le message de confirmation après l'envoi */
+  .contact-form[hidden] { display: none; }
+
+  .contact-form .form-field:has(> textarea) {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+
+  /* base auto (et non 0) : la poignée de redimensionnement agrandit toujours le champ */
+  .contact-form .form-field > textarea { flex: 1 1 auto; }
+
+  /* en colonne flexible, les marges ne fusionnent plus : les 10px du haut
+     s'ajoutaient aux 20px du champ précédent, au lieu de s'y fondre */
+  .contact-form-actions { margin-top: 0; }
+
+  /* après l'envoi : la confirmation se centre dans la place libre de la carte,
+     entre le texte d'introduction et le bas de la carte. 15px en haut au lieu
+     de 10px : l'interligne sous le texte d'introduction réduisait de 5px
+     l'espace visible au-dessus ; les deux espaces sont maintenant égaux */
+  .contact-success {
+    margin-top:    auto;
+    margin-bottom: auto;
+    padding-top: 15px;
+  }
+
+  /* droite : quand le formulaire est le plus haut, le plan s'allonge */
+  .contact-aside {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-map {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+
+  .contact-map iframe { flex: 1 1 auto; }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #CONTACT PAGE — LARGEURS  (>=1200px, contact.html)
+
+  Demande client (desktop) :
+  - le contenu de la section va jusqu'aux bords du bandeau de la bannière, sans
+    gouttière latérale. Les cartes gardent leur marge intérieure de 40px : leurs
+    textes s'alignent sur ceux de la bannière. Jusqu'à 1879px, le bandeau occupe
+    toute la largeur de l'écran, et les cartes aussi ; au-delà, le conteneur est
+    limité à 1800px et les cartes s'arrêtent avec le bandeau ;
+  - colonne de droite (coordonnées et plan) élargie de 400 à 560px : le
+    formulaire perd 80 à 100px de large et le plan gagne 160px.
+  Tablette (767–1199px) : inchangée, rien n'y touche les bords de l'écran.
+\*-----------------------------------*/
+
+@media (min-width: 1200px) {
+
+  .contact-page {
+    padding-left:  0;
+    padding-right: 0;
+  }
+
+  .contact-layout { grid-template-columns: minmax(0, 1fr) 560px; }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #AUTH — BLOCS SUR LA LARGEUR DE LA CARTE DE CONTACT  (>=1200px, connexion.html)
+
+  Demande client (desktop) : le formulaire et la colonne d'avantages occupent
+  presque toute la largeur de la section, comme la carte verte .contact-card
+  placée dessous (largeur 100% - --px : une demi-gouttière de chaque côté). Ils
+  étaient limités ensemble à 1080px et centrés.
+  Tablette (767-1199px) : inchangée.
+\*-----------------------------------*/
+
+@media (min-width: 1200px) {
+
+  .auth {
+    padding-left:  calc(var(--px) / 2);
+    padding-right: calc(var(--px) / 2);
+  }
+
+  .auth-layout { max-width: none; }
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #ACTUALITE DETAIL — PHOTOS ET ENCART  (actualite-detail.html)
+
+  Demande client : supprimer le grand vide sous le texte, à côté de l'encart
+  d'informations, dont la hauteur dépasse souvent celle du texte.
+  - Photos (champ « photos » de actualites.js) : sous le texte, dans sa colonne.
+    Dès 992px, une ligne de 1 à 4 photos dont le bas rejoint celui de l'encart :
+    étirée ici, réduite par pages/actualite-detail.js si elle le dépasse et si le
+    cadrage le permet. Au-delà de 4 photos, « +N » sur la dernière. Photos trop
+    étroites : 2 rangées (classe posée par le même script).
+    Sous 992px : ligne qui défile au doigt (style.css).
+  - Sans photo et texte court (classe posée par pages/actualite-detail.js) : dès
+    992px, l'encart reste à droite, plus large, avec ses informations sur deux
+    colonnes : il est moins haut et le vide diminue.
+  Classes propres à cette page : .detail-layout sert aussi à d'autres fiches.
+\*-----------------------------------*/
+
+@media (max-width: 766.98px) {
+
+  /* téléphones : la ligne de photos va jusqu'au bord droit de l'écran */
+  .article-photos-list:not([data-count="1"]) {
+    margin-right:  calc(-1 * var(--px));
+    padding-right: var(--px);
+  }
+
+}
+
+
+
+
+
+@media (min-width: 575px) {
+
+  .article-photos-list[data-count="1"] .article-photo-btn { aspect-ratio: 16 / 9; }
+
+}
+
+
+
+
+
+@media (min-width: 992px) {
+
+  /* ---- photos : la colonne de texte prend la hauteur de la rangée ---- */
+
+  .detail-layout--photos { align-items: stretch; }
+
+  .detail-layout--photos .detail-aside { align-self: start; }   /* reste collante */
+
+  .detail-layout--photos .detail-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .article-photos {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    container-type: inline-size;
+  }
+
+  .article-photos-list {
+    flex: 1 1 auto;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 16px;
+    min-height: 260px;
+    overflow: visible;
+  }
+
+  /* hauteur minimale d'après la largeur d'une photo (--photos : nombre sur la ligne) :
+     pas de bande trop plate. Aucune hauteur maximale : le bas des photos rejoint
+     celui de l'encart */
+  @supports (width: 1cqw) {
+
+    .article-photos-list {
+      --photo-w: calc((100cqw - (var(--photos) - 1) * 16px) / var(--photos));
+      min-height: clamp(220px, calc(var(--photo-w) * 0.75), 380px);
+    }
+
+  }
+
+  .article-photo { min-height: 0; }
+
+  .article-photo:nth-child(n+5) { display: none; }
+
+  .article-photos-list[data-count] .article-photo-btn {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  /* 3 ou 4 photos trop étroites sur une ligne : 2 rangées ; à 3, la première occupe
+     toute la hauteur à gauche */
+  .article-photos-list--rows {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(0, 1fr);
+  }
+
+  .article-photos-list--rows[data-count="3"] .article-photo:first-child { grid-row: span 2; }
+
+  .article-photo-more {
+    position: absolute;
+    top:    0;
+    right:  0;
+    bottom: 0;
+    left:   0;
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+    background: hsla(229, 84%, 12%, 0.6);
+    color: var(--white);
+    font-size: var(--fs-3);
+    font-weight: var(--fw-7);
+  }
+
+
+  /* ---- sans photo, texte court : encart à droite, informations sur 2 colonnes ---- */
+
+  .detail-layout--compact { grid-template-columns: minmax(0, 1fr) 440px; }
+
+  .detail-layout--compact .facts-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+
+  /* hors événement, 3 informations : la dernière occupe toute la ligne */
+  .detail-layout--compact .facts-list:has(> [hidden]) .facts-item:last-child { grid-column: 1 / -1; }
+
+}
+
+
+
+
+
+@media (min-width: 1200px) {
+
+  .detail-layout--compact { grid-template-columns: minmax(0, 1fr) 560px; }
+
+}

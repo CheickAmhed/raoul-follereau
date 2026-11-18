@@ -7,14 +7,10 @@
  *  - bannière : nombre de photos et d'albums ;
  *  - filtre par album (boutons + ?album= dans l'URL) et présentation de l'album choisi ;
  *  - grille de vignettes (boutons) générée depuis RF_GALERIE ;
- *  - visionneuse (lightbox) en vanilla JS : photo en grand, légende, compteur,
- *    précédente / suivante (boutons, flèches du clavier, glissement du doigt),
- *    fermeture par Échap, bouton ou clic sur le fond ; le focus reste dans la
- *    visionneuse et revient sur la vignette à la fermeture ; défilement de la
- *    page bloqué pendant l'ouverture ; photos voisines préchargées.
+ *  - ouverture des photos dans la visionneuse partagée (assets/js/lightbox.js).
  *
- * À charger APRÈS galerie.js (données), formations.js (sigles), utils.js, et
- * AVANT premium-animations.js (cascade d'apparition des vignettes).
+ * À charger APRÈS galerie.js (données), formations.js (sigles), utils.js,
+ * lightbox.js, et AVANT premium-animations.js (cascade d'apparition des vignettes).
  * Vanilla JS, IIFE 'use strict', aucun global.
  * ============================================================================
  */
@@ -144,115 +140,24 @@
   apply();
 
 
-  /* --- Visionneuse ----------------------------------------------------------- */
+  /* --- Visionneuse (assets/js/lightbox.js) ------------------------------------ */
 
-  const box = document.querySelector('.lightbox');
-  if (!box) return;
+  if (typeof RF_LIGHTBOX === 'undefined') return;
 
-  const img      = box.querySelector('.lightbox-img');
-  const caption  = box.querySelector('.lightbox-caption');
-  const album    = box.querySelector('.lightbox-album');
-  const count    = box.querySelector('.lightbox-count');
-  const prevBtn  = box.querySelector('.lightbox-prev');
-  const nextBtn  = box.querySelector('.lightbox-next');
-  const closeBtn = box.querySelector('.lightbox-close');
+  const viewer = RF_LIGHTBOX.create(document.querySelector('.lightbox'));
+  if (!viewer) return;
 
-  let order   = [];     // index (dans photos) des photos parcourues
-  let pos     = 0;      // position courante dans order
-  let opener  = null;   // vignette à refocaliser à la fermeture
-
-  function preload(index) {
-    const entry = photos[index];
-    if (entry) { const image = new Image(); image.src = entry.photo.src; }
-  }
-
-  function show(newPos) {
-    pos = (newPos + order.length) % order.length;       // boucle aux extrémités
-    const entry = photos[order[pos]];
-    // rejoue l'animation d'apparition (animation.css #GALERIE) à chaque photo
-    img.style.animation = 'none';
-    void img.offsetWidth;
-    img.style.animation = '';
-    img.src = entry.photo.src;
-    img.alt = entry.photo.alt || '';
-    caption.textContent = entry.photo.legende || '';
-    album.textContent = entry.album.titre;
-    count.textContent = (pos + 1) + ' / ' + order.length;
-    const single = order.length < 2;
-    prevBtn.hidden = single;
-    nextBtn.hidden = single;
-    if (!single) {
-      preload(order[(pos + 1) % order.length]);
-      preload(order[(pos - 1 + order.length) % order.length]);
-    }
-  }
-
-  function open(index, trigger) {
-    order = visible();
-    const start = order.indexOf(index);
-    if (start === -1) return;
-    opener = trigger || null;
-    box.hidden = false;
-    document.documentElement.classList.add('lightbox-open');
-    show(start);
-    closeBtn.focus();
-    document.addEventListener('keydown', onKey);
-  }
-
-  function close() {
-    if (box.hidden) return;
-    box.hidden = true;
-    document.documentElement.classList.remove('lightbox-open');
-    document.removeEventListener('keydown', onKey);
-    img.removeAttribute('src');
-    if (opener) opener.focus();
-  }
-
-  /* focus piégé dans la visionneuse (boutons visibles uniquement) */
-  function trapTab(e) {
-    const focusables = Array.prototype.filter.call(box.querySelectorAll('button'), function (b) { return !b.hidden; });
-    if (!focusables.length) return;
-    const first = focusables[0];
-    const last  = focusables[focusables.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  }
-
-  function onKey(e) {
-    if (e.key === 'Escape') { e.preventDefault(); close(); }
-    else if (e.key === 'ArrowRight' && order.length > 1) { e.preventDefault(); show(pos + 1); }
-    else if (e.key === 'ArrowLeft' && order.length > 1) { e.preventDefault(); show(pos - 1); }
-    else if (e.key === 'Tab') { trapTab(e); }
-  }
-
+  /* la visionneuse ne parcourt que les photos visibles (album filtré) */
   grid.addEventListener('click', function (e) {
     const thumb = e.target.closest('.gallery-thumb');
-    if (thumb) open(Number(thumb.dataset.index), thumb);
-  });
-
-  prevBtn.addEventListener('click', function () { show(pos - 1); });
-  nextBtn.addEventListener('click', function () { show(pos + 1); });
-  closeBtn.addEventListener('click', close);
-
-  /* clic sur le fond (hors photo et boutons) : fermeture */
-  box.addEventListener('click', function (e) {
-    if (e.target === box || e.target.classList.contains('lightbox-stage')) close();
-  });
-
-  /* glissement horizontal (doigt ou stylet) : photo précédente / suivante */
-  let startX = null;
-  let startY = null;
-  box.addEventListener('pointerdown', function (e) {
-    if (e.pointerType === 'mouse') return;
-    startX = e.clientX;
-    startY = e.clientY;
-  });
-  box.addEventListener('pointerup', function (e) {
-    if (startX === null) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    startX = null;
-    if (order.length > 1 && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(pos + (dx < 0 ? 1 : -1));
+    if (!thumb) return;
+    const order = visible();
+    const start = order.indexOf(Number(thumb.dataset.index));
+    if (start === -1) return;
+    viewer.open(order.map(function (index) {
+      const entry = photos[index];
+      return { src: entry.photo.src, alt: entry.photo.alt, legende: entry.photo.legende, surtitre: entry.album.titre };
+    }), start, thumb);
   });
 
 })();

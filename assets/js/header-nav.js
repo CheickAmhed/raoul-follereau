@@ -191,14 +191,6 @@
       account.classList.add('is-connected');
       account.setAttribute('aria-label', 'Mon espace candidat (connecté)');
     }
-    // bottom bar : le libellé « Compte » reste visible, l'état est ajouté pour les lecteurs d'écran
-    navbar.querySelectorAll('.primary-nav a[href="compte.html"]').forEach(function (a) {
-      a.classList.add('is-connected');
-      const label = a.querySelector('.primary-nav-label');
-      if (label && !label.querySelector('.visually-hidden')) {
-        label.insertAdjacentHTML('beforeend', '<span class="visually-hidden"> (connecté)</span>');
-      }
-    });
   })();
 
 })();

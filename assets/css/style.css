@@ -6816,26 +6816,16 @@ html.lightbox-open { overflow: hidden; }   /* page figée pendant l'ouverture */
 
 .nav-account { position: relative; }
 
-.nav-account.is-connected::after,
-.primary-nav-link.is-connected::after {
+.nav-account.is-connected::after {
   content: '';
   position: absolute;
+  top:   1px;
+  right: 1px;
   width:  12px;
   height: 12px;
   border-radius: 50%;
   border: 2px solid var(--white);
   background: var(--ultramarine-blue);
-}
-
-.nav-account.is-connected::after {
-  top:   1px;
-  right: 1px;
-}
-
-/* bottom bar : pastille en haut à droite de l'icône (l'entrée est masquée dès 767px) */
-.primary-nav-link.is-connected::after {
-  top:  5px;
-  left: calc(50% + 5px);
 }
 
 
@@ -7969,3 +7959,101 @@ html.lightbox-open { overflow: hidden; }   /* page figée pendant l'ouverture */
 /* lien d'itinéraire : composant .contact-map-link ; .map-embed met line-height à 0
    (pas d'espace sous l'iframe), le lien retrouve une hauteur de ligne normale */
 .map-embed .contact-map-link { line-height: normal; }
+
+
+
+
+
+/*-----------------------------------*\
+  #HEADER (SUITE)  (mobile — COMPTE DANS LE HEADER, INSTITUTION DANS LA BOTTOM BAR)
+
+  Demande client : sur mobile, la bottom bar propose Institution à la place de
+  Compte ; l'accès au compte (.nav-account : connexion ou espace candidat) passe
+  dans le header, juste après le bouton de recherche, comme sur desktop.
+  La règle de base (#HEADER (REFONTE)) le masquait en mobile.
+\*-----------------------------------*/
+
+.nav-account { display: flex; }
+
+
+
+
+
+/*-----------------------------------*\
+  #FORMATION DETAIL (suite)  (formation-detail.html — bouton du bandeau d'appel
+  « Prêt(e) à vous lancer ? »)
+\*-----------------------------------*/
+
+/* .detail-cta p, prévue pour le texte du bandeau, s'appliquait aussi au
+   <p class="btn-text"> du bouton : marge basse de 25px (bouton de 89px au lieu
+   de 58px), interligne 1.6 et couleur lavande. Le bouton reprend le rendu commun. */
+.detail-cta .btn .btn-text {
+  max-width: none;
+  margin: 0;
+  color: inherit;
+  line-height: inherit;
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #CONTACT PAGE (suite)  (contact.html — carte du formulaire après l'envoi)
+\*-----------------------------------*/
+
+/* après l'envoi : titre et texte d'introduction de la carte centrés, comme la
+   confirmation qui les suit ; formulaire affiché, ils restent alignés à gauche,
+   comme les champs. Toutes largeurs. */
+.contact-box:has(> .contact-success:not([hidden])) > .contact-box-title,
+.contact-box:has(> .contact-success:not([hidden])) > .contact-box-intro { text-align: center; }
+
+
+
+
+
+/*-----------------------------------*\
+  #ACTUALITE DETAIL (suite)  (actualite-detail.html — photos sous le texte)
+\*-----------------------------------*/
+
+.article-photos { margin-top: 35px; }
+
+.article-photos[hidden] { display: none; }
+
+/* mobile et tablette : ligne qui défile au doigt, la photo suivante dépasse à droite.
+   Sur desktop, ligne fixe (media_queries.css, #ACTUALITE DETAIL — PHOTOS ET ENCART) */
+.article-photos-list {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.article-photos-list::-webkit-scrollbar { display: none; }
+
+.article-photo {
+  flex: 1 0 min(80%, 340px);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.article-photos-list[data-count="1"] .article-photo { flex-basis: 100%; }
+
+/* vignette .gallery-thumb de la galerie ; ombre retirée (coupée par le défilement),
+   contour de focus à l'intérieur pour la même raison */
+.article-photo-btn { box-shadow: none; }
+
+.article-photo-btn:focus-visible { outline-offset: -3px; }
+
+/* recadrage en hauteur calé vers le haut : les visages restent dans l'image */
+.article-photo-btn img {
+  position: absolute;
+  top:  0;
+  left: 0;
+  object-position: 50% 20%;
+}
+
+.article-photo-btn .gallery-thumb-overlay { justify-content: flex-end; }
+
+.article-photo-more { display: none; }

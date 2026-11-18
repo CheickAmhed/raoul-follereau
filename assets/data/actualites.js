@@ -21,6 +21,9 @@
  *                    jamais listé, et sa fiche répond « introuvable » ;
  *  - etablissement : clé de RF_ETABLISSEMENTS (formations.js), ou null quand la
  *                    publication concerne les trois établissements ;
+ *  - photos        : facultatif, photos affichées sous le texte de la fiche :
+ *                    [{ src, alt, legende }] (legende : facultative, sous la photo
+ *                    dans la visionneuse). Absent ou vide : aucun bloc photo ;
  *  - extrait       : résumé de la carte et chapeau de la fiche ;
  *  - contenu       : blocs de la fiche, dans l'ordre. Chaîne = paragraphe ;
  *                    { titre } = intertitre ; { liste: [...] } = liste à puces ;
@@ -31,7 +34,7 @@
  *  - lien          : facultatif, { texte, href } : bouton d'action de la fiche.
  *
  * TODO: textes, dates et images à fournir ou valider par le client (les images
- *       sont provisoirement reprises de la banque d'images du site).
+ *       et les photos sont provisoirement reprises de la banque d'images du site).
  * ============================================================================
  */
 
@@ -178,6 +181,11 @@ const RF_ACTUALITES = [
     etablissement: 'eps',
     image: './assets/images/event-img.jpg',
     imageAlt: "Apprenant souriant, sac au dos, prêt pour une sortie d'étude",
+    photos: [
+      { src: './assets/images/course-5.png', alt: "Élève infirmière prenant la tension artérielle d'une patiente" },
+      { src: './assets/images/course-1.jpg', alt: "Élève sage-femme auprès d'une mère et de son nouveau-né" },
+      { src: './assets/images/client.jpeg', alt: 'Apprenante infirmière en tenue de soins' }
+    ],
     extrait: "Les élèves de deuxième année de l'EPS-RF découvrent l'organisation d'un district sanitaire et les activités de santé communautaire sur le terrain.",
     contenu: [
       'Cette sortie permet aux élèves de confronter leurs enseignements à la réalité du terrain : organisation des soins de premier niveau, vaccination, suivi des femmes enceintes et sensibilisation des communautés.',
@@ -200,6 +208,14 @@ const RF_ACTUALITES = [
     etablissement: null,
     image: './assets/images/banner-img.png',
     imageAlt: "Trois apprenants des Établissements, dont une infirmière et un étudiant en blouse",
+    photos: [
+      { src: './assets/images/blog-3.jpeg', alt: 'Apprenants en uniforme réunis en plein air' },
+      { src: './assets/images/event-img.jpg', alt: 'Étudiant souriant, sac au dos, devant un bâtiment' },
+      { src: './assets/images/course-6.jpg', alt: 'Étudiants souriants travaillant ensemble autour de leurs ordinateurs' },
+      { src: './assets/images/blog-2.jpg', alt: "Étudiants en blouse blanche lors d'une séance de travaux pratiques" },
+      { src: './assets/images/course-3.jpg', alt: 'Apprenante travaillant sur un poste informatique, téléphone à la main' },
+      { src: './assets/images/course-2.png', alt: "Salle de réunion équipée d'un grand écran" }
+    ],
     extrait: 'Visitez nos salles, rencontrez enseignants et apprenants, et faites le point sur votre projet de formation avec nos conseillers.',
     contenu: [
       'Le samedi 5 décembre, les Établissements Raoul Follereau ouvrent leurs portes aux futurs apprenants, à leurs familles et à toutes les personnes intéressées par nos formations.',
@@ -277,6 +293,12 @@ const RF_ACTUALITES = [
     etablissement: null,
     image: './assets/images/course-6.jpg',
     imageAlt: 'Étudiants souriants travaillant ensemble autour de leurs ordinateurs',
+    photos: [
+      { src: './assets/images/blog-3.jpeg', alt: 'Apprenants en uniforme réunis en plein air' },
+      { src: './assets/images/event-img.jpg', alt: 'Étudiant souriant, sac au dos, devant un bâtiment' },
+      { src: './assets/images/course-3.jpg', alt: 'Apprenante travaillant sur un poste informatique, téléphone à la main' },
+      { src: './assets/images/blog-2.jpg', alt: "Étudiants en blouse blanche lors d'une séance de travaux pratiques" }
+    ],
     extrait: "Jeux, ateliers et soirée culturelle : une journée pour faire connaissance entre apprenants des trois établissements.",
     contenu: [
       "Organisée par les délégués des apprenants, la journée d'intégration réunit les nouveaux venus de l'IPS-RF, de l'EPS-RF et du CPFP-RF autour d'activités sportives, d'ateliers et d'une soirée culturelle.",
@@ -298,6 +320,10 @@ const RF_ACTUALITES = [
     etablissement: null,
     image: './assets/images/images.png',
     imageAlt: 'Trois personnes en tenue professionnelle, souriantes',
+    photos: [
+      { src: './assets/images/event-img.jpg', alt: 'Étudiant souriant, sac au dos, devant un bâtiment' },
+      { src: './assets/images/course-6.jpg', alt: 'Étudiants souriants travaillant ensemble autour de leurs ordinateurs' }
+    ],
     extrait: "Accueil des nouveaux étudiants et élèves de l'IPS-RF, de l'EPS-RF et du CPFP-RF pour la rentrée 2026-2027.",
     contenu: [
       "La rentrée académique 2026-2027 a lieu le jeudi 1er octobre à partir de 8 h. Après une séance d'accueil commune, chaque établissement réunit ses nouveaux apprenants pour présenter le programme de l'année.",
@@ -344,6 +370,13 @@ const RF_ACTUALITES = [
     etablissement: 'ips',
     image: './assets/images/blog-1.jpg',
     imageAlt: 'Lancer de toques lors de la cérémonie de sortie de promotion',
+    photos: [
+      { src: './assets/images/event-img.jpg', alt: 'Étudiant souriant, sac au dos, devant un bâtiment' },
+      { src: './assets/images/course-6.jpg', alt: 'Étudiants souriants travaillant ensemble autour de leurs ordinateurs' },
+      { src: './assets/images/blog-3.jpeg', alt: 'Apprenants en uniforme réunis en plein air' },
+      { src: './assets/images/course-3.jpg', alt: 'Apprenante travaillant sur un poste informatique, téléphone à la main' },
+      { src: './assets/images/blog-2.jpg', alt: "Étudiants en blouse blanche lors d'une séance de travaux pratiques" }
+    ],
     extrait: "Les diplômés de licence professionnelle de l'IPS-RF ont reçu leur diplôme lors d'une cérémonie en présence des familles et des partenaires.",
     contenu: [
       "La cérémonie de sortie de la promotion 2026 de l'Institut Privé Supérieur de formation en Santé s'est tenue en présence des familles, des enseignants et des partenaires des Établissements.",
@@ -363,6 +396,9 @@ const RF_ACTUALITES = [
     etablissement: 'ips',
     image: './assets/images/blog-2.jpg',
     imageAlt: "Étudiants en blouse blanche lors d'une séance de travaux pratiques",
+    photos: [
+      { src: './assets/images/course-5.png', alt: "Élève infirmière prenant la tension artérielle d'une patiente" }
+    ],
     extrait: 'Manipulations, analyses et protocoles : les étudiants de première année ont découvert le laboratoire de travaux pratiques.',
     contenu: [
       "Encadrés par leurs enseignants, les étudiants de première année ont réalisé leurs premières manipulations : préparation d'échantillons, lecture de résultats et respect des règles d'hygiène et de sécurité.",
@@ -380,6 +416,10 @@ const RF_ACTUALITES = [
     etablissement: 'cpfp',
     image: './assets/images/blog-3.jpeg',
     imageAlt: "Apprenants en uniforme réunis devant des conteneurs lors d'une sortie de terrain",
+    photos: [
+      { src: './assets/images/course-4.jpg', alt: 'Apprenant en gilet de sécurité contrôlant un chargement devant des camions' },
+      { src: './assets/images/course-6.jpeg', alt: "Apprenants réparant l'unité centrale d'un ordinateur" }
+    ],
     extrait: 'Les apprenants en transport et logistique ont découvert le traitement des conteneurs et le contrôle des marchandises sur une plateforme logistique.',
     contenu: [
       'Accompagnés de leurs formateurs, les apprenants ont suivi le parcours d\'un conteneur, de son arrivée à sa livraison : contrôle documentaire, inspection des marchandises et organisation du stockage.',

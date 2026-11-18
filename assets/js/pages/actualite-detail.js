@@ -10,12 +10,15 @@
  *  - encart : informations pratiques d'un événement (date, horaires, lieu,
  *    état « à venir » / « terminé », ajout à l'agenda en .ics) ou informations
  *    de publication ; partage (WhatsApp, Facebook, copie du lien) ;
+ *  - photos sous le texte (champ « photos », facultatif), ouvertes dans la
+ *    visionneuse partagée ; sans photo et avec un texte court, l'encart reste à
+ *    droite avec ses informations sur deux colonnes (desktop), pour réduire le vide ;
  *  - « À lire aussi » : 3 autres publications, même catégorie en priorité ;
  *  - id absent, inconnu ou brouillon (publie: false) : message clair + retour à
  *    la liste, jamais de page blanche.
  *
  * À charger APRÈS actualites.js, formations.js (sigles et logos des
- * établissements), utils.js et actu-card.js, et AVANT premium-animations.js et
+ * établissements), utils.js, actu-card.js et lightbox.js, et AVANT premium-animations.js et
  * hero-intro.js. Vanilla JS, IIFE 'use strict', aucun global.
  * TODO (phase Laravel) : route rendue côté serveur (/actualites/{slug}).
  * ============================================================================
@@ -312,6 +315,106 @@
       );
     });
   });
+
+
+  /* --- Photos ou encart compact ------------------------------------------------ */
+
+  const PHOTOS_VISIBLES = 4;      // sur une ligne (desktop) ; les suivantes : « +N » sur la dernière
+  const PHOTO_H_MIN     = 150;    // hauteur (px) en dessous de laquelle les photos ne rétrécissent pas
+  const PHOTO_PLATE     = 3.2;    // largeur / hauteur maximale d'une photo réduite : au-delà, les visages sont coupés
+  const PHOTO_ETROITE   = 1.9;    // hauteur / largeur au-delà de laquelle 3 ou 4 photos passent sur 2 rangées
+  const ECART_COMPACT   = 120;    // vide (px) à partir duquel l'encart passe sur deux colonnes
+
+  const photos  = (item.photos || []).filter(function (photo) { return photo && photo.src; });
+  const article = page.querySelector('.article');
+  const aside   = page.querySelector('.detail-aside');
+  const desktop = window.matchMedia('(min-width: 992px)');
+
+  /** Mise en page mesurée : au départ, puis dès que le texte ou l'encart changent de
+      taille (polices et icônes chargées après coup) ou que la fenêtre change. */
+  function keepMeasured(measure) {
+    let frame = 0;
+    const schedule = function () {
+      if (frame) return;
+      frame = window.requestAnimationFrame(function () { frame = 0; measure(); });
+    };
+    measure();
+    window.addEventListener('load', schedule);
+    window.addEventListener('resize', schedule);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+    if ('ResizeObserver' in window) {
+      const observer = new ResizeObserver(schedule);
+      observer.observe(article);
+      observer.observe(aside);
+    }
+  }
+
+  if (photos.length) {
+    const visibles = Math.min(photos.length, PHOTOS_VISIBLES);
+    const autres   = photos.length - visibles;
+
+    fields('photos').forEach(function (list) {
+      list.dataset.count = String(photos.length);
+      list.style.setProperty('--photos', String(visibles));
+      list.innerHTML = photos.map(function (photo, index) {
+        const more = autres > 0 && index === visibles - 1;
+        const name = 'Agrandir : ' + (photo.legende || photo.alt || 'photo') +
+          (more ? ' (' + autres + ' ' + U.pluralize(autres, 'autre photo', 'autres photos') + ' à voir)' : '');
+        return '<li class="article-photo">' +
+          '<button type="button" class="gallery-thumb article-photo-btn" data-index="' + index + '" aria-label="' + esc(name) + '">' +
+            '<img src="' + esc(photo.src) + '" alt="' + esc(photo.alt || '') + '" loading="lazy" width="800" height="600">' +
+            '<span class="gallery-thumb-overlay" aria-hidden="true"><ion-icon name="expand-outline"></ion-icon></span>' +
+            (more ? '<span class="article-photo-more" aria-hidden="true">+' + autres + '</span>' : '') +
+          '</button>' +
+        '</li>';
+      }).join('');
+    });
+    show('photos-box', true);
+    layout.classList.add('detail-layout--photos');
+
+    /* Desktop : le CSS étire les photos jusqu'au bas de l'encart quand il reste de la
+       place. Ici : les réduire si elles le dépassent, tant que le cadrage reste correct
+       (sinon elles gardent leur hauteur et l'encart collant les rejoint au défilement),
+       et passer sur 2 rangées si elles deviennent trop étroites. L'encart étant collant,
+       son bas se calcule depuis le haut de la rangée, pas depuis sa position. */
+    const list = page.querySelector('.article-photos-list');
+
+    keepMeasured(function () {
+      list.style.minHeight = '';
+      list.classList.remove('article-photos-list--rows');
+      if (!desktop.matches) return;
+
+      const width = list.querySelector('.article-photo').getBoundingClientRect().width;
+      const box   = list.getBoundingClientRect();
+      const free  = layout.getBoundingClientRect().top + aside.getBoundingClientRect().height - box.top;
+
+      if (free < box.height && free >= Math.max(PHOTO_H_MIN, width / PHOTO_PLATE)) list.style.minHeight = free + 'px';
+      if (visibles > 2 && list.getBoundingClientRect().height / width > PHOTO_ETROITE) {
+        list.classList.add('article-photos-list--rows');
+      }
+    });
+
+    const viewer = typeof RF_LIGHTBOX !== 'undefined' ? RF_LIGHTBOX.create(document.querySelector('.lightbox')) : null;
+    if (viewer) {
+      const slides = photos.map(function (photo) {
+        return { src: photo.src, alt: photo.alt, legende: photo.legende, surtitre: item.titre };
+      });
+      page.addEventListener('click', function (e) {
+        const button = e.target.closest('.article-photo-btn');
+        if (button) viewer.open(slides, Number(button.dataset.index), button);
+      });
+    }
+
+  } else {
+    /* sans photo : informations de l'encart sur deux colonnes seulement s'il dépasse
+       nettement du texte. Mesuré dans la disposition normale, à chaque changement. */
+    keepMeasured(function () {
+      layout.classList.remove('detail-layout--compact');
+      if (!desktop.matches) return;
+      const vide = aside.getBoundingClientRect().height - article.getBoundingClientRect().height;
+      layout.classList.toggle('detail-layout--compact', vide > ECART_COMPACT);
+    });
+  }
 
 
   /* --- À lire aussi ---------------------------------------------------------- */
